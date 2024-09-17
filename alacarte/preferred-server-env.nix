@@ -1,5 +1,4 @@
 { inputs, outputs, lib, pkgs, ... }:{
-  networking.hostName = builtins.elemAt preferredHN 0;
   environment.systemPackages = with pkgs; [
     git
     nano
