@@ -1,8 +1,8 @@
 { inputs, outputs, lib, pkgs, modulesPath, ... }:{
   imports = [ 
     (modulesPath + "/installer/scan/not-detected.nix")
-    inputs.impermanence.nixosModules.impermanence
-    inputs.disko.nixosModule.disko
+    outputs.impermanence.nixosModules.impermanence
+    outputs.disko.nixosModule.disko
     ];
   disko.devices = {
     disk = {
