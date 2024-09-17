@@ -13,6 +13,7 @@
     self,
     nixpkgs,
     home-manager,
+    impermanence,
     disko,
     ...
   } @ inputs: let
