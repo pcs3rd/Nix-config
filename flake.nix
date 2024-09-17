@@ -22,7 +22,7 @@
       bladeworker = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-            ./base-config/cluster-base.nix
+            ./base-configs/cluster-base.nix
             ./disko-configs/cluster-base.nix
             ./alacarte/prefered-server-env.nix
             ./alacarte/tailscale.nix
@@ -32,7 +32,7 @@
       experimental = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-            ./base-config/cluster-base.nix
+            ./base-configs/generic-server.nix
             ./disko-configs/standalone.nix
             ./alacarte/prefered-server-env.nix
             ./alacarte/tailscale.nix
