@@ -4,7 +4,6 @@ let
   hn = builtins.readFile cmd-out;
 in {
   networking.hostName = hn;
-  environment.variables.EDITOR = "nano";
   environment.systemPackages = with pkgs; [
     git
     nano
