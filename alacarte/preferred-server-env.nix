@@ -1,6 +1,6 @@
 { inputs, outputs, lib, pkgs, ... }:
 let
-  cmd-out = runCommand "Get Hostname from file" {} "echo /stateful/sys-data/hostname" >$out";
+  cmd-out = runCommand "Get Hostname from file" {} "echo /stateful/sys-data/hostname >$out";
   hn = builtins.readFile cmd-out;
 in {
   networking.hostName = hn;
