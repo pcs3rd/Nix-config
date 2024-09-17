@@ -11,7 +11,11 @@
         content = {
           type = "gpt";
           partitions = {
-            ESP = {
+            boot = {
+              size = "1M";
+              type = "EF02"; # for grub MBR
+            };
+            esp = {
                 priority = 1;
                 name = "ESP";
                 start = "1";
@@ -23,7 +27,7 @@
                   mountpoint = "/boot";
                 };
             };
-            NixOS = {
+            data = {
                 size = "100%";
                 content = {
                   type = "btrfs";
