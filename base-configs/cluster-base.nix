@@ -1,4 +1,4 @@
-{ inputs, outputs, lib, pkgs, modulesPath, ... }:{
+{ inputs, outputs, lib, pkgs, config, modulesPath, ... }:{
   imports = [ 
     (modulesPath + "/installer/scan/not-detected.nix")
     inputs.impermanence.nixosModules.impermanence
