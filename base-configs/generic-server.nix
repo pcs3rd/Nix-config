@@ -5,7 +5,7 @@
     inputs.disko.nixosModules.disko
     ];
 
-  disko.devices.disk.NixOS.device = "/dev/vda";
+  disko.devices.disk.NixOS.device = "/dev/sda";
 
 # Network
   networking.networkmanager.enable = true;

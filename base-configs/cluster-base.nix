@@ -5,7 +5,7 @@
     inputs.disko.nixosModules.disko
     ];
 
-  disko.devices.disk.NixOS.device = "/dev/sda1";
+  disko.devices.disk.NixOS.device = "/dev/sda";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   users.users.blade-worker = {
