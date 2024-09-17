@@ -45,6 +45,9 @@
             ./alacarte/preferred-server-env.nix
             ./alacarte/tailscale.nix
             ./alacarte/docker.nix
+            {
+              networking.hostname = "experimental";
+            }
         ];
       };
     };
