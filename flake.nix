@@ -32,7 +32,7 @@
         modules = [
             ./base-configs/cluster-base.nix
             ./disko-configs/cluster-base.nix
-            ./alacarte/prefered-server-env.nix
+            ./alacarte/preferred-server-env.nix
             ./alacarte/tailscale.nix
             ./alacarte/docker.nix
         ];
