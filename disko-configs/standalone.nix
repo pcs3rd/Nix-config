@@ -59,7 +59,7 @@
   };
 # Save some needed stuff
   fileSystems."/stateful".neededForBoot = true;
-  environment.persistance."/stateful" = {
+  environment.persistence."/stateful" = {
     enable = true; 
     hideMounts = true;
     directories = [
