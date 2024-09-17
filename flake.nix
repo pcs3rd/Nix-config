@@ -18,6 +18,13 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
+    systems = [
+      "aarch64-linux"
+      "i686-linux"
+      "x86_64-linux"
+    ];
+    forAllSystems = nixpkgs.lib.genAttrs systems;
+
   in {
     nixosConfigurations = {
       bladeworker = nixpkgs.lib.nixosSystem {
