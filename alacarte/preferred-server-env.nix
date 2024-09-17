@@ -1,9 +1,5 @@
-{ inputs, outputs, lib, pkgs, ... }:
-let
-  cmd-out = pkgs.runCommand "Get Hostname from file" {} "cat /stateful/sys-data/hostname > $out";
-  hn = builtins.readFile cmd-out;
-in {
-  networking.hostName = "${hn}";
+{ inputs, outputs, lib, pkgs, preferredHN ? [ "defaultHOSTNAME" ] ... }:{
+  networking.hostName = builtins.elemAt preferredHN 0;
   environment.systemPackages = with pkgs; [
     git
     nano
