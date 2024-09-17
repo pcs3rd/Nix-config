@@ -66,7 +66,7 @@
         "/var/log"
         "/var/lib/nixos"
         "/var/lib/systemd/coredump"
-        "/etc/NetworkManager/system-connections""
+        "/etc/NetworkManager/system-connections"
         "/etc/glusterfs"
         "/var/lib/glusterfs"
     ];
