@@ -46,7 +46,7 @@
             ./alacarte/tailscale.nix
             ./alacarte/docker.nix
             {
-              networking.hostname = "experimental";
+              networking.hostName = "experimental";
             }
         ];
       };
