@@ -18,13 +18,25 @@
   } @ inputs: let
     inherit (self) outputs;
   in {
-    bladeworker = {
-      your-hostname = nixpkgs.lib.nixosSystem {
+    nixosConfigurations = {
+      bladeworker = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
             ./base-config/cluster-base.nix
             ./disko-configs/cluster-base.nix
-            ./alacarte/cluster/glusterfs.nix
+            ./alacarte/prefered-server-env.nix
+            ./alacarte/tailscale.nix
+            ./alacarte/docker.nix
+        ];
+      };
+      experimental = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            ./base-config/cluster-base.nix
+            ./disko-configs/cluster-base.nix
+            ./alacarte/prefered-server-env.nix
+            ./alacarte/tailscale.nix
+            ./alacarte/docker.nix
         ];
       };
     };

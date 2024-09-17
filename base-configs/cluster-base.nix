@@ -6,7 +6,6 @@
     ];
 
   disko.devices.disk.NixOS.device = "/dev/sda1";
-  disko.devices.disk.sys-spare.device = "/dev/sda2";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   users.users.blade-worker = {
@@ -17,15 +16,6 @@
     extraGroups  = [ "networkmanager" ];
     hashedPasswordFile = "/stateful/sys-data/worker-passwordHash"; #  mkpasswd -m sha-512 
   };
-
-  environment.variables.EDITOR = "nano";
-  environment.systemPackages = with pkgs; [
-    git
-    nano
-    tmux
-    htop
-    glusterfs
-  ]
 
   services.openssh.enable = true;
   system.stateVersion = "24.05";

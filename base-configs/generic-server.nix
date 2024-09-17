@@ -20,17 +20,6 @@
      hashedPasswordFile = "/stateful/sys-data/worker-passwordHash"; #  mkpasswd -m sha-512 
   };
 
-# Environment
-  i18n.defaultLocale = "en_US.UTF-8";
-  environment.variables = {
-    "EDITOR" = "nano";
-  };
-  environment.systemPackages = with pkgs; [
-    nano
-    mtm
-    smartmontools
-  ];
-
 # Servicses
   services.openssh.enable = true;
   system.stateVersion = "24.05";
