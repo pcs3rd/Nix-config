@@ -34,7 +34,7 @@
         modules = [
             ./base-configs/generic-server.nix
             ./disko-configs/standalone.nix
-            ./alacarte/prefered-server-env.nix
+            ./alacarte/preferred-server-env.nix
             ./alacarte/tailscale.nix
             ./alacarte/docker.nix
         ];
