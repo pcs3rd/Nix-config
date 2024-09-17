@@ -21,5 +21,4 @@
   nix.settings.auto-optimise-store = true;
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = false;
-  system.copySystemConfiguration = true;
 }
