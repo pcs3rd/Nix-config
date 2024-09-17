@@ -33,7 +33,7 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
             ./base-config/cluster-base.nix
-            ./disko-configs/cluster-base.nix
+            ./disko-configs/standalone.nix
             ./alacarte/prefered-server-env.nix
             ./alacarte/tailscale.nix
             ./alacarte/docker.nix
