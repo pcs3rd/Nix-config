@@ -14,7 +14,6 @@
 
 # User stuff
   users.users.admin = {
-    isNormalUser  = true;
      isNormalUser = true;
      extraGroups = [ "wheel" "docker" "networkmanager" "storage" ]; 
      hashedPasswordFile = "/stateful/sys-data/worker-passwordHash"; #  mkpasswd -m sha-512 
