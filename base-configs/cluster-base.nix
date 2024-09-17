@@ -1,8 +1,6 @@
 { inputs, outputs, lib, pkgs, config, modulesPath, ... }:{
   imports = [ 
     (modulesPath + "/installer/scan/not-detected.nix")
-    inputs.impermanence.nixosModules.impermanence
-    inputs.disko.nixosModules.disko
     ];
 
   disko.devices.disk.NixOS.device = "/dev/sda";
