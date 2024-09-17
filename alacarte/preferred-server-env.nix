@@ -3,7 +3,7 @@ let
   cmd-out = pkgs.runCommand "Get Hostname from file" {} "echo /stateful/sys-data/hostname >$out";
   hn = builtins.readFile cmd-out;
 in {
-  networking.hostName = hn;
+  networking.hostName = "${hn}";
   environment.systemPackages = with pkgs; [
     git
     nano
