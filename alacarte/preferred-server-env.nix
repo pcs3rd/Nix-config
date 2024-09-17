@@ -13,6 +13,7 @@
   environment.variables = {
     "EDITOR" = "nano";
   };
+  boot.loader.systemd-boot.enable = true
   documentation.enable = false; # documentation of packages
   documentation.nixos.enable = false; # nixos documentation
   documentation.man.enable = false; # manual pages and the man command
