@@ -3,7 +3,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  disko.devices.disk.NixOS.device = "/dev/vda";
+  disko.devices.disk.system.device = "/dev/vda";
 
 # Network
   networking.networkmanager.enable = true;
