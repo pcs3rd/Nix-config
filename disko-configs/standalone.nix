@@ -13,7 +13,7 @@
           partitions = {
             esp = {
                 priority = 1;
-                name = "ESP";
+                name = "esp";
                 size = "1G";
                 type = "EF00";
                 content = {
@@ -23,6 +23,7 @@
                 };
             };
             user = {
+                name = "user";
                 size = "100%";
                 content = {
                   type = "btrfs";
