@@ -6,7 +6,7 @@
     ];
   disko.devices = {
     disk = {
-       NixOS = {
+       system = {
         type = "disk";
         content = {
           type = "gpt";
@@ -22,7 +22,7 @@
                   mountpoint = "/boot";
                 };
             };
-            data = {
+            user = {
                 size = "100%";
                 content = {
                   type = "btrfs";
@@ -32,7 +32,7 @@
                       mountOptions = [ "compress=zstd" ];
                       mountpoint = "/stateful";
                   };
-                  "/nix-store" = {
+                  "/nix" = {
                     mountOptions = [ "compress=zstd" "noatime" ];
                     mountpoint = "/nix";
                   };
