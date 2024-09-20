@@ -6,6 +6,12 @@
   disko.devices.disk.NixOS.device = "/dev/sda";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+# Network
+  networking.networkmanager.enable = true;
+  networking.firewall.enable = false;
+  time.timeZone = "America/New_York";
+
+
   users.users.blade-worker = {
     isNormalUser  = true;
     home  = "/home/blade-worker";

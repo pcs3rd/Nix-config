@@ -45,6 +45,7 @@
             ./alacarte/preferred-server-env.nix
             ./alacarte/tailscale.nix
             ./alacarte/docker.nix
+            ./alacarte/virtio.nix
             {
               networking.hostName = "experimental";
             }

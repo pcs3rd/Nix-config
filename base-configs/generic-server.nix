@@ -4,6 +4,7 @@
     ];
 
   disko.devices.disk.system.device = "/dev/vda";
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 # Network
   networking.networkmanager.enable = true;
@@ -14,7 +15,7 @@
   users.users.admin = {
      isNormalUser = true;
      extraGroups = [ "wheel" "docker" "networkmanager" "storage" ]; 
-     hashedPasswordFile = "/stateful/sys-data/worker-passwordHash"; #  mkpasswd -m sha-512 
+     hashedPasswordFile = "/stateful/sys-data/admin-passwordHash"; #  mkpasswd -m sha-512 
   };
 
 # Servicses
