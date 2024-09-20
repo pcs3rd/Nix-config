@@ -60,6 +60,7 @@
       ];
     };
   };
+
 # Save some needed stuff
   fileSystems."/stateful".neededForBoot = true;
   environment.persistence."/stateful" = {

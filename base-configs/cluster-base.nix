@@ -3,7 +3,6 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  disko.devices.disk.NixOS.device = "/dev/sda";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 # Network
