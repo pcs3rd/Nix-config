@@ -48,7 +48,7 @@
             ./alacarte/virtio.nix
             {
               networking.hostName = "experimental";
-              boot.loader.grub.device = "/dev/vda";
+              #boot.loader.grub.device = "/dev/vda";
               disko.devices.disk.system.device = "/dev/vda";
             }
         ];
