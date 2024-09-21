@@ -82,6 +82,7 @@
         "/home/admin/persisted"
         "/home/admin/.cache"
         "/home/admin/.config"
+        "/var/lib/tailscale/"
     ];
     files = [
       { file = "/home/admin/.config/browsh/config.toml"; parentDirectory = { mode = "0700"; }; }
