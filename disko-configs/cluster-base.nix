@@ -71,6 +71,7 @@
         "/var/lib/systemd/coredump"
         "/etc/NetworkManager/system-connections"
         "/home/admin/.ssh"
+        "/home/admin/persisted"
     ];
   };
 }

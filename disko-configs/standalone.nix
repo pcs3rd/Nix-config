@@ -71,6 +71,7 @@
         "/var/lib/nixos"
         "/var/lib/systemd/coredump"
         "/etc/NetworkManager/system-connections"
+        "/home/admin/persisted"
     ];
   };
 }
