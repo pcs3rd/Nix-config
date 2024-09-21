@@ -7,7 +7,6 @@ boot.loader = {
      enable = true;
      efiSupport = true;
      version = 3;
-     efiInstallAsRemovable = true;
   };
 };
 }
