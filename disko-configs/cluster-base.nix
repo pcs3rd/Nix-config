@@ -6,14 +6,18 @@
     ];
   disko.devices = {
     disk = {
-       NixOS = {
+       system = {
         type = "disk";
         content = {
           type = "gpt";
           partitions = {
-            ESP = {
+            boot = {
+              size = "1M";
+              type = "EF02"; # for grub MBR
+            };
+            esp = {
                 priority = 1;
-                name = "ESP";
+                name = "esp";
                 size = "1G";
                 type = "EF00";
                 content = {
@@ -22,7 +26,7 @@
                   mountpoint = "/boot";
                 };
             };
-            NixOS = {
+            user = {
                 size = "100%";
                 content = {
                   type = "btrfs";
@@ -32,7 +36,7 @@
                       mountOptions = [ "compress=zstd" ];
                       mountpoint = "/stateful";
                   };
-                  "/nix-store" = {
+                  "/nix" = {
                     mountOptions = [ "compress=zstd" "noatime" ];
                     mountpoint = "/nix";
                   };
@@ -50,7 +54,7 @@
     nodev."/" = {
       fsType = "tmpfs";
       mountOptions = [
-        "size=4G"
+        "size=2G"
         "defaults"
         "mode=755"
       ];
@@ -66,12 +70,6 @@
         "/var/lib/nixos"
         "/var/lib/systemd/coredump"
         "/etc/NetworkManager/system-connections"
-        "/etc/glusterfs"
-        "/var/lib/glusterfs"
-    ];
-    files = [
-        "/etc/ceph/ceph.client.admin.keyring"
-        "/var/lib/ceph/bootstrap-osd/ceph.keyring"
     ];
   };
 }
