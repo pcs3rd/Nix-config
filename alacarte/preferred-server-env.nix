@@ -8,6 +8,7 @@
     nano
     mtm
     smartmontools
+    browsh
   ];
   i18n.defaultLocale = "en_US.UTF-8";
   environment.variables = {
