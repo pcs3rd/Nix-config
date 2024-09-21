@@ -7,5 +7,8 @@ boot.loader = {
      enable = true;
      efiSupport = true;
   };
+    boot.loader.grub.enable = true;
+    boot.loader.grub.version = 2;
+    boot.loader.grub.efiInstallAsRemovable = true;
 };
 }

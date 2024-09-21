@@ -46,6 +46,7 @@
             ./alacarte/tailscale.nix
             ./alacarte/docker.nix
             ./alacarte/virtio.nix
+            ./alacarte/grub.nix
             {
               networking.hostName = "experimental";
               #boot.loader.grub.device = "/dev/vda";
