@@ -80,6 +80,8 @@
         "/var/lib/systemd/coredump"
         "/etc/NetworkManager/system-connections"
         "/home/admin/persisted"
+        "/home/admin/.cache"
+        "/home/admin/.config"
     ];
     files = [
       { file = "/home/admin/.config/browsh/config.toml"; parentDirectory = { mode = "0700"; }; }
