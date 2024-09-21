@@ -73,5 +73,8 @@
         "/etc/NetworkManager/system-connections"
         "/home/admin/persisted"
     ];
+    files = [
+      { file = "/home/admin/.config/browsh/config.toml"; parentDirectory = { mode = "0700"; }; }
+    ];
   };
 }
