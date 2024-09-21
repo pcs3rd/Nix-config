@@ -6,9 +6,8 @@ boot.loader = {
   grub = {
      enable = true;
      efiSupport = true;
+     version = 3;
+     efiInstallAsRemovable = true;
   };
-    boot.loader.grub.enable = true;
-    boot.loader.grub.version = 2;
-    boot.loader.grub.efiInstallAsRemovable = true;
 };
 }
