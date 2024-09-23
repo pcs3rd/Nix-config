@@ -27,7 +27,7 @@
       extraGroups = [ "wheel" "docker" "networkmanager" "storage" ]; 
       hashedPasswordFile = "/stateful/sys-data/manager-passwordHash"; #  mkpasswd -m sha-512 
     };
-  }
+  };
 
   system.stateVersion = "24.05";
 
