@@ -12,7 +12,7 @@
 # User stuff
   users.users = {
     blade-worker = {
-      users.users.blade-worker.group = "blade-worker";
+      group = "blade-worker";
       isSystemUser  = true;
       home  = "/home/blade-worker";
       description  = "";
@@ -22,7 +22,6 @@
     };
     manager = {
       isNormalUser = true;
-      group = "blade-worker";
       home = "/home/manager";
       description  = "manager user for ssh access";
       uid = 1000; 
@@ -31,7 +30,6 @@
     };
   };
   users.groups.blade-worker = {};
-   users.groups.blade-worker = {};
 
   system.stateVersion = "24.05";
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
