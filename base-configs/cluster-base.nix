@@ -11,14 +11,25 @@
   time.timeZone = "America/New_York";
 
 
-  users.users.blade-worker = {
-    isNormalUser  = true;
-    home  = "/home/blade-worker";
-    description  = "";
-    uid = 1000;
-    extraGroups  = [ "networkmanager" ];
-    hashedPasswordFile = "/stateful/sys-data/worker-passwordHash"; #  mkpasswd -m sha-512 
-  };
+  users.users = {
+    blade-worker = {
+      isNormalUser  = true;
+      home  = "/home/blade-worker";
+      description  = "";
+      uid = 811;
+      extraGroups  = [ "networkmanager" ];
+      hashedPasswordFile = "/stateful/sys-data/worker-passwordHash"; #  mkpasswd -m sha-512 
+    };
+    manager = {
+      isNormalUser  = true;
+      home = "/home/manager";
+      description  = "";
+      uid = 1000;
+      extraGroups = [ "wheel" "docker" "networkmanager" "storage" ]; 
+      hashedPasswordFile = "/stateful/sys-data/manager-passwordHash"; #  mkpasswd -m sha-512 
+    };
+  }
+
 
   services.openssh.enable = true;
   system.stateVersion = "24.05";

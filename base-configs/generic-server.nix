@@ -11,12 +11,21 @@
   time.timeZone = "America/New_York";
 
 # User stuff
-  users.users.admin = {
-     isNormalUser = true;
-     extraGroups = [ "wheel" "docker" "networkmanager" "storage" ]; 
-     hashedPasswordFile = "/stateful/sys-data/admin-passwordHash"; #  mkpasswd -m sha-512 
-  };
-
+  users.users = {
+      admin = {
+      isNormalUser = true;
+      extraGroups = [ "wheel" "docker" "networkmanager" "storage" ]; 
+      hashedPasswordFile = "/stateful/sys-data/admin-passwordHash"; #  mkpasswd -m sha-512 
+    };
+    manager = {
+      isNormalUser  = true;
+      home = "/home/manager";
+      description  = "";
+      uid = 1000;
+      extraGroups = [ "wheel" "docker" "networkmanager" "storage" ]; 
+      hashedPasswordFile = "/stateful/sys-data/manager-passwordHash"; #  mkpasswd -m sha-512 
+    };
+  }
 # Servicses
   services.openssh.enable = true;
   system.stateVersion = "24.05";

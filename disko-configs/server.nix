@@ -85,9 +85,13 @@
         "/home/admin/.cache"
         "/home/admin/.config"
         "/home/admin/.ssh"
+        "/home/manager/.cache"
+        "/home/manager/.config"
+        "/home/manager/.ssh"
     ];
     files = [
       "/home/admin/.bash_history"
+      "/home/manager/.bash_history"
     ];
   };
 }
