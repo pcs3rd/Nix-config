@@ -17,10 +17,14 @@
         "-a exit,always -F arch=b64 -S execve"
     ];
     security.sudo.execWheelOnly = true;
-    environment.defaultPackages = lib.mkForce [];
+    environment.defaultPackages = lib.mkForce [
+        bash
+        git
+        nix
+    ];
     services.openssh = {
         passwordAuthentication = false;
-        allowSFTP = false; # Don't set this if you need sftp
+        allowSFTP = true; # Don't set this if you need sftp
         challengeResponseAuthentication = false;
         extraConfig = ''
         AllowTcpForwarding yes

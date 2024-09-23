@@ -25,9 +25,7 @@
       extraGroups = [ "wheel" "docker" "networkmanager" "storage" ]; 
       hashedPasswordFile = "/stateful/sys-data/manager-passwordHash"; #  mkpasswd -m sha-512 
     };
-  }
-# Servicses
-  services.openssh.enable = true;
+  };
   system.stateVersion = "24.05";
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];

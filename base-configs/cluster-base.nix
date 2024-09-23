@@ -30,8 +30,6 @@
     };
   }
 
-
-  services.openssh.enable = true;
   system.stateVersion = "24.05";
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
