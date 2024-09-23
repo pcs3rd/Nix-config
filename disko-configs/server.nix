@@ -33,7 +33,7 @@
                   extraArgs = [ "-f" ];
                 subvolumes = {
                   "/stateful" = {
-                      mountOptions = [ "compress=zstd" ];
+                      mountOptions = [ "compress=zstd" "noexec" ];
                       mountpoint = "/stateful";
                   };
                   "/nix" = {
@@ -54,12 +54,22 @@
     nodev."/" = {
       fsType = "tmpfs";
       mountOptions = [
-        "size=2G"
+        "size=1G"
         "defaults"
         "mode=755"
       ];
     };
+    nodev."/home" = {
+      fsType = "tmpfs";
+      mountOptions = [
+        "size=1G"
+        "defaults"
+        "mode=666"
+        "noexec"
+      ];
+    };
   };
+
 # Save some needed stuff
   fileSystems."/stateful".neededForBoot = true;
   environment.persistence."/stateful" = {
@@ -68,10 +78,16 @@
     directories = [
         "/var/log"
         "/var/lib/nixos"
+        "/var/lib/tailscale/"
         "/var/lib/systemd/coredump"
         "/etc/NetworkManager/system-connections"
-        "/home/admin/.ssh"
         "/home/admin/persisted"
+        "/home/admin/.cache"
+        "/home/admin/.config"
+        "/home/admin/.ssh"
+    ];
+    files = [
+      "/home/admin/.bash_history"
     ];
   };
 }
