@@ -7,7 +7,6 @@
 
 # Network
   networking.networkmanager.enable = true;
-  networking.firewall.enable = false;
   time.timeZone = "America/New_York";
 
 
