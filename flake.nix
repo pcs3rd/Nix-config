@@ -30,7 +30,7 @@
       bladeworker01 = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-            ./base-configs/cluster-base.nix
+            ./base-configs/generic-server.nix
             ./disko-configs/server.nix
             ./alacarte/preferred-server-env.nix
             ./alacarte/tailscale.nix
@@ -39,7 +39,7 @@
             ./alacarte/server-hardenning.nix
             {
               networking.hostName = "bladeworker01";
-              #boot.loader.grub.device = "/dev/sda";
+              boot.loader.grub.device = "/dev/sda";
               disko.devices.disk.system.device = "/dev/sda";
             }
         ];
@@ -47,7 +47,7 @@
       sevenofnine = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-            ./base-configs/cluster-base.nix
+            ./base-configs/generic-server.nix
             ./disko-configs/server.nix
             ./alacarte/preferred-server-env.nix
             ./alacarte/tailscale.nix
@@ -56,7 +56,7 @@
             ./alacarte/server-hardenning.nix
             {
               networking.hostName = "sevenofnine";
-              #boot.loader.grub.device = "/dev/nvme0n1";
+              boot.loader.grub.device = "/dev/nvme0n1";
               disko.devices.disk.system.device = "/dev/nvme0n1";
             }
         ];
@@ -74,7 +74,7 @@
             ./alacarte/server-hardenning.nix
             {
               networking.hostName = "experimental";
-              #boot.loader.grub.device = "/dev/vda";
+              boot.loader.grub.device = "/dev/vda";
               disko.devices.disk.system.device = "/dev/vda";
             }
         ];

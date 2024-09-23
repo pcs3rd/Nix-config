@@ -12,7 +12,7 @@
 # User stuff
   users.users = {
     blade-worker = {
-      isNormalUser  = true;
+      isSystemUser  = true;
       home  = "/home/blade-worker";
       description  = "";
       uid = 811;
@@ -20,7 +20,7 @@
       hashedPasswordFile = "/stateful/sys-data/worker-passwordHash"; #  mkpasswd -m sha-512 
     };
     manager = {
-      isNormalUser  = true;
+      isNormalUser = true;
       home = "/home/manager";
       description  = "manager user for ssh access";
       uid = 1000;
