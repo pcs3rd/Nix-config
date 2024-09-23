@@ -44,6 +44,23 @@
             }
         ];
       };
+      sevenofnine = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            ./base-configs/cluster-base.nix
+            ./disko-configs/server.nix
+            ./alacarte/preferred-server-env.nix
+            ./alacarte/tailscale.nix
+            ./alacarte/docker.nix
+            ./alacarte/grub.nix
+            ./alacarte/server-hardenning.nix
+            {
+              networking.hostName = "sevenofnine";
+              #boot.loader.grub.device = "/dev/nvme0n1";
+              disko.devices.disk.system.device = "/dev/nvme0n1";
+            }
+        ];
+      };
       experimental = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [

@@ -11,15 +11,18 @@
 
 # User stuff
   users.users = {
-      admin = {
-      isNormalUser = true;
-      extraGroups = [ "wheel" "docker" "networkmanager" "storage" ]; 
-      hashedPasswordFile = "/stateful/sys-data/admin-passwordHash"; #  mkpasswd -m sha-512 
+    blade-worker = {
+      isNormalUser  = true;
+      home  = "/home/blade-worker";
+      description  = "";
+      uid = 811;
+      extraGroups  = [ "networkmanager" ];
+      hashedPasswordFile = "/stateful/sys-data/worker-passwordHash"; #  mkpasswd -m sha-512 
     };
     manager = {
       isNormalUser  = true;
       home = "/home/manager";
-      description  = "";
+      description  = "manager user for ssh access";
       uid = 1000;
       extraGroups = [ "wheel" "docker" "networkmanager" "storage" ]; 
       hashedPasswordFile = "/stateful/sys-data/manager-passwordHash"; #  mkpasswd -m sha-512 
