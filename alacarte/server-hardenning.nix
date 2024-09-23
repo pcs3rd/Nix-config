@@ -18,9 +18,16 @@
     ];
     security.sudo.execWheelOnly = true;
     environment.defaultPackages = lib.mkForce [
-        bash
-        git
-        nix
+        pkgs.bash
+        pkgs.git
+        pkgs.nix
+        pkgs.nano
+        pkgs.tmux
+        pkgs.htop
+        pkgs.mtm
+        pkgs.smartmontools
+        pkgs.browsh
+        pkgs.firefox
     ];
     services.openssh = {
         passwordAuthentication = false;

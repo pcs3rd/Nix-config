@@ -1,15 +1,4 @@
 { inputs, outputs, lib, pkgs, ... }:{
-  environment.systemPackages = with pkgs; [
-    git
-    nano
-    tmux
-    htop
-    glusterfs
-    nano
-    mtm
-    smartmontools
-    browsh
-  ];
   i18n.defaultLocale = "en_US.UTF-8";
   environment.variables = {
     "EDITOR" = "nano";
