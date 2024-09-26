@@ -2,7 +2,7 @@
 
 {
     networking.firewall = {
-        enable = true;
+        enable = false;
         allowedTCPPorts = [ 80 443 22 ];
         # allowedUDPPortRanges = [
         #    { from = 4000; to = 4007; }
@@ -38,7 +38,7 @@
         X11Forwarding no
         AllowAgentForwarding no
         AllowStreamLocalForwarding no
-        AuthenticationMethods publickey
+        #AuthenticationMethods publickey
         '';
     };
     environment.systemPackages = with pkgs; [ clamav ];
