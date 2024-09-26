@@ -83,7 +83,7 @@
         "/etc/NetworkManager/system-connections"
         { directory = "/home/manager/.config"; user = "manager"; group = "manager"; mode = "u=rwx,g=rx,o="; }
         { directory = "/home/manager/.cache"; user = "manager"; group = "manager"; mode = "u=rwx,g=rx,o="; }
-        { directory = ""/home/manager/.ssh""; user = "manager"; group = "manager"; mode = "u=rwx,g=rx,o="; }
+        { directory = "/home/manager/.ssh"; user = "manager"; group = "manager"; mode = "u=rwx,g=rx,o="; }
         { directory = "/home/manager/.gitconfig"; user = "manager"; group = "manager"; mode = "u=rwx,g=rx,o="; }
 
     ];
