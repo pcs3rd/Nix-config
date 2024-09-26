@@ -88,6 +88,7 @@
         "/home/manager/.cache"
         "/home/manager/.config"
         "/home/manager/.ssh"
+        "/home/manager/.gitconfig"
     ];
     files = [
       "/home/admin/.bash_history"
