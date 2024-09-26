@@ -81,14 +81,11 @@
         "/var/lib/tailscale/"
         "/var/lib/systemd/coredump"
         "/etc/NetworkManager/system-connections"
-        "/home/admin/persisted"
-        "/home/admin/.cache"
-        "/home/admin/.config"
-        "/home/admin/.ssh"
-        "/home/manager/.cache"
-        "/home/manager/.config"
-        "/home/manager/.ssh"
-        "/home/manager/.gitconfig"
+        { directory = "/home/manager/.config"; user = "manager"; group = "manager"; mode = "u=rwx,g=rx,o="; }
+        { directory = "/home/manager/.cache"; user = "manager"; group = "manager"; mode = "u=rwx,g=rx,o="; }
+        { directory = ""/home/manager/.ssh""; user = "manager"; group = "manager"; mode = "u=rwx,g=rx,o="; }
+        { directory = "/home/manager/.gitconfig"; user = "manager"; group = "manager"; mode = "u=rwx,g=rx,o="; }
+
     ];
     files = [
       "/home/admin/.bash_history"
