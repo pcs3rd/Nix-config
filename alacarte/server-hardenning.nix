@@ -31,7 +31,7 @@
     ];
     services.openssh = {
         enable = true;
-        passwordAuthentication = false;
+        passwordAuthentication = true;
         allowSFTP = true; # Don't set this if you need sftp
         challengeResponseAuthentication = false;
         extraConfig = ''
