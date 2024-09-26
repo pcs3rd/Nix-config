@@ -84,12 +84,12 @@
         { directory = "/home/manager/.config"; user = "manager"; group = "manager"; mode = "u=rwx,g=rx,o="; }
         { directory = "/home/manager/.cache"; user = "manager"; group = "manager"; mode = "u=rwx,g=rx,o="; }
         { directory = "/home/manager/.ssh"; user = "manager"; group = "manager"; mode = "u=rwx,g=rx,o="; }
-        { directory = "/home/manager/.gitconfig"; user = "manager"; group = "manager"; mode = "u=rwx,g=rx,o="; }
 
     ];
     files = [
-      "/home/admin/.bash_history"
-      "/home/manager/.bash_history"
+      { file = "/home/manager/.bash_history"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
+      { file = "/home/manager/.gitconfig"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
+
     ];
   };
 }
