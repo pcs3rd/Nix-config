@@ -30,6 +30,7 @@
         pkgs.firefox
     ];
     services.openssh = {
+        enable = true;
         passwordAuthentication = false;
         allowSFTP = true; # Don't set this if you need sftp
         challengeResponseAuthentication = false;
