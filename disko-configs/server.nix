@@ -81,14 +81,14 @@
         "/var/lib/tailscale/"
         "/var/lib/systemd/coredump"
         "/etc/NetworkManager/system-connections"
-        { directory = "/home/manager/.config"; user = "manager"; group = "manager"; mode = "u=rwx,g=rx,o="; }
-        { directory = "/home/manager/.cache"; user = "manager"; group = "manager"; mode = "u=rwx,g=rx,o="; }
-        { directory = "/home/manager/.ssh"; user = "manager"; group = "manager"; mode = "u=rwx,g=rx,o="; }
+        { directory = "/home/manager/.config"; user = "manager"; group = "manager"; mode = "u=rwx,g=rx,or"; }
+        { directory = "/home/manager/.cache"; user = "manager"; group = "manager"; mode = "u=rwx,g=rx,o=r"; }
+        { directory = "/home/manager/.ssh"; user = "manager"; group = "manager"; mode = "u=rwx,g=rx,o=r"; }
 
     ];
     files = [
-      { file = "/home/manager/.bash_history"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
-      { file = "/home/manager/.gitconfig"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
+      { file = "/home/manager/.bash_history"; parentDirectory = { mode = "u=rwx,g=rw,o=r"; }; }
+      { file = "/home/manager/.gitconfig"; parentDirectory = { mode = "u=rwx,g=rw,o=r"; }; }
 
     ];
   };
