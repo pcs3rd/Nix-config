@@ -81,7 +81,7 @@
         "/var/lib/tailscale/"
         "/var/lib/systemd/coredump"
         "/etc/NetworkManager/system-connections"
-        { directory = "/home/manager/.config"; user = "manager"; group = "1000"; mode = "u=rwx,g=rx,or"; }
+        { directory = "/home/manager/.config"; user = "manager"; group = "1000"; mode = "u=rwx,g=rx,o=r"; }
         { directory = "/home/manager/.cache"; user = "manager"; group = "1000"; mode = "u=rwx,g=rx,o=r"; }
         { directory = "/home/manager/.ssh"; user = "manager"; group = "100"; mode = "u=rwx,g=rx,o=r"; }
 
