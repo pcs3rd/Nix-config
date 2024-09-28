@@ -25,7 +25,7 @@
         hostKeys = [ "/stateful/etc/ssh/ssh_host_rsa_key" ]; # convienently already accessable.
       };
     };
-  }
+  };
 
   users.motd = "UNAUTHORIZED ACCESS TO THIS DEVICE IS PROHIBITED
 
