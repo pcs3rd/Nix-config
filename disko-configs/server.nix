@@ -86,10 +86,12 @@
         { directory = "/home/manager/.ssh"; user = "manager"; group = "1000"; mode = "u=rwx,g=rx,o=r"; }
     ];
     files = [
-      { file = "/home/manager/.bash_history"; parentDirectory = { mode = "u=rwx,g=rw,o=r"; }; }
-      { file = "/home/manager/.gitconfig"; parentDirectory = { mode = "u=rwx,g=rw,o=r"; }; }
-      { file = "/etc/ssh/ssh_host_rsa_key"; parentDirectory = { mode = "u=rwx,g=rw,o=r"; }; }
-      { file = "/etc/ssh/ssh_host_rsa_key.pub"; parentDirectory = { mode = "u=rwx,g=rw,o=r"; }; }
+      { file = "/home/manager/.bash_history"; parentDirectory = { mode = "u=rwx,g=r,o=r"; }; }
+      { file = "/home/manager/.gitconfig"; parentDirectory = { mode = "u=rwx,g=r,o=r"; }; }
+      { file = "/etc/ssh/ssh_host_rsa_key"; parentDirectory = { mode = "u=rwx,g=r,o=r"; }; }
+      { file = "/etc/ssh/ssh_host_rsa_key.pub"; parentDirectory = { mode = "u=rwx,g=r,o=r"; }; }
+      { file = "/etc/ssh/ssh_host_ed25519_key"; parentDirectory = { mode = "u=rwx,g=r,o=r"; }; }
+      { file = "/etc/ssh/ssh_host_ed25519_key.pub"; parentDirectory = { mode = "u=rwx,g=r,o=r"; }; }
 
     ];
   };
