@@ -86,6 +86,7 @@
         { directory = "/home/manager/.ssh"; user = "manager"; group = "1000"; mode = "u=rwx,g=rx,o=r"; }
     ];
     files = [
+      { file = "/etc/machine-id"; parentDirectory = { mode = "u=rwx,g=rwx,o=r"; }; }
       { file = "/home/manager/.bash_history"; parentDirectory = { mode = "u=rwx,g=rwx,o=r"; }; }
       { file = "/home/manager/.gitconfig"; parentDirectory = { mode = "u=rwx,g=rwx,o=r"; }; }
       { file = "/etc/ssh/ssh_host_rsa_key"; parentDirectory = { mode = "u=rwx,g=r,o=r"; }; }
