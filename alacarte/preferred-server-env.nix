@@ -14,6 +14,19 @@
   services.devmon.enable = true; # I want to auto-mount disks.
   services.gvfs.enable = true; 
   services.udisks2.enable = true;
+  programs.udevil.enable = true;
+
+  systemd.services.automount = {
+    description = "Automatically mount storage mediums";
+    startLimitBurst = 5;
+    startLimitIntervalSec = 500;
+    serviceConfig = {
+      ExecStart = "${pkgs.udevil}/devmon &";
+      Restart = "on-failure";
+      RestartSec = "5s";
+    };
+  };
+
   boot.initrd = {
     systemd.users.root.shell = "/bin/sh";
     network = {
