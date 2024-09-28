@@ -14,32 +14,6 @@
   services.devmon.enable = true; # I want to auto-mount disks.
   services.gvfs.enable = true; 
   services.udisks2.enable = true;
-  services.udev.extraRules = ''
-    KERNEL!="sd[a-z][0-9]", GOTO="media_by_label_auto_mount_end"
-
-    # Import FS infos
-    IMPORT{program}="${pkgs.toybox}/blkid -o udev -p %N"
-
-    # Get a label if present, otherwise specify one
-    ENV{ID_FS_LABEL}!="", ENV{dir_name}="%E{ID_FS_LABEL}"
-    ENV{ID_FS_LABEL}=="", ENV{dir_name}="usbhd-%k"
-
-    # Global mount options
-    ACTION=="add", ENV{mount_options}="relatime"
-    # Filesystem-specific mount options
-    ACTION=="add", ENV{ID_FS_TYPE}=="vfat|ntfs", ENV{mount_options}="$env{mount_options},utf8,gid=100,umask=002"
-
-    # Mount the device
-    ACTION=="add", RUN+="${pkgs.toybox}/mkdir -p /media/%E{dir_name}", RUN+="${pkgs.toybox}/mount -o $env{mount_options} /dev/%k /media/%E{dir_name}"
-
-    # Clean up after removal
-    ACTION=="remove", ENV{dir_name}!="", RUN+="${pkgs.toybox}/umount -l /media/%E{dir_name}", RUN+="${pkgs.toybox}/rmdir /media/%E{dir_name}"
-
-    # Exit
-    LABEL="media_by_label_auto_mount_end"
-  '';
-
-
   boot.initrd = {
     systemd.users.root.shell = "/bin/sh";
     network = {
