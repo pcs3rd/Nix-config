@@ -3,27 +3,29 @@
     inputs.home-manager.nixosModules.home-manager
     ];
 
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
-  home-manager.username = "rdean";
-  home-manager.homeDirectory = "/home/rdean";
-
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
-  home-manager.stateVersion = "24.05";
-
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  
-  home-manager.packages = [
-    pkgs.htop
-    pkgs.vscode
-  ];
+  users.users.rdean = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "networkmanager" ];
+  };
+  home-manager.users.rdean = {
+    home.packages = with pkgs; [
+      tmux
+      htopvscode
+      git
+      nano
+      carla
+    ];
+    home.stateVersion = "24.05";
 
+  };
+  sound.enable = true;  
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
+  };
 }
