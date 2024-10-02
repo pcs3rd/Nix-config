@@ -82,13 +82,14 @@
             }
         ];
       };
-      2011macpro = nixpkgs.lib.nixosSystem {
+      maciar = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
             ./base-configs/generic-mac.nix
             ./disko-configs/laptop.nix
             ./alacarte/tailscale.nix
             ./alacarte/grub.nix
+            ./alacarte/oh-crap-recovery.nix
             {
               networking.hostName = "2011mac";
               boot.loader.grub.device = "/dev/sda";

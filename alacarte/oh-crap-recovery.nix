@@ -59,4 +59,10 @@ in
       };
     };
   };
+  fileSystems."/" = lib.mkForce {
+    device = "none";
+    fsType = "tmpfs";
+    options = [ "defaults" "size=1G" "mode=755" ];
+  };
+
 }
