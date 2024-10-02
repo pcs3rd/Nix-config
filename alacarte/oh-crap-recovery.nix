@@ -30,6 +30,7 @@ in
     libinput.enable = true;
 
     # Let lightdm handle autologin
+    displayManager.gdm.enable = lib.mkForce false;
     displayManager.lightdm = {
       enable = true;
       autoLogin = {
