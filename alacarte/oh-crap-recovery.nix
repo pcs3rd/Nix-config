@@ -1,0 +1,62 @@
+{ config, lib, pkgs, ... }:
+let
+  autostart = ''
+    #!${pkgs.bash}/bin/bash
+    # End all lines with '&' to not halt startup script execution
+  '';
+
+  inherit (pkgs) writeScript;
+in 
+{
+  specialisation = {
+    Recovery_Mode.configuration = {
+      system.nixos.tags = [ "Recovery_Mode" ];
+      services.xserver.desktopManager.gnome.enable = false;
+      services.xserver.windowManager.openbox.enable = true;
+      services.nixosManual.enable = mkForce true;
+      services.nixosManual.showManual = true;
+      security.sudo.enable = false;
+      services.mingetty.autologinUser = "recovery";
+      boot.initrd.kernelModules = [ "ext4" "btrfs" ];
+      environment.defaultPackages = lib.mkForce [
+        tint2
+        tmux
+      ];
+  services.xserver = {
+    enable = true;
+    layout = "us"; # keyboard layout
+    libinput.enable = true;
+
+    # Let lightdm handle autologin
+    displayManager.lightdm = {
+      enable = true;
+      autoLogin = {
+        enable = true;
+        timeout = 0;
+        user = recovery;
+      };
+    };
+    windowManager.openbox.enable = true;
+    displayManager.defaultSession = "none+openbox";
+  };
+
+  nixpkgs.overlays = with pkgs; [
+    (self: super: {
+      openbox = super.openbox.overrideAttrs (oldAttrs: rec {
+        postFixup = ''
+          ln -sf /etc/openbox/autostart $out/etc/xdg/openbox/autostart
+        '';
+      });
+    })
+  ];
+  environment.etc."openbox/autostart".source = writeScript "autostart" autostart;
+
+
+  users.users.recovery = {
+        isNormalUser = true;
+        uid = 1002;
+        extraGroups = [ "networkmanager" "video" ];
+      };
+    };
+  };
+}
