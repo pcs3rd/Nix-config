@@ -28,6 +28,7 @@
         pkgs.smartmontools
         pkgs.browsh
         pkgs.firefox
+        pkgs.lazydocker
     ];
     services.openssh = {
         enable = true;
