@@ -18,8 +18,8 @@ in
       services.mingetty.autologinUser = "recovery";
       boot.initrd.kernelModules = [ "ext4" "btrfs" ];
       environment.defaultPackages = lib.mkForce [
-        tint2
-        tmux
+        pkgs.tint2
+        pkgs.tmux
       ];
   services.xserver = {
     enable = true;
