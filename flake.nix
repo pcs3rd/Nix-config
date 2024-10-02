@@ -90,6 +90,7 @@
             ./alacarte/tailscale.nix
             ./alacarte/grub.nix
             ./alacarte/oh-crap-recovery.nix
+            ./home-configs/raymond.nix
             {
               networking.hostName = "2011mac";
               boot.loader.grub.device = "/dev/sda";
