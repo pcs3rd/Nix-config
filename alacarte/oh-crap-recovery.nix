@@ -38,7 +38,7 @@ in
         user = "recovery";
       };
     };
-    windowManager.openbox.enable = true;
+    windowManager.openbox.enable = lib.mkForce true;
     displayManager.defaultSession = "none+openbox";
   };
 
