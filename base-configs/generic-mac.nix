@@ -18,7 +18,6 @@
     gnome-tour
   ]) ++ (with pkgs.gnome; [
     gnome-music
-    gedit # text editor
     geary # email reader
     evince # document viewer
     gnome-characters
