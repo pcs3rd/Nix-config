@@ -13,7 +13,6 @@ in
       system.nixos.tags = [ "Recovery_Mode" ];
       services.xserver.desktopManager.gnome.enable = lib.mkForce false;
       services.nixosManual.enable = lib.mkForce true;
-      services.nixosManual.showManual = true;
       security.sudo.enable = false;
       services.mingetty.autologinUser = "recovery";
       boot.initrd.kernelModules = [ "ext4" "btrfs" ];
