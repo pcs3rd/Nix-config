@@ -20,7 +20,11 @@ in
       environment.defaultPackages = lib.mkForce [
         pkgs.tint2
         pkgs.tmux
+        pkgs.alacritty
+        pkgs.gparted
       ];
+    networking.networkmanager.enable = true;
+
   services.xserver = {
     enable = true;
     layout = "us"; # keyboard layout
