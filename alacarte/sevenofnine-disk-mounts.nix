@@ -1,6 +1,4 @@
 { ... }: {
-
-
   fileSystems."/Disks/Jellyfin/80b6" =
     { device = "/dev/disk/by-uuid/80b68e30-d9d5-454a-abec-11f7c0c70e58";
       fsType = "ext4";
