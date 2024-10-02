@@ -12,7 +12,7 @@ in
     Recovery_Mode.configuration = {
       system.nixos.tags = [ "Recovery_Mode" ];
       services.xserver.desktopManager.gnome.enable = lib.mkForce false;
-      services.nixosManual.enable = mkForce true;
+      services.nixosManual.enable = lib.mkForce true;
       services.nixosManual.showManual = true;
       security.sudo.enable = false;
       services.mingetty.autologinUser = "recovery";
