@@ -32,7 +32,7 @@ in
       autoLogin = {
         enable = true;
         timeout = 0;
-        user = recovery;
+        user = "recovery";
       };
     };
     windowManager.openbox.enable = true;
