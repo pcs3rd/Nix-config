@@ -54,7 +54,7 @@
             ./alacarte/docker.nix
             ./alacarte/grub.nix
             ./alacarte/server-hardenning.nix
-            ./sevenofnine-disk-mounts.nix
+            ./alacarte/sevenofnine-disk-mounts.nix
             {
               networking.hostName = "sevenofnine";
               boot.loader.grub.device = "/dev/nvme0n1";
