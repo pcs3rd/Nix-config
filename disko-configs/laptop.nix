@@ -47,6 +47,14 @@
                 };
               };
             };
+            plainSwap = {
+              size = "4G";
+              content = {
+                type = "swap";
+                discardPolicy = "both";
+                resumeDevice = true; # resume from hiberation from this device
+              };
+            };
           };
         };
       };
