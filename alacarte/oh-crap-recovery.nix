@@ -33,7 +33,7 @@ in
     displayManager.lightdm = {
       enable = true;
       autoLogin = {
-        enable = true;
+        enable = lib.mkForce true;
         timeout = 0;
         user = "recovery";
       };
