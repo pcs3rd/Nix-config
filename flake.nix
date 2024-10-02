@@ -82,7 +82,7 @@
             }
         ];
       };
-      maciar = nixpkgs.lib.nixosSystem {
+      macair = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
             ./base-configs/generic-mac.nix
