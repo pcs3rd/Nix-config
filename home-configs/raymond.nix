@@ -1,4 +1,7 @@
 { inputs, outputs, lib, pkgs, modulesPath, ... }:{
+  imports = [ 
+    inputs.home-manager.nixosModules.home-manager
+    ];
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
