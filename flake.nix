@@ -17,7 +17,6 @@
     home-manager,
     impermanence,
     disko,
-    home-manager, 
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -93,7 +92,7 @@
             ./alacarte/oh-crap-recovery.nix
             ./home-configs/raymond.nix
             {
-              networking.hostName = "2011mac";
+              networking.hostName = "macair";
               boot.loader.grub.device = "/dev/sda";
               disko.devices.disk.system.device = "/dev/sda";
             }
