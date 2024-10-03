@@ -29,6 +29,18 @@
 
   in {
 
+    homeConfigurations = {
+      # FIXME replace with your username@hostname
+      "rdean@macair" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [
+          # > Our main home-manager configuration file <
+          ./home-configs/raymond.nix
+        ];
+      };
+    };
+
     nixosConfigurations = {
       bladeworker01 = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
@@ -91,7 +103,6 @@
             ./alacarte/tailscale.nix
             ./alacarte/grub.nix
             ./alacarte/oh-crap-recovery.nix
-            ./home-configs/raymond.nix
             {
               networking.hostName = "macair";
               boot.loader.grub.device = "/dev/sda";
