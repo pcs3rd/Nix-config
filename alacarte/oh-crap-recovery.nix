@@ -14,6 +14,7 @@
         pkgs.alacritty
         pkgs.gparted
       ];
+      services.displayManager.gdm.enable = lib.mkForce false;
       services.xserver.windowManager.openbox.enable = true;
       services.xserver.displayManager.lightdm.enable = true;
       services.displayManager.autoLogin.enable = true;
