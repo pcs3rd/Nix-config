@@ -14,13 +14,13 @@
         pkgs.alacritty
         pkgs.gparted
       ];
-      services.displayManager.gdm.enable = lib.mkForce false;
+      services.xserver.displayManager.gdm.enable = lib.mkForce false;
+      service.xserver.desktopManager.gnome.enable = lib.mkForce false;
       services.xserver.windowManager.openbox.enable = true;
       services.xserver.displayManager.lightdm.enable = true;
       services.displayManager.autoLogin.enable = true;
       services.displayManager.autoLogin.user = "recovery";
       services.displayManager.defaultSession = "none+openbox";
-
 
 
 
@@ -30,16 +30,17 @@
           extraGroups = [ "networkmanager" "video" ];
         };
       };
-      fileSystems."/" = lib.mkForce {
-    device = "none";
-    fsType = "tmpfs";
-    options = [ "defaults" "size=20M" "mode=755" ];
+    fileSystems."/" = lib.mkForce {
+      device = "none";
+      fsType = "tmpfs";
+      options = [ "defaults" "size=20M" "mode=755" ];
+    };
+    fileSystems."/home" = lib.mkForce {
+      device = "none";
+      fsType = "tmpfs";
+      options = [ "defaults" "size=20M" "mode=755" ];
+    };
+    filesystems."/home".options = [ "ro" ];
   };
-  fileSystems."/home" = lib.mkForce {
-    device = "none";
-    fsType = "tmpfs";
-    options = [ "defaults" "size=20M" "mode=755" ];
-  };
-};
 }
 
