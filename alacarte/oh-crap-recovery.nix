@@ -31,16 +31,11 @@ in
 
     # Let lightdm handle autologin
     displayManager.gdm.enable = lib.mkForce false;
-    displayManager.lightdm = {
+    services.displayManager = {
       enable = true;
-      autoLogin = {
-        enable = lib.mkForce true;
-        timeout = 0;
-        user = "recovery";
-      };
+      execCmd = "${pkgs.lemurs}/bin/lemurs --no-log";
+      defaultSession = "none+openbox";
     };
-    windowManager.openbox.enable = lib.mkForce true;
-    displayManager.defaultSession = "none+openbox";
   };
 
   nixpkgs.overlays = with pkgs; [
@@ -65,7 +60,10 @@ in
   fileSystems."/" = lib.mkForce {
     device = "none";
     fsType = "tmpfs";
-    options = [ "defaults" "size=1G" "mode=755" ];
+    options = [ "defaults" "size=20M" "mode=755" ];
   };
-
-}
+  fileSystems."/home" = lib.mkForce {
+    device = "none";
+    fsType = "tmpfs";
+    options = [ "defaults" "size=20M" "mode=755" ];
+  };
