@@ -17,7 +17,7 @@
       services.xserver.windowManager.openbox.enable = true;
       services.xserver.displayManager.lightdm.enable = true;
       services.displayManager.autoLogin.enable = true;
-      services.displayManager.autoLogin.user = "recovery"
+      services.displayManager.autoLogin.user = "recovery";
       services.displayManager.defaultSession = "none+openbox";
 
 
