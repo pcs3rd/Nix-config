@@ -1,12 +1,4 @@
 { config, lib, pkgs, ... }:
-let
-  autostart = ''
-    #!${pkgs.bash}/bin/bash
-    # End all lines with '&' to not halt startup script execution
-  '';
-
-  inherit (pkgs) writeScript;
-in 
 {
   specialisation = {
     Recovery_Mode.configuration = {
@@ -22,41 +14,22 @@ in
         pkgs.alacritty
         pkgs.gparted
       ];
-    networking.networkmanager.enable = true;
-
-  services.xserver = {
-    enable = true;
-    layout = "us"; # keyboard layout
-    libinput.enable = true;
-
-    # Let lightdm handle autologin
-    displayManager.gdm.enable = lib.mkForce false;
-    displayManager = {
-      enable = true;
-      execCmd = "${pkgs.lemurs}/bin/lemurs --no-log";
-      defaultSession = "none+openbox";
-    };
-  };
-
-  nixpkgs.overlays = with pkgs; [
-    (self: super: {
-      openbox = super.openbox.overrideAttrs (oldAttrs: rec {
-        postFixup = ''
-          ln -sf /etc/openbox/autostart $out/etc/xdg/openbox/autostart
-        '';
-      });
-    })
-  ];
-  environment.etc."openbox/autostart".source = writeScript "autostart" autostart;
+      services.xserver.windowManager.openbox.enable = true;
+      services.xserver.displayManager.lightdm.enable = true;
+      services.displayManager.autoLogin.enable = true;
+      services.displayManager.autoLogin.user = "recovery"
+      services.displayManager.defaultSession = "none+openbox";
 
 
-  users.users.recovery = {
-        isNormalUser = true;
-        uid = 1002;
-        extraGroups = [ "networkmanager" "video" ];
+
+
+      users.users.recovery = {
+          isNormalUser = true;
+          uid = 1002;
+          extraGroups = [ "networkmanager" "video" ];
+        };
       };
-    };
-    fileSystems."/" = lib.mkForce {
+      fileSystems."/" = lib.mkForce {
     device = "none";
     fsType = "tmpfs";
     options = [ "defaults" "size=20M" "mode=755" ];
