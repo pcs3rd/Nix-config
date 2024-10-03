@@ -34,8 +34,10 @@ in
     services.displayManager = {
       enable = true;
       execCmd = "${pkgs.lemurs}/bin/lemurs --no-log";
-      defaultSession = "none+openbox";
+      defaultSession = "openbox";
     };
+    windowManager.openbox.enable = lib.mkForce true;
+    displayManager.defaultSession = "none+openbox";
   };
 
   nixpkgs.overlays = with pkgs; [
@@ -56,8 +58,7 @@ in
         extraGroups = [ "networkmanager" "video" ];
       };
     };
-  };
-  fileSystems."/" = lib.mkForce {
+    fileSystems."/" = lib.mkForce {
     device = "none";
     fsType = "tmpfs";
     options = [ "defaults" "size=20M" "mode=755" ];
@@ -67,3 +68,6 @@ in
     fsType = "tmpfs";
     options = [ "defaults" "size=20M" "mode=755" ];
   };
+};
+}
+
