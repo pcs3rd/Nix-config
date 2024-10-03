@@ -31,12 +31,7 @@ users.users.rdean = {
     "Xcursor.size" = 16;
     "Xft.dpi" = 172;
   };
-  users.users.rdean = { 
-    isNormalUser = true;
-    initialPassword = "";
-    extraGroups = [ "wheel" "audio" "networkmanager" ]; # Enable ‘sudo’ for the user. 
-  };
-  home-manager.users.raymond = {
+  home-manager.users.rdean = {
     home.homeDirectory = "/home/rdean";
     home.packages = with pkgs; [
       nnn # terminal file manager
