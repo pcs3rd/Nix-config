@@ -24,6 +24,9 @@
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
   };
+    environment.defaultPackages = [
+        pkgs.home-manager
+    ];
   environment.gnome.excludePackages = (with pkgs; [
     gnome-tour
   ]) ++ (with pkgs.gnome; [
