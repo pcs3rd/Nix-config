@@ -6,6 +6,7 @@ users.users.rdean = {
   home  = "/home/rdean";
   description  = "Raymond Dean III";
   extraGroups  = [ "wheel" "networkmanager" ];
+  hashedPasswordFile = "/stateful/sys-data/rdean-passwordHash"; #  mkpasswd -m sha-512 
 };
   home-manager.users.rdean = {
     home.homeDirectory = "/home/rdean";
