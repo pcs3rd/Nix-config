@@ -7,9 +7,6 @@ users.users.rdean = {
   description  = "Raymond Dean III";
   extraGroups  = [ "wheel" "networkmanager" ];
 };
-  # TODO please change the username & home directory to your own
-  home.username = "rdean";
-  home.homeDirectory = "/home/rdean";
 
   # link the configuration file in current directory to the specified location in home directory
   # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
