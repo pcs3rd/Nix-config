@@ -7,7 +7,8 @@
   };
     home.packages = with pkgs; [
       tmux
-      htopvscode
+      htop
+      vscode
       git
       nano
       carla
