@@ -25,21 +25,10 @@
 
       users.users.recovery = {
           isNormalUser = true;
-          uid = 1002;
+          uid = 1462; # This should not allow writing to files.
           extraGroups = [ "networkmanager" "video" ];
         };
       };
-    fileSystems."/" = lib.mkForce {
-      device = "none";
-      fsType = "tmpfs";
-      options = [ "defaults" "size=20M" "mode=755" ];
-    };
-    fileSystems."/home" = lib.mkForce {
-      device = "none";
-      fsType = "tmpfs";
-      options = [ "defaults" "size=20M" "mode=755" ];
-    };
-    filesystems."/home".options = [ "ro" ];
   };
 }
 
