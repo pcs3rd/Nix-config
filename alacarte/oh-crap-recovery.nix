@@ -34,10 +34,8 @@ in
     displayManager = {
       enable = true;
       execCmd = "${pkgs.lemurs}/bin/lemurs --no-log";
-      defaultSession = "openbox";
+      defaultSession = "none+openbox";
     };
-    windowManager.openbox.enable = lib.mkForce true;
-    displayManager.defaultSession = "none+openbox";
   };
 
   nixpkgs.overlays = with pkgs; [
