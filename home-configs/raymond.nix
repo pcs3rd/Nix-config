@@ -1,15 +1,10 @@
 { inputs, outputs, lib, pkgs, modulesPath, ... }:{
   imports = [ 
-    inputs.home-manager.nixosModules.home-manager
     ];
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
-  users.users.rdean = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+  home = {
+    username = "rdean";
+    homeDirectory = "/home/rdean";
   };
-  home-manager.users.rdean = {
     home.packages = with pkgs; [
       tmux
       htopvscode
@@ -17,16 +12,14 @@
       nano
       carla
     ];
-    home.stateVersion = "24.05";
+  # Enable home-manager and git
+  programs.home-manager.enable = true;
+  programs.git.enable = true;
 
-  };
-  sound.enable = true;  
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
+  # Nicely reload system units when changing configs
+  systemd.user.startServices = "sd-switch";
+
+  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+  home.stateVersion = "24.05";
 }
 
