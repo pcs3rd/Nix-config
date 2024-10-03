@@ -1,6 +1,12 @@
 { config, pkgs, inputs, output, ... }:
 
 {
+users.users.rdean = {
+  isNormalUser = true;
+  home  = "/home/rdean";
+  description  = "Raymond Dean III";
+  extraGroups  = [ "wheel" "networkmanager" ];
+};
   # TODO please change the username & home directory to your own
   home.username = "rdean";
   home.homeDirectory = "/home/rdean";

@@ -103,6 +103,8 @@
             ./alacarte/tailscale.nix
             ./alacarte/grub.nix
             ./alacarte/oh-crap-recovery.nix
+            ./home-configs/raymond.nix
+            home-manager.nixosModules.home-manager
             {
               networking.hostName = "macair";
               boot.loader.grub.device = "/dev/sda";
