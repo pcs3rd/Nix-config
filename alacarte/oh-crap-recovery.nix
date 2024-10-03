@@ -31,7 +31,7 @@ in
 
     # Let lightdm handle autologin
     displayManager.gdm.enable = lib.mkForce false;
-    services.displayManager = {
+    displayManager = {
       enable = true;
       execCmd = "${pkgs.lemurs}/bin/lemurs --no-log";
       defaultSession = "openbox";
