@@ -31,38 +31,43 @@ users.users.rdean = {
     "Xcursor.size" = 16;
     "Xft.dpi" = 172;
   };
+  users.users.rdean = { 
+    isNormalUser = true;
+    initialPassword = "";
+    extraGroups = [ "wheel" "audio" "networkmanager" ]; # Enable ‘sudo’ for the user. 
+  };
+  home-manager.users.raymond = {
+    home.homeDirectory = "/home/rdean";
+    home.packages = with pkgs; [
+      nnn # terminal file manager
+      # misc
+      cowsay
+      file
+      which
+      tree
+      gnused
+      gnutar
+      gawk
+      zstd
+      gnupg
+      nix-output-monitor
+      btop  # replacement of htop/nmon
+      iotop # io monitoring
+      iftop # network monitoring
+      strace # system call monitoring
+      ltrace # library call monitoring
+      lsof # list open files
+      sysstat
+      lm_sensors # for `sensors` command
+      ethtool
+      pciutils # lspci
+      usbutils # lsusb
+      tmux
+      htop 
+    ];
+    home.stateVersion = "24.05";
 
-  # Packages that should be installed to the user profile.
-  home.packages = with pkgs; [
-    # here is some command line tools I use frequently
-    # feel free to add your own or remove some of them
-    nnn # terminal file manager
-    # misc
-    cowsay
-    file
-    which
-    tree
-    gnused
-    gnutar
-    gawk
-    zstd
-    gnupg
-    nix-output-monitor
-    btop  # replacement of htop/nmon
-    iotop # io monitoring
-    iftop # network monitoring
-    strace # system call monitoring
-    ltrace # library call monitoring
-    lsof # list open files
-    sysstat
-    lm_sensors # for `sensors` command
-    ethtool
-    pciutils # lspci
-    usbutils # lsusb
-    tmux
-    htop 
-  ];
-
+  };
   # alacritty - a cross-platform, GPU-accelerated terminal emulator
   programs.alacritty = {
     enable = true;
@@ -102,8 +107,7 @@ users.users.rdean = {
   # You can update home Manager without changing this value. See
   # the home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "24.05";
 
   # Let home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  #programs.home-manager.enable = true;
 }
