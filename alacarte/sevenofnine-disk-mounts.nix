@@ -14,5 +14,10 @@
       fsType = "btrfs";
       options = [ "subvol=AppData" "compress=zstd" ];
     };
+  fileSystems."/persist/prod/web/ownfoil/games" =
+    { device = "/dev/disk/by-uuid/ac48b9f0-f25c-4d04-bd43-b50d45cdd101";
+      fsType = "btrfs";
+      options = [ "subvol=games" "compress=zstd" ];
+    };
 
 }
