@@ -7,6 +7,16 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 # Network
+  sound.enable = true;  
+  hardware.pulseaudio.enable = false;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
+  };
+
   networking.networkmanager.enable = true;
   time.timeZone = "America/New_York";
   services.xserver = {
@@ -14,11 +24,13 @@
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
   };
+    environment.defaultPackages = [
+        pkgs.home-manager
+    ];
   environment.gnome.excludePackages = (with pkgs; [
     gnome-tour
   ]) ++ (with pkgs.gnome; [
     gnome-music
-    gedit # text editor
     geary # email reader
     evince # document viewer
     gnome-characters

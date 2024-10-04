@@ -1,26 +1,44 @@
-{ inputs, outputs, lib, pkgs, modulesPath, ... }:{
+{ config, pkgs, inputs, output, ... }:
 
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
-  home.username = "rdean";
-  home.homeDirectory = "/home/rdean";
+{
+users.users.rdean = {
+  isNormalUser = true;
+  home  = "/home/rdean";
+  description  = "Raymond Dean III";
+  extraGroups  = [ "wheel" "networkmanager" ];
+  hashedPasswordFile = "/stateful/sys-data/rdean-passwordHash"; #  mkpasswd -m sha-512 
+};
+  home-manager.users.rdean = {
+    home.homeDirectory = "/home/rdean";
+    home.packages = with pkgs; [
+      nnn # terminal file manager
+      # misc
+      cowsay
+      file
+      which
+      tree
+      gnused
+      gnutar
+      gawk
+      zstd
+      gnupg
+      nix-output-monitor
+      btop  # replacement of htop/nmon
+      iotop # io monitoring
+      iftop # network monitoring
+      strace # system call monitoring
+      ltrace # library call monitoring
+      lsof # list open files
+      sysstat
+      lm_sensors # for `sensors` command
+      ethtool
+      pciutils # lspci
+      usbutils # lsusb
+      tmux
+      alacritty
+      htop 
+    ];
+    home.stateVersion = "24.05";
 
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
-  home.stateVersion = "24.05";
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
-  
-  home.packages = [
-    pkgs.htop
-    pkgs.vscode
-  ];
-
+  };
 }

@@ -28,6 +28,19 @@
     forAllSystems = nixpkgs.lib.genAttrs systems;
 
   in {
+
+    homeConfigurations = {
+      # FIXME replace with your username@hostname
+      "rdean@macair" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [
+          # > Our main home-manager configuration file <
+          ./home-configs/raymond.nix
+        ];
+      };
+    };
+
     nixosConfigurations = {
       bladeworker01 = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
@@ -79,6 +92,23 @@
               networking.hostName = "experimental";
               boot.loader.grub.device = "/dev/vda";
               disko.devices.disk.system.device = "/dev/vda";
+            }
+        ];
+      };
+      macair = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            ./base-configs/generic-mac.nix
+            ./disko-configs/laptop.nix
+            ./alacarte/tailscale.nix
+            ./alacarte/grub.nix
+            ./alacarte/oh-crap-recovery.nix
+            ./home-configs/raymond.nix
+            home-manager.nixosModules.home-manager
+            {
+              networking.hostName = "macair";
+              boot.loader.grub.device = "/dev/sda";
+              disko.devices.disk.system.device = "/dev/sda";
             }
         ];
       };
