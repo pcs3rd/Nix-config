@@ -27,7 +27,13 @@
     };
   };
 
-  users.motd = "UNAUTHORIZED ACCESS TO THIS DEVICE IS PROHIBITED
+
+  services.chrony = {
+    enable = true;
+    enableNTS = true;
+    servers = [ "time.cloudflare.com" ];
+  };
+users.motd = "UNAUTHORIZED ACCESS TO THIS DEVICE IS PROHIBITED
 
 You must have explicit, authorized permission to access or configure this device. \n
 Unauthorized attempts and actions to access or use this system may result in civil \n 
