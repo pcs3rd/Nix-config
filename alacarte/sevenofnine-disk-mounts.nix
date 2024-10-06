@@ -24,7 +24,7 @@
   environment.systemPackages = [ pkgs.rclone ];
 
   fileSystems."/persist/remote-downloads" = {
-    device = "seedbox:/downloads";
+    device = "seedbox:/downloads/manual";
     fsType = "rclone";
     options = [
       "nodev"
