@@ -29,6 +29,7 @@
         pkgs.browsh
         pkgs.firefox
         pkgs.lazydocker
+        pkgs.systemctl-tui
     ];
     services.openssh = {
         enable = true;
