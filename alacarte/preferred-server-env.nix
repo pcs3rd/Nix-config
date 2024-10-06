@@ -3,6 +3,7 @@
   environment.variables = {
     "EDITOR" = "nano";
   };
+  services.davfs2.enable = true;
   documentation.enable = false; # documentation of packages
   documentation.nixos.enable = false; # nixos documentation
   documentation.man.enable = false; # manual pages and the man command
