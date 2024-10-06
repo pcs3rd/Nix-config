@@ -32,6 +32,8 @@
       "allow_other"
       "args2env"
       "config=/stateful/sys-data/rclone-mnt.conf"
+      "uid=1000" 
+      "gid=1000" 
     ];
   };
 }
