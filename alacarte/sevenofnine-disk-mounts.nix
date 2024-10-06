@@ -23,7 +23,7 @@
   #Make sure rclone is there  
   environment.systemPackages = [ pkgs.rclone ];
 
-  fileSystems."/persist/prod/remote-downloads" = {
+  fileSystems."/persist/remote-downloads" = {
     device = "seedbox:/downloads";
     fsType = "rclone";
     options = [
