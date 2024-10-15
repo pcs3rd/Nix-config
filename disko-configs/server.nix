@@ -87,9 +87,7 @@
     ];
     files = [
       { file = "/etc/machine-id"; parentDirectory = { mode = "u=rwx,g=rwx,o=r"; }; }
-      #{ file = "/home/manager/.bash_history"; parentDirectory = { mode = "u=rwx,g=rwx,o=r"; }; }
-      "/home/manager/.gitconfig"
-      "/home/manager/.bash_history"
+      { file = "/home/manager/.bash_history"; parentDirectory = { mode = "u=rwx,g=rwx,o=r"; }; }
       { file = "/home/manager/.gitconfig"; parentDirectory = { mode = "u=rwx,g=rwx,o=r"; }; }
       { file = "/etc/ssh/ssh_host_rsa_key"; parentDirectory = { mode = "u=rwx,g=r,o=r"; }; }
       { file = "/etc/ssh/ssh_host_rsa_key.pub"; parentDirectory = { mode = "u=rwx,g=r,o=r"; }; }
