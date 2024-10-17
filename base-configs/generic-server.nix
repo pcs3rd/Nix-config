@@ -4,26 +4,14 @@
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-boot.loader = {
-  grub = {
-     efiSupport = lib.mkForce false;
-  };
-};
+
 # Network
   networking.networkmanager.enable = true;
   time.timeZone = "America/New_York";
 
 # User stuff
   users.users = {
-    blade-worker = {
-      group = "blade-worker";
-      isSystemUser  = true;
-      home  = "/home/blade-worker";
-      description  = "";
-      uid = 811;
-      extraGroups  = [ "networkmanager" ];
-      hashedPasswordFile = "/stateful/sys-data/worker-passwordHash"; #  mkpasswd -m sha-512 
-    };
+
     manager = {
       isNormalUser = true;
       home = "/home/manager";
