@@ -45,12 +45,11 @@
       bladeworker01 = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-            ./base-configs/generic-server.nix
+            ./base-configs/bl460c.nix
             ./disko-configs/server.nix
             ./alacarte/preferred-server-env.nix
             ./alacarte/tailscale.nix
             ./alacarte/docker.nix
-            ./alacarte/grub.nix
             ./alacarte/server-hardenning.nix
             {
               networking.hostName = "bladeworker01";
