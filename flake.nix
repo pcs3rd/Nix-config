@@ -54,7 +54,7 @@
             ./alacarte/server-hardenning.nix
             {
               networking.hostName = "bladeworker01";
-              boot.loader.grub.device = "/dev/sda";
+              #boot.loader.grub.device = "/dev/sda";
               disko.devices.disk.system.device = "/dev/sda";
             }
         ];
