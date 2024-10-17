@@ -4,7 +4,11 @@
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
+boot.loader = {
+  grub = {
+     efiSupport = lib.mkForce false;
+  };
+};
 # Network
   networking.networkmanager.enable = true;
   time.timeZone = "America/New_York";
