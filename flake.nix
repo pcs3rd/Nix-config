@@ -58,6 +58,22 @@
             }
         ];
       };
+      bladeworker01-test = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            ./base-configs/bl460c.nix
+            ./disko-configs/server.nix
+            #./alacarte/preferred-server-env.nix
+            #./alacarte/tailscale.nix
+            #./alacarte/docker.nix
+            #./alacarte/server-hardenning.nix
+            {
+              networking.hostName = "bladeworker01";
+              #boot.loader.grub.device = "/dev/sda";
+              disko.devices.disk.system.device = "/dev/sda";
+            }
+        ];
+      };
       sevenofnine = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [

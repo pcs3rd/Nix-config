@@ -44,6 +44,5 @@
         #AuthenticationMethods publickey
         '';
     };
-    environment.systemPackages = with pkgs; [ clamav ];
 
 }
