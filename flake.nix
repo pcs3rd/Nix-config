@@ -50,7 +50,6 @@
             ./alacarte/preferred-server-env.nix
             ./alacarte/tailscale.nix
             ./alacarte/docker.nix
-            ./alacarte/server-hardenning.nix
             {
               networking.hostName = "bladeworker01";
               #boot.loader.grub.device = "/dev/sda";
@@ -66,7 +65,6 @@
             #./alacarte/preferred-server-env.nix
             #./alacarte/tailscale.nix
             #./alacarte/docker.nix
-            #./alacarte/server-hardenning.nix
             {
               networking.hostName = "bladeworker01";
               #boot.loader.grub.device = "/dev/sda";
@@ -83,7 +81,6 @@
             ./alacarte/tailscale.nix
             ./alacarte/docker.nix
             ./alacarte/grub.nix
-            ./alacarte/server-hardenning.nix
             ./alacarte/sevenofnine-disk-mounts.nix
             {
               networking.hostName = "sevenofnine";
@@ -101,7 +98,6 @@
             ./alacarte/tailscale.nix
             ./alacarte/docker.nix
             ./alacarte/grub.nix
-            ./alacarte/server-hardenning.nix
             ./alacarte/sevenofnine-disk-mounts.nix
             ./alacarte/Home-server.nix
             {
@@ -121,7 +117,6 @@
             ./alacarte/docker.nix
             ./alacarte/virtio.nix
             ./alacarte/grub.nix
-            ./alacarte/server-hardenning.nix
             {
               networking.hostName = "experimental";
               boot.loader.grub.device = "/dev/vda";

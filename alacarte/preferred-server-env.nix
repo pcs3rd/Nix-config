@@ -15,25 +15,57 @@
   services.devmon.enable = true; # I want to auto-mount disks.
   services.gvfs.enable = true; 
   services.udisks2.enable = true;
-  boot.initrd = {
-    systemd.users.root.shell = "/bin/sh";
-    network = {
-      enable = true;
-      ssh = {
-        enable = true;
-        port = 22;
-        authorizedKeys = [ "ssh-rsa b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZWQyNTUxOQAAACDXn1u69Oflk3RLxUqIPcjvmOJXhHDzZbCOoqfvD8DWOgAAAKAax6N9GsejfQAAAAtzc2gtZWQyNTUxOQAAACDXn1u69Oflk3RLxUqIPcjvmOJXhHDzZbCOoqfvD8DWOgAAAEDzoRbCAzcW/j0aArAu8HLiGw5wfrgIbqV0ykqdRAC46defW7r05+WTdEvFSog9yO+Y4leEcPNlsI6ip+8PwNY6AAAAHXJkZWFuM0BSYXltb25kcy1NYWNCb29rLmxvY2Fs" ];
-        hostKeys = [ "/stateful/etc/ssh/ssh_host_rsa_key" ]; # convienently already accessable.
-      };
-    };
-  };
-
 
   services.chrony = {
     enable = true;
     enableNTS = true;
     servers = [ "time.cloudflare.com" ];
   };
+
+    networking.firewall = {
+        enable = false;
+        allowedTCPPorts = [ 80 443 22 ];
+        # allowedUDPPortRanges = [
+        #    { from = 4000; to = 4007; }
+        #    { from = 8000; to = 8010; }
+        #];
+    };
+    networking.firewall.trustedInterfaces = [ "tailscale0" ]; # Trust tailscale0
+    nix.allowedUsers = [ "@wheel" ];
+    security.auditd.enable = true;
+    security.audit.enable = true;
+    security.audit.rules = [
+        "-a exit,always -F arch=b64 -S execve"
+    ];
+    security.sudo.execWheelOnly = true;
+    environment.defaultPackages = lib.mkForce [
+        pkgs.bash
+        pkgs.git
+        pkgs.nix
+        pkgs.nano
+        pkgs.tmux
+        pkgs.htop
+        pkgs.mtm
+        pkgs.smartmontools
+        pkgs.browsh
+        pkgs.firefox
+        pkgs.lazydocker
+        pkgs.systemctl-tui
+    ];
+    services.openssh = {
+        enable = true;
+        passwordAuthentication = true;
+        allowSFTP = true; # Don't set this if you need sftp
+        challengeResponseAuthentication = false;
+        extraConfig = ''
+        AllowTcpForwarding yes
+        X11Forwarding no
+        AllowAgentForwarding no
+        AllowStreamLocalForwarding no
+        #AuthenticationMethods publickey
+        '';
+    };
+
 users.motd = "UNAUTHORIZED ACCESS TO THIS DEVICE IS PROHIBITED
 
 You must have explicit, authorized permission to access or configure this device. \n
