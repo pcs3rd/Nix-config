@@ -11,8 +11,7 @@
     vlans = {
       vlan2 = {id=2; interface="enp2s0f1"; }; # these hosts show up all willy-nilly on my unifi console. This might fix it
     };
-
-  }
+  };
 
 
   time.timeZone = "America/New_York";
