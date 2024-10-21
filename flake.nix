@@ -57,21 +57,235 @@
             }
         ];
       };
-      bladeworker01-test = nixpkgs.lib.nixosSystem {
+      bladeworker02 = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
             ./base-configs/bl460c.nix
             ./disko-configs/server.nix
-            #./alacarte/preferred-server-env.nix
-            #./alacarte/tailscale.nix
-            #./alacarte/docker.nix
+            ./alacarte/preferred-server-env.nix
+            ./alacarte/tailscale.nix
+            ./alacarte/docker.nix
             {
-              networking.hostName = "bladeworker01";
+              networking.hostName = "bladeworker02";
               #boot.loader.grub.device = "/dev/sda";
               disko.devices.disk.system.device = "/dev/sda";
             }
         ];
       };
+      bladeworker03 = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            ./base-configs/bl460c.nix
+            ./disko-configs/server.nix
+            ./alacarte/preferred-server-env.nix
+            ./alacarte/tailscale.nix
+            ./alacarte/docker.nix
+            {
+              networking.hostName = "bladeworker03";
+              #boot.loader.grub.device = "/dev/sda";
+              disko.devices.disk.system.device = "/dev/sda";
+            }
+        ];
+      };
+      bladeworker04 = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            ./base-configs/bl460c.nix
+            ./disko-configs/server.nix
+            ./alacarte/preferred-server-env.nix
+            ./alacarte/tailscale.nix
+            ./alacarte/docker.nix
+            {
+              networking.hostName = "bladeworker04";
+              #boot.loader.grub.device = "/dev/sda";
+              disko.devices.disk.system.device = "/dev/sda";
+            }
+        ];
+      };
+      bladeworker05 = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            ./base-configs/bl460c.nix
+            ./disko-configs/server.nix
+            ./alacarte/preferred-server-env.nix
+            ./alacarte/tailscale.nix
+            ./alacarte/docker.nix
+            {
+              networking.hostName = "bladeworker05";
+              #boot.loader.grub.device = "/dev/sda";
+              disko.devices.disk.system.device = "/dev/sda";
+            }
+        ];
+      };
+      bladeworker06 = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            ./base-configs/bl460c.nix
+            ./disko-configs/server.nix
+            ./alacarte/preferred-server-env.nix
+            ./alacarte/tailscale.nix
+            ./alacarte/docker.nix
+            {
+              networking.hostName = "bladeworker06";
+              #boot.loader.grub.device = "/dev/sda";
+              disko.devices.disk.system.device = "/dev/sda";
+            }
+        ];
+      };
+      bladeworker07 = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            ./base-configs/bl460c.nix
+            ./disko-configs/server.nix
+            ./alacarte/preferred-server-env.nix
+            ./alacarte/tailscale.nix
+            ./alacarte/docker.nix
+            {
+              networking.hostName = "bladeworker07";
+              #boot.loader.grub.device = "/dev/sda";
+              disko.devices.disk.system.device = "/dev/sda";
+            }
+        ];
+      };
+      bladeworker08 = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            ./base-configs/bl460c.nix
+            ./disko-configs/server.nix
+            ./alacarte/preferred-server-env.nix
+            ./alacarte/tailscale.nix
+            ./alacarte/docker.nix
+            {
+              networking.hostName = "bladeworker8";
+              #boot.loader.grub.device = "/dev/sda";
+              disko.devices.disk.system.device = "/dev/sda";
+            }
+        ];
+      };
+      bladeworker09 = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            ./base-configs/bl460c.nix
+            ./disko-configs/server.nix
+            ./alacarte/preferred-server-env.nix
+            ./alacarte/tailscale.nix
+            ./alacarte/docker.nix
+            {
+              networking.hostName = "bladeworker9";
+              #boot.loader.grub.device = "/dev/sda";
+              disko.devices.disk.system.device = "/dev/sda";
+            }
+        ];
+      };
+      bladeworker10 = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            ./base-configs/bl460c.nix
+            ./disko-configs/server.nix
+            ./alacarte/preferred-server-env.nix
+            ./alacarte/tailscale.nix
+            ./alacarte/docker.nix
+            {
+              networking.hostName = "bladeworker10";
+              #boot.loader.grub.device = "/dev/sda";
+              disko.devices.disk.system.device = "/dev/sda";
+            }
+        ];
+      };
+      bladeworker11 = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            ./base-configs/bl460c.nix
+            ./disko-configs/server.nix
+            ./alacarte/preferred-server-env.nix
+            ./alacarte/tailscale.nix
+            ./alacarte/docker.nix
+            {
+              networking.hostName = "bladeworker11";
+              #boot.loader.grub.device = "/dev/sda";
+              disko.devices.disk.system.device = "/dev/sda";
+            }
+        ];
+      };
+      bladeworker12 = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            ./base-configs/bl460c.nix
+            ./disko-configs/server.nix
+            ./alacarte/preferred-server-env.nix
+            ./alacarte/tailscale.nix
+            ./alacarte/docker.nix
+            {
+              networking.hostName = "bladeworker12";
+              #boot.loader.grub.device = "/dev/sda";
+              disko.devices.disk.system.device = "/dev/sda";
+            }
+        ];
+      };
+      bladeworker13 = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            ./base-configs/bl460c.nix
+            ./disko-configs/server.nix
+            ./alacarte/preferred-server-env.nix
+            ./alacarte/tailscale.nix
+            ./alacarte/docker.nix
+            {
+              networking.hostName = "bladeworker13";
+              #boot.loader.grub.device = "/dev/sda";
+              disko.devices.disk.system.device = "/dev/sda";
+            }
+        ];
+      };
+      bladeworker14 = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            ./base-configs/bl460c.nix
+            ./disko-configs/server.nix
+            ./alacarte/preferred-server-env.nix
+            ./alacarte/tailscale.nix
+            ./alacarte/docker.nix
+            {
+              networking.hostName = "bladeworker14";
+              #boot.loader.grub.device = "/dev/sda";
+              disko.devices.disk.system.device = "/dev/sda";
+            }
+        ];
+      };
+      bladeworker15 = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            ./base-configs/bl460c.nix
+            ./disko-configs/server.nix
+            ./alacarte/preferred-server-env.nix
+            ./alacarte/tailscale.nix
+            ./alacarte/docker.nix
+            {
+              networking.hostName = "bladeworker15";
+              #boot.loader.grub.device = "/dev/sda";
+              disko.devices.disk.system.device = "/dev/sda";
+            }
+        ];
+      };
+      bladeworker16 = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            ./base-configs/bl460c.nix
+            ./disko-configs/server.nix
+            ./alacarte/preferred-server-env.nix
+            ./alacarte/tailscale.nix
+            ./alacarte/docker.nix
+            {
+              networking.hostName = "bladeworker16";
+              #boot.loader.grub.device = "/dev/sda";
+              disko.devices.disk.system.device = "/dev/sda";
+            }
+        ];
+      };
+
+
+
+
       sevenofnine = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
