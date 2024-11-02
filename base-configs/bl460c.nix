@@ -36,4 +36,48 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
+# Rclone config for appdata storage
+
+  fileSystems."/persist/dev" = {
+    device = "AppData:/persist/dev"; # force correct path
+    fsType = "rclone";
+    options = [
+      "nodev"
+      "nofail"
+      "allow_other"
+      "args2env"
+      "config=/stateful/sys-data/rclone-mnt.conf"
+      "uid=911" 
+      "gid=911" 
+    ];
+  };
+  fileSystems."/persist/downloads" = {
+    device = "AppData:/persist/downloads";
+    fsType = "rclone";
+    options = [
+      "nodev"
+      "nofail"
+      "allow_other"
+      "args2env"
+      "config=/stateful/sys-data/rclone-mnt.conf"
+      "uid=911" 
+      "gid=911" 
+      "ro" # We don't play with prod
+    ];
+  };
+  fileSystems."/persist/remote-downloads" = {
+    device = "seedbox:/downloads/manual";
+    fsType = "rclone";
+    options = [
+      "nodev"
+      "nofail"
+      "allow_other"
+      "args2env"
+      "config=/stateful/sys-data/rclone-mnt.conf"
+      "uid=911" 
+      "gid=911" 
+      "ro" # We don't play with prod. 
+    ];
+  };
+
 }
