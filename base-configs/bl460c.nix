@@ -38,6 +38,9 @@
 
 # Rclone config for appdata storage
 
+  #Make sure rclone is there  
+  environment.systemPackages = [ pkgs.rclone ];
+  
   fileSystems."/persist/dev" = {
     device = "AppData:/persist/dev"; # force correct path
     fsType = "rclone";
