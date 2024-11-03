@@ -65,7 +65,6 @@
       "config=/stateful/sys-data/rclone-mnt.conf"
       "uid=911" 
       "gid=911" 
-      "ro" # We don't play with prod
     ];
   };
   fileSystems."/persist/remote-downloads" = {
@@ -79,7 +78,6 @@
       "config=/stateful/sys-data/rclone-mnt.conf"
       "uid=911" 
       "gid=911" 
-      "ro" # We don't play with prod. 
     ];
   };
 
