@@ -9,6 +9,8 @@
     impermanence.url = "github:nix-community/impermanence";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    opnix.url = "github:mrjones2014/opnix";
+    opnix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -17,6 +19,7 @@
     home-manager,
     impermanence,
     disko,
+    opnix,
     ...
   } @ inputs: let
     inherit (self) outputs;
