@@ -14,6 +14,7 @@ users.users.rdean = {
       nnn # terminal file manager
       # misc
       cowsay
+      google-chrome
       file
       which
       tree
