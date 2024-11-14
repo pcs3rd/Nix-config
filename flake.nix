@@ -355,6 +355,18 @@
             }
         ];
       };
+      NixOS-install-disk = nixos.lib.nixosSystem {
+        inherit (exampleBase) system;
+        # https://hoverbear.org/blog/nix-flake-live-media/
+        modules = [
+          "${nixos}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+          ./alacarte/preferred-server-env.nix
+          ./base-configs/InstallerDisk.nix
+          {
+            networking.hostName = "Nixos-Stickpile-InstallerDisk";
+          }
+        ];
+      };
     };
   };
 }
