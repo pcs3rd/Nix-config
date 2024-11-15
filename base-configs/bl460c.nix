@@ -1,4 +1,4 @@
-{ outputs, inputs, lib, config, pkgs, modulesPath, ... }:{
+{ outputs, inputs, lib, config, pkgs, options, modulesPath, ... }:{
   imports = [ 
     (modulesPath + "/installer/scan/not-detected.nix")
     ];
@@ -15,10 +15,9 @@
 
 
   time.timeZone = "America/New_York";
-  networking.timeServers = options.networking.timeServers.default ++ [ "ntp.example.com" ]; 
-  services.ntp.enable = true;
+  networking.timeServers = options.networking.timeServers.default ++ [ "time.google.com" ]; 
 
-  
+
 # User stuff
   users.users = {
     manager = {
