@@ -15,7 +15,10 @@
 
 
   time.timeZone = "America/New_York";
+  networking.timeServers = options.networking.timeServers.default ++ [ "ntp.example.com" ]; 
+  services.ntp.enable = true;
 
+  
 # User stuff
   users.users = {
     manager = {
