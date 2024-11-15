@@ -359,7 +359,7 @@
         specialArgs = {inherit inputs outputs;};
         # https://hoverbear.org/blog/nix-flake-live-media/
         modules = [
-          "${nixos}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+          "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
           ./alacarte/preferred-server-env.nix
           ./base-configs/InstallerDisk.nix
           {
