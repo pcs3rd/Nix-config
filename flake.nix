@@ -355,7 +355,7 @@
             }
         ];
       };
-      NixOS-install-disk = nixos.lib.nixosSystem {
+      NixOS-install-disk = nixpkgs.lib.nixosSystem {
         inherit (exampleBase) system;
         # https://hoverbear.org/blog/nix-flake-live-media/
         modules = [
