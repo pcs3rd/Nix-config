@@ -356,7 +356,7 @@
         ];
       };
       NixOS-install-disk = nixpkgs.lib.nixosSystem {
-        inherit (exampleBase) system;
+        specialArgs = {inherit inputs outputs;};
         # https://hoverbear.org/blog/nix-flake-live-media/
         modules = [
           "${nixos}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
