@@ -345,11 +345,11 @@
             ./disko-configs/laptop.nix
             ./alacarte/tailscale.nix
             ./alacarte/grub.nix
-            ./alacarta/gnuradio.nix
+            ./alacarte/gnuradio.nix
             ./home-configs/raymond.nix
             home-manager.nixosModules.home-manager
             {
-              networking.hostName = "radioBook";
+              networking.hostName = "radioMAC";
               boot.loader.grub.device = "/dev/sda";
               disko.devices.disk.system.device = "/dev/sda";
             }
