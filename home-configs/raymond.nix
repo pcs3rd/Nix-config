@@ -13,8 +13,7 @@ users.users.rdean = {
     home.packages = with pkgs; [
       nnn # terminal file manager
       # misc
-      cowsay
-      google-chrome
+      firefox
       file
       which
       tree
@@ -24,7 +23,6 @@ users.users.rdean = {
       zstd
       gnupg
       nix-output-monitor
-      btop  # replacement of htop/nmon
       iotop # io monitoring
       iftop # network monitoring
       strace # system call monitoring
