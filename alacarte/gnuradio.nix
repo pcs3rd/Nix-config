@@ -15,6 +15,10 @@
         pkgs.gpredict
         pkgs.gqrx
         pkgs.gnuradio
+        pkgs.hamtransfer
+        pkgs.ax25-apps
+        pkgs.qradiolink
+        pkgs.digiham
     ];
   documentation.enable = false; # documentation of packages
   documentation.nixos.enable = false; # nixos documentation
