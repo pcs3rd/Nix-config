@@ -47,8 +47,6 @@
         pkgs.htop
         pkgs.mtm
         pkgs.smartmontools
-        pkgs.browsh
-        pkgs.firefox
         pkgs.lazydocker
         pkgs.systemctl-tui
     ];
