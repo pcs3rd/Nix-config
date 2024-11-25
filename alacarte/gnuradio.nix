@@ -19,6 +19,18 @@
         pkgs.ax25-apps
         pkgs.qradiolink
         pkgs.digiham
+        pkgs.telegraph
+        pkgs.aldo
+        pkgs.multimon-ng
+        pkgs.morsel
+        pkgs.welle-io
+        pkgs.guglielmo
+        pkgs.js8call
+        pkgs.openwebrx
+        pkgs.sigdigger
+        pkgs.sigutils
+        pkgs.suwidgets
+        pkgs.qradiolink
     ];
   documentation.enable = false; # documentation of packages
   documentation.nixos.enable = false; # nixos documentation
