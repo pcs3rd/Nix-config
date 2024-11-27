@@ -2,10 +2,6 @@
 services.sssd.enable = true;
 services.sssd.environmentFile = "/stateful/sys-data/
 services.sssd.config = ''
-[nss]
-filter_groups = root
-filter_users = root
-reconnection_retries = 3
 
 [sssd]
 config_file_version = 2
