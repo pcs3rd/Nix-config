@@ -4,6 +4,7 @@
     "EDITOR" = "nano";
   };
   hardware.raid.HPSmartArray.enable = true;
+  nixpkgs.config.allowUnfree = true;
   services.davfs2.enable = true;
   documentation.enable = false; # documentation of packages
   documentation.nixos.enable = false; # nixos documentation
