@@ -3,6 +3,7 @@
   environment.variables = {
     "EDITOR" = "nano";
   };
+  hardware.raid.HPSmartArray.enable
   services.davfs2.enable = true;
   documentation.enable = false; # documentation of packages
   documentation.nixos.enable = false; # nixos documentation
