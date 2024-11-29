@@ -143,7 +143,7 @@
             {
               networking.hostName = "bladeworker07";
               #boot.loader.grub.device = "/dev/sda";
-              disko.devices.disk.system.device = "/dev/sda";
+              disko.devices.disk.system.device = "/dev/sdb";
             }
         ];
       };
