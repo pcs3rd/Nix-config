@@ -41,7 +41,7 @@
                     mountpoint = "/nix";
                   };
                   "/home" = {
-                      mountOptions = [ "compress=zstd" "noatime" ];
+                      mountOptions = [ "compress=zstd" "noatime" "noexec" ];
                       mountpoint = "/home";
                   };
                 };
@@ -62,7 +62,7 @@
     nodev."/" = {
       fsType = "tmpfs";
       mountOptions = [
-        "size=256M"
+        "size=512M"
         "defaults"
         "mode=755"
       ];
@@ -77,7 +77,6 @@
         "/var/log"
         "/var/lib/nixos"
         "/var/lib/tailscale/"
-        "/var/lib/systemd/coredump"
         "/etc/NetworkManager/system-connections"
     ];
     files = [

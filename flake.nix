@@ -338,18 +338,18 @@
             }
         ];
       };
-      macair = nixpkgs.lib.nixosSystem {
+      hammac = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
             ./base-configs/generic-mac.nix
+            ./alacarte/gnome-appliance.nix
+            ./alacarte/gnome-desktop.nix
             ./disko-configs/laptop.nix
-            ./alacarte/tailscale.nix
             ./alacarte/grub.nix
             ./alacarte/gnuradio.nix
-            ./home-configs/raymond.nix
             home-manager.nixosModules.home-manager
             {
-              networking.hostName = "radioMAC";
+              networking.hostName = "hammac";
               boot.loader.grub.device = "/dev/sda";
               disko.devices.disk.system.device = "/dev/sda";
             }
