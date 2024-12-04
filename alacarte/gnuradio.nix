@@ -7,6 +7,7 @@
         pkgs.firefox
         pkgs.systemctl-tui
         pkgs.hamlib
+        pkgs.carla
         pkgs.hamtransfer
         pkgs.tlf
         pkgs.soundmodem
