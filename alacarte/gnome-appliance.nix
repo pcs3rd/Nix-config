@@ -10,7 +10,7 @@ services.mingetty.autologinUser = "operator";
       '';
 
 services.displayManager.autoLogin.enable = true;
-services.displayManager.autoLogin.user = operator;
+services.displayManager.autoLogin.user = "operator";
   users.users = {
     operator = {
       isNormalUser = true;
