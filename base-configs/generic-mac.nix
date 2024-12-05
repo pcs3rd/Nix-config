@@ -7,7 +7,6 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 # Network
-  sound.enable = true;  
   hardware.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
