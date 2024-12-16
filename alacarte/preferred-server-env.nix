@@ -51,6 +51,9 @@
         pkgs.smartmontools
         pkgs.lazydocker
         pkgs.systemctl-tui
+        pkgs.nfs-utils
+        pkgs.openiscsi
+        pkgs.gfs2-utils
     ];
     services.openssh = {
         enable = true;
