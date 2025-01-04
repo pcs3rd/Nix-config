@@ -53,6 +53,7 @@
         pkgs.systemctl-tui
         pkgs.nfs-utils
         pkgs.openiscsi
+        pkgs.btop
         pkgs.gfs2-utils
     ];
     services.openssh = {
