@@ -146,6 +146,21 @@
             }
         ];
       };
+      2011mac-air = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            ./base-configs/generic-mac.nix
+            ./alacarte/gnome-desktop.nix
+            ./disko-configs/laptop.nix
+            ./alacarte/tailscale.nix
+            home-manager.nixosModules.home-manager
+            {
+              networking.hostName = "2011mac-air";
+              boot.loader.grub.device = "/dev/sda";
+              disko.devices.disk.system.device = "/dev/sda";
+            }
+        ];
+      };
       NixOS-install-disk = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         # https://hoverbear.org/blog/nix-flake-live-media/
