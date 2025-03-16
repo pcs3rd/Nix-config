@@ -9,6 +9,9 @@
     impermanence.url = "github:nix-community/impermanence";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-24.05-darwin";
+    darwin.url = "github:lnl7/nix-darwin";
+    darwin.inputs.nixpkgs.follows = "nixpkgs-darwin";
   };
 
   outputs = {
@@ -40,7 +43,18 @@
         ];
       };
     };
+    darwinConfigurations = {
+  "${hostname}" = darwin.lib.darwinSystem {
+      inherit system specialArgs;
+      modules = [
+        ./modules/nix-core.nix
+        ./modules/system.nix
+        ./modules/apps.nix
 
+        ./modules/host-users.nix
+      ];
+    };
+  }
     nixosConfigurations = {
       clMA = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
