@@ -44,16 +44,16 @@
       };
     };
     darwinConfigurations = {
-  "${hostname}" = darwin.lib.darwinSystem {
-      inherit system specialArgs;
-      modules = [
-        ./modules/nix-core.nix
-        ./modules/system.nix
-        ./modules/apps.nix
-
-        ./modules/host-users.nix
-      ];
-    };
+      "a2681" = darwin.lib.darwinSystem {
+        inherit system specialArgs;
+        modules = [
+          ./modules/nix-core.nix
+          ./modules/system.nix
+          ./modules/apps.nix
+          ./modules/host-users.nix
+          ./darwin-alacarte/nix-conf.nix
+        ];
+      };
   }
     nixosConfigurations = {
       clMA = nixpkgs.lib.nixosSystem {
