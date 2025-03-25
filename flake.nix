@@ -20,6 +20,7 @@
     home-manager,
     impermanence,
     disko,
+    darwin,
     ...
   } @ inputs: let
     inherit (self) outputs;
