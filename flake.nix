@@ -54,7 +54,7 @@
           ./darwin-alacarte/nix-conf.nix
         ];
       };
-  }
+  };
     nixosConfigurations = {
       clMA = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
