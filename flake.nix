@@ -46,7 +46,7 @@
     };
     darwinConfigurations = {
       "a2681" = darwin.lib.darwinSystem {
-        inherit system specialArgs;
+        specialArgs = {inherit inputs outputs;};
         modules = [
           ./modules/nix-core.nix
           ./modules/system.nix
