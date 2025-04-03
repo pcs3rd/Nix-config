@@ -1,6 +1,6 @@
 { outputs, inputs, lib, config, pkgs, options, modulesPath, ... }:
 let 
-defaultUserName = "rdean";
+defaultUserName = [ "rdean" ];
 in
   {
     #imports = [
