@@ -1,4 +1,4 @@
-{ outputs, inputs, lib, config, pkgs, options, modulesPath, ... }:{
+{ outputs, inputs, lib, config, pkgs, options, modulesPath, ... }:
 
 let
   defaultUserName = "rdean";
