@@ -5,36 +5,13 @@ users.users.rdean = {
   isNormalUser = true;
   home  = "/home/rdean";
   description  = "Raymond Dean III";
-  extraGroups  = [ "wheel" "networkmanager" ];
+  extraGroups  = [ "wheel" "networkmanager" "dialout" "feedbackd" "networkmanager" "video" ];
   hashedPasswordFile = "/stateful/sys-data/rdean-passwordHash"; #  mkpasswd -m sha-512 
 };
   home-manager.users.rdean = {
     home.homeDirectory = "/home/rdean";
     home.packages = with pkgs; [
-      nnn # terminal file manager
-      # misc
-      firefox
-      file
-      which
-      tree
-      gnused
-      gnutar
-      gawk
-      zstd
-      gnupg
-      nix-output-monitor
-      iotop # io monitoring
-      iftop # network monitoring
-      strace # system call monitoring
-      ltrace # library call monitoring
-      lsof # list open files
-      sysstat
-      lm_sensors # for `sensors` command
-      ethtool
-      pciutils # lspci
-      usbutils # lsusb
       tmux
-      alacritty
       htop 
     ];
     home.stateVersion = "24.05";

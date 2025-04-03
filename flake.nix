@@ -12,6 +12,10 @@
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-24.05-darwin";
     darwin.url = "github:lnl7/nix-darwin";
     darwin.inputs.nixpkgs.follows = "nixpkgs-darwin";
+    mobile-nixos = {
+      url = github:pcs3rd/mobile-nixos/Lenovo-kodama;
+      flake = false;
+    };
   };
 
   outputs = {
@@ -21,6 +25,7 @@
     impermanence,
     disko,
     darwin,
+    mobile-nixos, 
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -57,21 +62,15 @@
       };
   };
     nixosConfigurations = {
-      clMA = nixpkgs.lib.nixosSystem {
+      kodama = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-            ./base-configs/generic-server.nix
-            ./disko-configs/server.nix
-            ./alacarte/preferred-server-env.nix
+              (import "${mobile-nixos}/lib/configuration.nix" {
+                device = "lenovo-kodama";
+              })
+            ./alacarte/phosh.nix
             ./alacarte/tailscale.nix
-            ./alacarte/docker.nix
-            ./alacarte/grub.nix
-            ./alacarte/sevenofnine-disk-mounts.nix
-            {
-              networking.hostName = "sevenofnine";
-              boot.loader.grub.device = "/dev/nvme0n1";
-              disko.devices.disk.system.device = "/dev/nvme0n1";
-            }
+            ./home-configs/raymond.nix
         ];
       };
       clWO = nixpkgs.lib.nixosSystem {
@@ -145,5 +144,12 @@
         ];
       };
     };
+
+    kodama-disk-image =
+      (import "${mobile-nixos}/lib/eval-with-configuration.nix" {
+        configuration = [ (import ./base-configs/kodama defaultUserName) ];
+        device = "lenovo-kodama";
+        pkgs = nixpkgs.legacyPackages.${system};
+      }).outputs.disk-image;
   };
 }
