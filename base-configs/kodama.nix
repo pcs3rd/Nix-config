@@ -45,7 +45,7 @@ defaultUserName:
     users.users.defaultUserName = {
       isNormalUser = true;
       home  = "/home/${defaultUserName}";
-      description  = ${defaultUserName}";
+      description  = "${defaultUserName}";
       extraGroups  = [ "wheel" "networkmanager" "dialout" "feedbackd" "networkmanager" "video" ];
       hashedPassword = "$y$j9T$mPFMquJN3r6ENhAT0pQ1n.$7stMBcOs7CwkNxF5EvwlJW9H54jdBPm/GE8PvODiKk6"; #  mkpasswd
     };
