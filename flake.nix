@@ -70,7 +70,6 @@
                 device = "lenovo-kodama";
               })
             ./alacarte/tailscale.nix
-            ./home-configs/raymond.nix
             ./base-configs/kodama.nix
         ];
       };
