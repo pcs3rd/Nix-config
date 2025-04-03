@@ -1,12 +1,6 @@
 { outputs, inputs, lib, config, pkgs, options, modulesPath, ... }:
-let 
-defaultUserName = [ "rdean" ];
-in
+
   {
-    #imports = [
-    #  ../home-configs/raymond.nix
-    #];
-  
     config = {
       mobile.beautification = {
         silentBoot = lib.mkDefault true;
@@ -40,13 +34,13 @@ in
       ];
     
       services.xserver.desktopManager.phosh = {
-        user = "${defaultUserName}";
+        user = "mobile-nixos";
       };
       mobile.boot.stage-1.kernel.useStrictKernelConfig = lib.mkDefault true;
-      users.users.defaultUserName = {
+      users.users.mobile-nixos = {
         isNormalUser = true;
-        home  = "/home/${defaultUserName}";
-        description  = "${defaultUserName}";
+        home  = "/home/mobile-nixos";
+        description  = "mobile-nixos";
         extraGroups  = [ "wheel" "networkmanager" "dialout" "feedbackd" "networkmanager" "video" ];
         hashedPassword = "$y$j9T$mPFMquJN3r6ENhAT0pQ1n.$7stMBcOs7CwkNxF5EvwlJW9H54jdBPm/GE8PvODiKk6"; #  mkpasswd
       };
