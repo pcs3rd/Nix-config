@@ -15,6 +15,5 @@ in
       user = defaultUserName;
     };
   };
-}
   mobile.boot.stage-1.kernel.useStrictKernelConfig = lib.mkDefault true;
 }
