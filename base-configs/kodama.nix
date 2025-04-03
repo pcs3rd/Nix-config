@@ -9,7 +9,7 @@ defaultUserName:
 
   config = {
     services.xserver.desktopManager.phosh = {
-      user = ${defaultUserName};
+      user = "${defaultUserName}";
     };
   };
   mobile.boot.stage-1.kernel.useStrictKernelConfig = lib.mkDefault true;
