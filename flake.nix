@@ -71,6 +71,7 @@
               })
             ./alacarte/tailscale.nix
             ./home-configs/raymond.nix
+            ./base-configs/kodama.nix
         ];
       };
       clWO = nixpkgs.lib.nixosSystem {
