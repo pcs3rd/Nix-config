@@ -69,7 +69,6 @@
               (import "${mobile-nixos}/lib/configuration.nix" {
                 device = "lenovo-kodama";
               })
-            ./alacarte/phosh.nix
             ./alacarte/tailscale.nix
             ./home-configs/raymond.nix
         ];
