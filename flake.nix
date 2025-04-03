@@ -146,6 +146,7 @@
     };
 
     kodama-disk-image =
+      specialArgs = {inherit inputs outputs;};
       (import "${mobile-nixos}/lib/eval-with-configuration.nix" {
         configuration = [ (import ./base-configs/kodama defaultUserName) ];
         device = "lenovo-kodama";
