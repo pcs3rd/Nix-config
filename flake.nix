@@ -147,10 +147,9 @@
 
     kodama-disk-image =
       (import "${mobile-nixos}/lib/eval-with-configuration.nix" {
-        specialArgs = {inherit inputs outputs;};
         configuration = [ (import ./base-configs/kodama defaultUserName) ];
         device = "lenovo-kodama";
-        pkgs = nixpkgs.legacyPackages.${system};
+        pkgs = nixpkgs.legacyPackages.aarch64-linux;
       }).outputs.disk-image;
   };
 }
