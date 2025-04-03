@@ -35,6 +35,7 @@
       "x86_64-linux"
     ];
     forAllSystems = nixpkgs.lib.genAttrs systems;
+    defaultUserName = "rdean";
 
   in {
 
