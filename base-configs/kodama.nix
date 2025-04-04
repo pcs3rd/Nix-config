@@ -2,7 +2,7 @@
 
   {
     config = {
-      nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
+      pkgs.stdenv.hostPlatform = lib.mkDefault "aarch64-linux";
 
       mobile.beautification = {
         silentBoot = lib.mkDefault true;
