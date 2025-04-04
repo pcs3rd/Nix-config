@@ -23,10 +23,17 @@
         epiphany            # Web browser
         gnome-console       # Terminal
         megapixels          # Camera
+        adwaita-icon-theme  # Icon Theme
+        tmux                # Virtual Terminal
       ];
   
       hardware.sensor.iio.enable = true;
-  
+      services.printing.enable = true;
+      services.avahi = {
+        enable = true;
+        nssmdns4 = true;
+        openFirewall = true;
+      };
       assertions = [
         { assertion = options.services.xserver.desktopManager.phosh.user.isDefined;
         message = ''
@@ -34,8 +41,25 @@
             When importing the phosh configuration in your system, you need to set `services.xserver.desktopManager.phosh.user` to the username of the session user.
         '';
         }
-      ];
-    
+      ];  
+      hardware.pulseaudio.enable = false;
+      services.pipewire = {
+        enable = true;
+        alsa.enable = true;
+        alsa.support32Bit = true;
+        pulse.enable = true;
+        jack.enable = true;
+      };
+
+      networking.networkmanager.enable = true;
+      time.timeZone = "America/New_York";
+
+
+      nix = {
+        extraOptions = ''
+          experimental-features = nix-command flakes
+        '';
+      };
       services.xserver.desktopManager.phosh = {
         user = "mobile-nixos";
       };
