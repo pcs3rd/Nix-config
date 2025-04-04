@@ -14,7 +14,7 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs-darwin";
     mobile-nixos = {
       url = github:pcs3rd/mobile-nixos/Lenovo-kodama;
-      flake = true;
+      flake = false;
     };
   };
 
