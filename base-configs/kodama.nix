@@ -27,7 +27,7 @@
         tmux                # Virtual Terminal
         phosh-mobile-settings # Settings
       ];
-  
+      networking.nftables.enable = true;
       hardware.sensor.iio.enable = true;
       services.printing.enable = true;
       services.avahi = {
