@@ -1,7 +1,9 @@
 { outputs, inputs, lib, config, pkgs, options, modulesPath, ... }:
 
   {
+    nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
     config = {
+      nixpkgs.hostPlatform = { 
       mobile.beautification = {
         silentBoot = lib.mkDefault true;
         splash = lib.mkDefault true;
