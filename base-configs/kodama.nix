@@ -25,6 +25,7 @@
         megapixels          # Camera
         adwaita-icon-theme  # Icon Theme
         tmux                # Virtual Terminal
+        phosh-mobile-settings # Settings
       ];
   
       hardware.sensor.iio.enable = true;
