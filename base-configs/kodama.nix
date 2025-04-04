@@ -26,6 +26,7 @@
         adwaita-icon-theme  # Icon Theme
         tmux                # Virtual Terminal
         phosh-mobile-settings # Settings
+        gnome-shell          # Shell functionality
       ];
       networking.nftables.enable = true;
       hardware.sensor.iio.enable = true;
