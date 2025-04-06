@@ -54,7 +54,7 @@
   services.kea.dhcp4 = {
     enable = true;
     settings = {
-      interfaces-config.interfaces = [ "eth1" ];
+      interfaces-config.interfaces = [ "enp2s0f0" ];
       
       lease-database = {
         name = "/var/lib/kea/dhcp4-leases.csv";
