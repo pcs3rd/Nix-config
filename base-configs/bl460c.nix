@@ -5,7 +5,7 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 # Power options 
-  powerManagement.cpuFreqGovernor = "powersave"
+  powerManagement.cpuFreqGovernor = "powersave";
 
   ##############################
   #---------Monitoring---------#
