@@ -96,6 +96,7 @@
             ./alacarte/preferred-server-env.nix
             ./alacarte/tailscale.nix
             ./alacarte/grub.nix
+            ./alacarte/gnome-desktop.nix
             {
               boot.loader.grub.device = "/dev/sda";
               disko.devices.disk.system.device = "/dev/sda";
