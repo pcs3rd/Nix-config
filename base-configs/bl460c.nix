@@ -5,8 +5,40 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 # Power options 
-powerManagement.cpuFreqGovernor = "powersave"
-# Network
+  powerManagement.cpuFreqGovernor = "powersave"
+
+  ##############################
+  #---------Monitoring---------#
+  ##############################
+  services.grafana = {
+    enable = true;
+    port = 8888;
+    addr = "0.0.0.0";
+    dataDir = "/stateful/grafana";
+  };
+
+  services.prometheus = {
+    enable = true;
+    port = 9990;
+    exporters = {
+      node = {
+        enable = true;
+        enabledCollectors = [ "systemd" ];
+        port = 9991;
+      };
+    };
+    scrapeConfigs = [
+      {
+        job_name = "chrysalis";
+        static_configs = [{
+          targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.node.port}" ];
+        }];
+      }
+    ];
+  };
+  ##############################
+  #----------Network-----------#
+  ##############################
   networking.networkmanager.enable = true;
   boot.kernel.sysctl = {
     # Enable IPv4 forwarding

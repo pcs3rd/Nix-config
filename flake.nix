@@ -71,24 +71,6 @@
             ./base-configs/kodama.nix
         ];
       };
-      clWO = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-            ./base-configs/generic-server.nix
-            ./disko-configs/server.nix
-            ./alacarte/preferred-server-env.nix
-            ./alacarte/tailscale.nix
-            ./alacarte/docker.nix
-            ./alacarte/grub.nix
-            ./alacarte/sevenofnine-disk-mounts.nix
-            {
-              networking.hostName = "sevenofnine";
-              boot.loader.grub.device = "/dev/nvme0n1";
-              disko.devices.disk.system.device = "/dev/nvme0n1";
-            }
-        ];
-      };
-
       sevenofnine = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
@@ -106,38 +88,17 @@
             }
         ];
       };
-      manager = nixpkgs.lib.nixosSystem {
+      router = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-            ./base-configs/generic-server.nix
-            ./disko-configs/server.nix
+            ./base-configs/bl460c.nix
+            ./disko-configs/backplane.nix
             ./alacarte/preferred-server-env.nix
             ./alacarte/tailscale.nix
-            ./alacarte/docker.nix
             ./alacarte/grub.nix
-            ./alacarte/sevenofnine-disk-mounts.nix
-            ./alacarte/Home-server.nix
             {
-              networking.hostName = "nix-manager";
               boot.loader.grub.device = "/dev/sda";
               disko.devices.disk.system.device = "/dev/sda";
-            }
-        ];
-      };
-      experimental = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-            ./base-configs/generic-server.nix
-            ./disko-configs/server.nix
-            ./alacarte/preferred-server-env.nix
-            ./alacarte/tailscale.nix
-            ./alacarte/docker.nix
-            ./alacarte/virtio.nix
-            ./alacarte/grub.nix
-            {
-              networking.hostName = "experimental";
-              boot.loader.grub.device = "/dev/vda";
-              disko.devices.disk.system.device = "/dev/vda";
             }
         ];
       };
