@@ -69,75 +69,51 @@
     kernel = "https://factory.talos.dev/pxe/b8e8fbbe1b520989e6c52c8dc8303070cb42095997e76e812fa8892393e1d176/v1.9.2/metal-amd64";
   };
 
-  ##############################
-  #----------ROUTING-----------#
-  ##############################
 
-  #----------DHCP SERVER-------#
-  services.dhcpd4 = {
-      enable = true;
-      interfaces = [ "enp2s0" ];
-      extraConfig = ''
-        option domain-name-servers 8.8.8.8, 1.1.1.1;
-        option subnet-mask 255.255.255.224;
-
-        subnet 10.56.84.0 netmask 255.255.255.224 {
-          option broadcast-address 10.56.84.255;
-          option routers 10.56.84.1;
-          option domain-name-servers 8.8.8.8;
-          interface enp2s0;
-          range 10.56.84.2 10.56.84.34;
-        }
-      '';
-    };
-  #---------BIND CFG-----------#
-  services.bind = {
-    enable = false;
-    zones = {
-      "example.com" = {
-        master = true;
-        file = pkgs.writeText "zone-example.com" ''
-          $ORIGIN example.com.
-          $TTL    1h
-          @            IN      SOA     ns1 hostmaster (
-                                           1    ; Serial
-                                           3h   ; Refresh
-                                           1h   ; Retry
-                                           1w   ; Expire
-                                           1h)  ; Negative Cache TTL
-                       IN      NS      ns1
-                       IN      NS      ns2
-
-          @            IN      A       203.0.113.1
-                       IN      AAAA    2001:db8:113::1
-                       IN      MX      10 mail
-                       IN      TXT     "v=spf1 mx"
-
-          www          IN      A       203.0.113.1
-                       IN      AAAA    2001:db8:113::1
-
-          ns1          IN      A       203.0.113.4
-                       IN      AAAA    2001:db8:113::4
-
-          ns2          IN      A       198.51.100.5
-                       IN      AAAA    2001:db8:5100::5
-        '';
+  # DHCP Server---------------------
+  services.kea.dhcp4 = {
+    enable = true;
+    settings = {
+      interfaces-config.interfaces = [ "eth1" ];
+      
+      lease-database = {
+        name = "/var/lib/kea/dhcp4-leases.csv";
+        type = "memfile";
+        persist = true;
+        lfc-interval = 3600;
       };
+
+      valid-lifetime = 4000;
+      renew-timer = 1000;
+      rebind-timer = 2000;
+
+      subnet5 = [{
+        id = 5;
+        subnet = "10.56.84.0/24";
+        pools = [{
+          pool = "10.56.84.10 - 10.56.84.40";
+        }];
+
+        option-data = [{
+          name = "routers";
+          data = "10.56.84.1";
+        }{
+          name = "domain-name-servers";
+          data = "1.1.1.1"; # Cloudflare DNS
+        }];
+      }];
     };
   };
 
-  #---------Ifaces CFG-----------#
+  #Net config-----------
   networking = {
-
-    hostName = "BackplaneManager";
-    nameservers = [ "" ]; #TODO: IP of host on VLAN
-    firewall.enable = false;
-
     interfaces = {
-      enp1s0 = { # UPSTREAM ROUTE
+      "enp2s0f1" = {
+        # DHCP needed to acquire IP for WAN
         useDHCP = true;
       };
-      enp2s0 = { # DOWNSTREAM/BACKPLANE
+      "enp2s0f0" = {
+        # Static IP needed for LAN gateway
         useDHCP = false;
         ipv4.addresses = [{
           address = "10.56.84.1";
@@ -145,42 +121,54 @@
         }];
       };
     };
+    firewall.enable = lib.mkForce false;
 
     nftables = {
       enable = true;
-      ruleset = ''
-        table ip filter {
-          chain input {
-            type filter hook input priority 0; policy drop;
-
-            iifname { "enp2s0" } accept comment "Allow local network to access the router"
-            iifname "enp1s0" ct state { established, related } accept comment "Allow established traffic"
-            iifname "enp1s0" icmp type { echo-request, destination-unreachable, time-exceeded } counter accept comment "Allow select ICMP"
-            iifname "enp1s0" counter drop comment "Drop all other unsolicited traffic from wan"
-          }
-          chain forward {
-            type filter hook forward priority 0; policy drop;
-            iifname { "enp2s0" } oifname { "enp1s0" } accept comment "Allow trusted LAN to WAN"
-            iifname { "enp1s0" } oifname { "enp2s0" } ct state established, related accept comment "Allow established back to LANs"
-          }
-        }
-
-        table ip nat {
-          chain postrouting {
-            type nat hook postrouting priority 100; policy accept;
-            oifname "enp1s0" masquerade
-          } 
-        }
-
-        table ip6 filter {
-	        chain input {
-            type filter hook input priority 0; policy drop;
-          }
-          chain forward {
-            type filter hook forward priority 0; policy drop;
-          }
-        }
-      '';
+      tables = {
+        # Allow select IPv4 traffic
+        filterV4 = {
+          family = "ip";
+          content = ''
+            chain input {
+              type filter hook input priority 0; policy drop;
+              iifname "lo" accept comment "allow loopback traffic"
+              iifname "eth1" accept comment "allow traffic from LAN"
+              iifname "eth0" ct state established, related accept comment "allow established traffic from WAN"
+              iifname "eth0" ip protocol icmp counter accept comment "allow ICMP traffic from WAN" 
+              iifname "eth0" tcp dport 22 counter accept comment "allow SSH traffic from WAN"
+              iifname "eth0" counter drop comment "drop all other traffic from WAN"
+            }
+            chain forward {
+              type filter hook forward priority 0; policy drop;
+              iifname "eth1" oifname "eth0" accept comment "allow LAN connections to forward to WAN"
+              iifname "eth0" oifname "eth1" ct state established, related accept comment "allow established WAN connections to forward to LAN"
+            }
+          '';
+        };
+        # Allow forwarded traffic out through WAN, masquerades IP
+        natV4 = {
+          family = "ip";
+          content = ''
+            chain postrouting {
+              type nat hook postrouting priority 100; policy accept;
+              oifname "eth0" masquerade comment "replace source address with WAN IP address"
+            }
+          '';
+        };
+        # Drops all IPv6 traffic
+        filterV6 = {
+          family = "ip6";
+          content = ''
+            chain input {
+              type filter hook input priority 0; policy drop;
+            }
+            chain forward {
+              type filter hook forward priority 0; policy drop;
+            }
+          '';
+        };
+      };
     };
   };
 
