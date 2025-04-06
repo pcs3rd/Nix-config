@@ -25,39 +25,137 @@
     "net.ipv6.conf.${name}.autoconf" = 1;
   };
 
-  # Enable Bind for local DNS Resolving
-  services.bind.enable = true;
-  networking = {
-    useDHCP = false;
-    hostName = "router";
-    nameserver = [ "<DNS IP>" ];
-    # Define VLANS
-    vlans = {
-      upstream = {
-        id = 10;
-        interface = "enp1s0";
-      };
-      clusterBackplane = {
-        id = 20;
-        interface = "enp2s0";
+  ##############################
+  #----------PXE SERVER--------#
+  ##############################
+
+  services.pixiecore = {
+    enable = true;
+    openFirewall = true;
+    dhcpNoBind = true;
+    kernel = "https://factory.talos.dev/pxe/b8e8fbbe1b520989e6c52c8dc8303070cb42095997e76e812fa8892393e1d176/v1.9.2/metal-amd64";
+  };
+
+  ##############################
+  #----------ROUTING-----------#
+  ##############################
+
+  #----------DHCP SERVER-------#
+  services.dhcpd4 = {
+      enable = true;
+      interfaces = [ "enp2s0" ];
+      extraConfig = ''
+        option domain-name-servers 8.8.8.8, 1.1.1.1;
+        option subnet-mask 255.255.255.224;
+
+        subnet 10.56.84.0 netmask 255.255.255.224 {
+          option broadcast-address 10.56.84.255;
+          option routers 10.56.84.1;
+          option domain-name-servers 8.8.8.8;
+          interface enp2s0;
+          range 10.56.84.2 10.56.84.34;
+        }
+      '';
+    };
+  #---------BIND CFG-----------#
+  services.bind = {
+    enable = false;
+    zones = {
+      "example.com" = {
+        master = true;
+        file = pkgs.writeText "zone-example.com" ''
+          $ORIGIN example.com.
+          $TTL    1h
+          @            IN      SOA     ns1 hostmaster (
+                                           1    ; Serial
+                                           3h   ; Refresh
+                                           1h   ; Retry
+                                           1w   ; Expire
+                                           1h)  ; Negative Cache TTL
+                       IN      NS      ns1
+                       IN      NS      ns2
+
+          @            IN      A       203.0.113.1
+                       IN      AAAA    2001:db8:113::1
+                       IN      MX      10 mail
+                       IN      TXT     "v=spf1 mx"
+
+          www          IN      A       203.0.113.1
+                       IN      AAAA    2001:db8:113::1
+
+          ns1          IN      A       203.0.113.4
+                       IN      AAAA    2001:db8:113::4
+
+          ns2          IN      A       198.51.100.5
+                       IN      AAAA    2001:db8:5100::5
+        '';
       };
     };
+  };
+
+
+  boot.kernel.sysctl = {
+    "net.ipv4.conf.all.forwarding" = true;
+  };
+
+  #---------Ifaces CFG-----------#
+  networking = {
+
+    hostName = "BackplaneManager";
+    nameservers = [ "" ]; #TODO: IP of host on VLAN
+    firewall.enable = false;
 
     interfaces = {
-      # Don't request DHCP on the physical interfaces
-      enp1s0.useDHCP = false;
-      enp2s0.useDHCP = false;
-      
-      # Handle the VLANs
-      wan.useDHCP = false;
-      lan = {
+      enp1s0 = { # UPSTREAM ROUTE
+        useDHCP = true;
+      };
+      enp2s0 = { # DOWNSTREAM/BACKPLANE
+        useDHCP = false;
         ipv4.addresses = [{
-          address = "10.1.1.1";
-          prefixLength = 28;
+          address = "10.56.84.1";
+          prefixLength = 27;
         }];
       };
     };
-  }; 
+
+    nftables = {
+      enable = true;
+      ruleset = ''
+        table ip filter {
+          chain input {
+            type filter hook input priority 0; policy drop;
+
+            iifname { "enp2s0" } accept comment "Allow local network to access the router"
+            iifname "enp1s0" ct state { established, related } accept comment "Allow established traffic"
+            iifname "enp1s0" icmp type { echo-request, destination-unreachable, time-exceeded } counter accept comment "Allow select ICMP"
+            iifname "enp1s0" counter drop comment "Drop all other unsolicited traffic from wan"
+          }
+          chain forward {
+            type filter hook forward priority 0; policy drop;
+            iifname { "enp2s0" } oifname { "enp1s0" } accept comment "Allow trusted LAN to WAN"
+            iifname { "enp1s0" } oifname { "enp2s0" } ct state established, related accept comment "Allow established back to LANs"
+          }
+        }
+
+        table ip nat {
+          chain postrouting {
+            type nat hook postrouting priority 100; policy accept;
+            oifname "enp1s0" masquerade
+          } 
+        }
+
+        table ip6 filter {
+	        chain input {
+            type filter hook input priority 0; policy drop;
+          }
+          chain forward {
+            type filter hook forward priority 0; policy drop;
+          }
+        }
+      '';
+    };
+  };
+
 
   time.timeZone = "America/New_York";
   networking.timeServers = options.networking.timeServers.default ++ [ "time.google.com" ]; 
