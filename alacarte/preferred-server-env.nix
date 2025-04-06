@@ -55,6 +55,7 @@
         pkgs.openiscsi
         pkgs.btop
         pkgs.gfs2-utils
+        pkgs.talosctl
     ];
     services.openssh = {
         enable = true;
