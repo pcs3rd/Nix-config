@@ -4,7 +4,8 @@
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
+# Power options 
+powerManagement.cpuFreqGovernor = "powersave"
 # Network
   networking.networkmanager.enable = true;
   boot.kernel.sysctl = {
