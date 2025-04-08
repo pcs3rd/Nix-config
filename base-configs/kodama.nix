@@ -9,50 +9,36 @@
         silentBoot = lib.mkDefault true;
         splash = lib.mkDefault true;
       };
-  
-      services.xserver.desktopManager.phosh = {
-        enable = true;
-        group = "users";
-      };
-  
-      programs.calls.enable = true;
-  
-      environment.systemPackages = with pkgs; [
-        # Disabled since it uses `olm` which was marked insecure.
-        #chatty              # IM and SMS
-        epiphany            # Web browser
-        gnome-console       # Terminal
-        megapixels          # Camera
-        adwaita-icon-theme  # Icon Theme
-        tmux                # Virtual Terminal
-        phosh-mobile-settings # Settings
-        gnome-shell          # Shell functionality
-      ];
-      networking.nftables.enable = true;
-      hardware.sensor.iio.enable = true;
-      services.printing.enable = true;
-      services.avahi = {
-        enable = true;
-        nssmdns4 = true;
-        openFirewall = true;
-      };
-      assertions = [
-        { assertion = options.services.xserver.desktopManager.phosh.user.isDefined;
-        message = ''
-          `services.xserver.desktopManager.phosh.user` not set.
-            When importing the phosh configuration in your system, you need to set `services.xserver.desktopManager.phosh.user` to the username of the session user.
-        '';
-        }
-      ];  
-      hardware.pulseaudio.enable = false;
-      services.pipewire = {
-        enable = true;
-        alsa.enable = true;
-        alsa.support32Bit = true;
-        pulse.enable = true;
-        jack.enable = true;
-      };
+    mobile.beautification = {
+    silentBoot = lib.mkDefault true;
+    splash = lib.mkDefault true;
+  };
 
+  services.xserver = {
+    enable = true;
+
+    desktopManager.plasma5.mobile.enable = true;
+
+    displayManager.lightdm = {
+      enable = true;
+      # Workaround for autologin only working at first launch.
+      # A logout or session crashing will show the login screen otherwise.
+      extraSeatDefaults = ''
+        session-cleanup-script=${pkgs.procps}/bin/pkill -P1 -fx ${pkgs.lightdm}/sbin/lightdm
+      '';
+    };
+
+  };
+
+  hardware.bluetooth.enable = true;
+  services.pipewire.enable = lib.mkDefault true;
+  hardware.pulseaudio.enable = lib.mkDefault false;
+  networking.networkmanager.enable = true;
+  networking.wireless.enable = false;
+  powerManagement.enable = true;
+  services.libinput.enable = true;
+  services.displayManager.defaultSession = "plasma-mobile";
+  services.displayManager.autoLogin.enable = true;
       networking.networkmanager.enable = true;
       time.timeZone = "America/New_York";
 
@@ -73,5 +59,7 @@
         extraGroups  = [ "wheel" "networkmanager" "dialout" "feedbackd" "networkmanager" "video" ];
         hashedPassword = "$y$j9T$mPFMquJN3r6ENhAT0pQ1n.$7stMBcOs7CwkNxF5EvwlJW9H54jdBPm/GE8PvODiKk6"; #  mkpasswd
       };
+}
+
     };
   }
