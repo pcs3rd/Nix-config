@@ -67,7 +67,7 @@
       renew-timer = 1000;
       rebind-timer = 2000;
 
-      subnet5 = [{
+      subnet4 = [{
         id = 5;
         subnet = "10.56.84.0/24";
         pools = [{
