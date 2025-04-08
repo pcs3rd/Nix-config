@@ -3,7 +3,6 @@
   {
   nixpkgs.system = "aarch64-linux";
 
-  networking.networkmanager.enable = true;
   time.timeZone = "America/New_York";
   nix = {
     extraOptions = ''
