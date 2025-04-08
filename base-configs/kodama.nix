@@ -1,15 +1,28 @@
 { outputs, inputs, lib, config, pkgs, options, modulesPath, ... }:
 
   {
+  nixpkgs.system = "aarch64-linux";
 
-    config = {
-      #nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
-      nixpkgs.system = "aarch64-linux";
-      mobile.beautification = {
-        silentBoot = lib.mkDefault true;
-        splash = lib.mkDefault true;
-      };
-    mobile.beautification = {
+  networking.networkmanager.enable = true;
+  time.timeZone = "America/New_York";
+  nix = {
+    extraOptions = ''
+    experimental-features = nix-command flakes
+    '';
+  };
+  services.xserver.desktopManager.phosh = {
+    user = "mobile-nixos";
+  };
+  mobile.boot.stage-1.kernel.useStrictKernelConfig = lib.mkDefault true;
+  users.users.mobile-nixos = {
+    isNormalUser = true;
+    home  = "/home/mobile-nixos";
+    description  = "mobile-nixos";
+    extraGroups  = [ "wheel" "networkmanager" "dialout" "feedbackd" "networkmanager" "video" ];
+    hashedPassword = "$y$j9T$mPFMquJN3r6ENhAT0pQ1n.$7stMBcOs7CwkNxF5EvwlJW9H54jdBPm/GE8PvODiKk6"; #  mkpasswd
+  };
+
+  mobile.beautification = {
     silentBoot = lib.mkDefault true;
     splash = lib.mkDefault true;
   };
@@ -39,27 +52,5 @@
   services.libinput.enable = true;
   services.displayManager.defaultSession = "plasma-mobile";
   services.displayManager.autoLogin.enable = true;
-      networking.networkmanager.enable = true;
-      time.timeZone = "America/New_York";
-
-
-      nix = {
-        extraOptions = ''
-          experimental-features = nix-command flakes
-        '';
-      };
-      services.xserver.desktopManager.phosh = {
-        user = "mobile-nixos";
-      };
-      mobile.boot.stage-1.kernel.useStrictKernelConfig = lib.mkDefault true;
-      users.users.mobile-nixos = {
-        isNormalUser = true;
-        home  = "/home/mobile-nixos";
-        description  = "mobile-nixos";
-        extraGroups  = [ "wheel" "networkmanager" "dialout" "feedbackd" "networkmanager" "video" ];
-        hashedPassword = "$y$j9T$mPFMquJN3r6ENhAT0pQ1n.$7stMBcOs7CwkNxF5EvwlJW9H54jdBPm/GE8PvODiKk6"; #  mkpasswd
-      };
 }
 
-    };
-  }
