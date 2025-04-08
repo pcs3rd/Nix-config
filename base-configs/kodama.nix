@@ -51,5 +51,8 @@
   services.libinput.enable = true;
   services.displayManager.defaultSession = "plasma-mobile";
   services.displayManager.autoLogin.enable = true;
+  environment.systemPackages = [
+    pkgs.firefox
+  ];
 }
 
