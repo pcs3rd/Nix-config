@@ -53,6 +53,7 @@
   services.displayManager.autoLogin.enable = true;
   environment.systemPackages = [
     pkgs.firefox
+    pkgs.seafile-client
   ];
 }
 
