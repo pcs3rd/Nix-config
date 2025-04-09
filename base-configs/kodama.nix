@@ -20,11 +20,11 @@
     extraGroups  = [ "wheel" "networkmanager" "dialout" "feedbackd" "networkmanager" "video" ];
     hashedPassword = "$y$j9T$mPFMquJN3r6ENhAT0pQ1n.$7stMBcOs7CwkNxF5EvwlJW9H54jdBPm/GE8PvODiKk6"; #  mkpasswd
   };
-  environment.plasma5.mobile.excludePackages = [
-    pkgs.kdePackages.kasts
-    pkgs.kdePackages.plasma-dialer
-    
-  ];
+ # environment.plasma5.mobile.excludePackages = [
+ #   pkgs.kdePackages.kasts
+ #   pkgs.kdePackages.plasma-dialer
+ #   
+ # ];
   mobile.beautification = {
     silentBoot = lib.mkDefault true;
     splash = lib.mkDefault true;
