@@ -56,6 +56,8 @@
   services.displayManager.defaultSession = "plasma-mobile";
   services.displayManager.autoLogin.enable = true;
   environment.systemPackages = [
+    pkgs.jellyfin-media-player
+    pkgs.jellycli
     pkgs.firefox
     pkgs.seafile-client
     pkgs.jellyfin-web
