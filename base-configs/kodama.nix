@@ -58,6 +58,7 @@
   environment.systemPackages = [
     pkgs.firefox
     pkgs.seafile-client
+    pkgs.jellyfin-web
   ];
 }
 
