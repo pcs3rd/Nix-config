@@ -60,7 +60,6 @@
     pkgs.jellycli
     pkgs.firefox
     pkgs.seafile-client
-    pkgs.jellyfin-web
   ];
 }
 
