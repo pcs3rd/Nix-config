@@ -59,12 +59,13 @@
         "mode=755"
       ];
     };
-    nodev."/home" = {
+    nodev."/home/manager" = {
       fsType = "tmpfs";
       mountOptions = [
         "size=1G"
+        "user"
         "defaults"
-        "mode=666"
+        "mode=1777"
         "noexec"
       ];
     };
