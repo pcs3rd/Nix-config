@@ -55,6 +55,14 @@
   services.libinput.enable = true;
   services.displayManager.defaultSession = "plasma-mobile";
   services.displayManager.autoLogin.enable = true;
+  services.printing.enable = true;
+  networking.firewall.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+  
   environment.systemPackages = [
     pkgs.jellyfin-media-player
     pkgs.jellycli
