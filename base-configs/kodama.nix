@@ -65,7 +65,6 @@
   
   environment.systemPackages = [
     pkgs.jellyfin-media-player
-    pkgs.jellycli
     pkgs.firefox
     pkgs.seafile-client
   ];
