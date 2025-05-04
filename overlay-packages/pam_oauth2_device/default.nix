@@ -3,8 +3,8 @@
   lib ? pkgs.lib,
   stdenv ? pkgs.stdenv,
   pam ? pkgs.pam,
-  fetchFromGitHub,
-  autoreconfHook
+  fetchFromGitHub ? pkgs.fetchFromGitHub,
+  autoreconfHook ? pkgs.autoreconfHook
 }:
 
 
