@@ -38,7 +38,8 @@ pkgs.stdenv.mkDerivation rec {
     mkdir -p -v $out/bin $out/lib/security
     mkdir -p -v $out/etc/pam_oauth2_device/
     cp pam_oauth2_device.so $out/lib/security
-    cp config_template.json $out/etc/pam_oauth2_device/config.json
+    cp config_template.json $out/etc/pam_oauth2_device/config-template.json
+    chmod +755 $out/lib/security
   '';
 
   meta = with lib; {
