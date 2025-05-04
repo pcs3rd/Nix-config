@@ -20,7 +20,7 @@ pkgs.stdenv.mkDerivation rec {
     owner = "stfc";
     repo = "pam_oauth2_device";
     rev = version;
-    hash = "";
+    hash = "sha256-3qOF7+rn222GMRwxpQgACuIwuPyCku01JKvNefPxxsM=";
   };
 
   nativeBuildInputs = [ autoreconfHook ];
