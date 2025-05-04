@@ -88,6 +88,22 @@
             }
         ];
       };
+      locutusofborg = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            ./base-configs/generic-server.nix
+            ./disko-configs/server.nix
+            ./alacarte/preferred-server-env.nix
+            ./alacarte/tailscale.nix
+            ./alacarte/docker.nix
+            ./alacarte/grub.nix
+            {
+              networking.hostName = "locutusofborg";
+              boot.loader.grub.device = "/dev/sda1";
+              disko.devices.disk.system.device = "/dev/sda1";
+            }
+        ];
+      };
       router = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
