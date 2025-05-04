@@ -2,7 +2,7 @@
   pkgs ? import <nixpkgs> { system = builtins.currentSystem; }, 
   lib ? pkgs.lib,
   stdenv ? pkgs.stdenv,
-  pam,
+  pam ? pkgs.pam,
   fetchFromGitHub,
   autoreconfHook
 }:
