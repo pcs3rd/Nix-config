@@ -23,7 +23,7 @@ pkgs.stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = [ ];
-  buildInputs = [ pam pkgs.curl ];
+  buildInputs = [ pam pkgs.curl pkgs.openldap ];
 
 
   buildPhase = ''
