@@ -23,7 +23,7 @@ pkgs.stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = [ ];
-  buildInputs = [ pam curl ];
+  buildInputs = [ pam pkgs.curl ];
 
 
   buildPhase = ''
