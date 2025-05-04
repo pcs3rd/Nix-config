@@ -1,7 +1,8 @@
 {
   lib,
   pam,
-  fetchFromGitHub
+  fetchFromGitHub,
+  autoreconfHook
 }:
 
 let 
