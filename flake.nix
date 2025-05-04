@@ -99,8 +99,8 @@
             ./alacarte/grub.nix
             {
               networking.hostName = "locutusofborg";
-              boot.loader.grub.device = "/dev/sda1";
-              disko.devices.disk.system.device = "/dev/sda1";
+              boot.loader.grub.device = "/dev/sda";
+              disko.devices.disk.system.device = "/dev/sda";
             }
         ];
       };
