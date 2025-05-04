@@ -21,7 +21,7 @@
       hashedPasswordFile = "/stateful/sys-data/manager-passwordHash"; #  mkpasswd -m sha-512 
     };
     rclone = {
-      isNormalUser = true;
+      isSystemUser = true;
       #home = "/home/manager";
       description  = "rclone user for ssh access";
       uid = 911; 
