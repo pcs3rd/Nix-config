@@ -4,18 +4,21 @@
   fetchFromGitHub,
   autoreconfHook,
   pam,
-  qrencode,
 }:
 
-stdenv.mkDerivation rec {
-  pname = "google-authenticator-libpam";
-  version = "1.10";
+let 
+  pkgs =  import <nixpkgs> {}; # bring all of Nixpkgs into scope
+in
+
+pkgs.stdenv.mkDerivation rec {
+  pname = "pam_oauth2_device";
+  version = "v1.03";
 
   src = fetchFromGitHub {
-    owner = "google";
-    repo = "google-authenticator-libpam";
+    owner = "stfc";
+    repo = "pam_oauth2_device";
     rev = version;
-    hash = "sha256-KEfwQeJIuRF+S3gPn+maDb8Fu0FRXLs2/Nlbjj2d3AE=";
+    hash = "20cd504709d49e509ad1606e4b85cfe858e2e498";
   };
 
   nativeBuildInputs = [ autoreconfHook ];
@@ -40,9 +43,9 @@ stdenv.mkDerivation rec {
   meta = with lib; {
     homepage = "https://github.com/slaclab/pam_oauth2_device";
     description = "PAM Oauth2 Device Flow";
-    mainProgram = "google-authenticator";
+    mainProgram = "pam_oauth2_device";
     license = licenses.apache20;
-    #maintainers = with maintainers; [ aneeshusa ];
+    #maintainers = with maintainers; [ pcs3rd ];
     platforms = platforms.linux;
   };
 }
