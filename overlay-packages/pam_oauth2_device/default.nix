@@ -46,7 +46,7 @@ pkgs.stdenv.mkDerivation rec {
     homepage = "https://github.com/slaclab/pam_oauth2_device";
     description = "PAM Oauth2 Device Flow";
     mainProgram = "pam_oauth2_device";
-    license = licenses.apache20;
+    #license = licenses.apache20;
     #maintainers = with maintainers; [ pcs3rd ];
     platforms = platforms.linux;
   };
