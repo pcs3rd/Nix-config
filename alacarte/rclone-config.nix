@@ -7,7 +7,7 @@
         "nofail"
         "allow_other"
         "args2env"
-        "config=/etc/rclone-mnt.conf"
+        "config=/stateful/sys-data/rclone-mnt.conf"
     ];
     };
     fileSystems."/Disks/Jellyfin/242b" = {
@@ -18,7 +18,7 @@
         "nofail"
         "allow_other"
         "args2env"
-        "config=/etc/rclone-mnt.conf"
+        "config=/stateful/sys-data/rclone-mnt.conf"
     ];
     };
     fileSystems."/Disks/Jellyfin/2111" = {
@@ -29,7 +29,7 @@
         "nofail"
         "allow_other"
         "args2env"
-        "config=/etc/rclone-mnt.conf"
+        "config=/stateful/sys-data/rclone-mnt.conf"
     ];
     };
     fileSystems."/persist" = {
@@ -40,16 +40,9 @@
         "nofail"
         "allow_other"
         "args2env"
-        "config=/etc/rclone-mnt.conf"
+        "config=/stateful/sys-data/rclone-mnt.conf"
     ];
     };
 }
 
 
-
-
-  fileSystems."/persist" = #appdata and crap
-    { device = "/dev/disk/by-uuid/fdb0778a-4425-4fc1-9bc9-e9e1fd1550ec";
-      fsType = "btrfs";
-      options = [ "subvol=AppData" "compress=zstd" ];
-    };
