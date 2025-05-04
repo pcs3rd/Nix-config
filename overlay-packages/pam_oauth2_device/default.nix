@@ -14,13 +14,13 @@ in
 
 pkgs.stdenv.mkDerivation rec {
   pname = "pam_oauth2_device";
-  version = "v1.03";
+  version = "20cd504709d49e509ad1606e4b85cfe858e2e498";
 
   src = fetchFromGitHub {
     owner = "stfc";
     repo = "pam_oauth2_device";
     rev = version;
-    hash = "20cd504709d49e509ad1606e4b85cfe858e2e498";
+    hash = "";
   };
 
   nativeBuildInputs = [ autoreconfHook ];
