@@ -20,6 +20,14 @@
       extraGroups = [ "wheel" "docker" "networkmanager" "storage" ]; 
       hashedPasswordFile = "/stateful/sys-data/manager-passwordHash"; #  mkpasswd -m sha-512 
     };
+    rclone = {
+      isNormalUser = true;
+      #home = "/home/manager";
+      description  = "rclone user for ssh access";
+      uid = 911; 
+      extraGroups = [ "storage" ]; 
+      hashedPasswordFile = "/stateful/sys-data/manager-passwordHash"; #  mkpasswd -m sha-512 
+    };
   };
   users.groups.blade-worker = {};
 
