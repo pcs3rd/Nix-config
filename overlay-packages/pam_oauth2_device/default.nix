@@ -4,7 +4,6 @@
   stdenv ? pkgs.stdenv,
   pam ? pkgs.pam,
   fetchFromGitHub ? pkgs.fetchFromGitHub,
-  autoreconfHook ? pkgs.autoreconfHook
 }:
 
 
@@ -23,7 +22,7 @@ pkgs.stdenv.mkDerivation rec {
     hash = "sha256-3qOF7+rn222GMRwxpQgACuIwuPyCku01JKvNefPxxsM=";
   };
 
-  nativeBuildInputs = [ autoreconfHook ];
+  nativeBuildInputs = [ ];
   buildInputs = [ pam ];
 
 
