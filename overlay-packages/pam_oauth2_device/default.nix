@@ -1,6 +1,7 @@
 {
   lib,
   pam,
+  fetchFromGitHub
 }:
 
 let 
