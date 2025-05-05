@@ -93,6 +93,7 @@
         modules = [
             ./base-configs/generic-server.nix
             ./disko-configs/server.nix
+            ./alacarte/rclone-config.nix
             ./alacarte/preferred-server-env.nix
             ./alacarte/tailscale.nix
             ./alacarte/docker.nix
