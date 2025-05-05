@@ -1,4 +1,5 @@
 { inputs, outputs, lib, pkgs, ... }:{
+    environment.systemPackages = [ pkgs.rclone ];
     fileSystems."/Disks/Jellyfin/80b6" = {
     device = "sevenofnine:/Disks/Jellyfin/80b6";
     fsType = "rclone";
