@@ -21,6 +21,7 @@
       hashedPasswordFile = "/stateful/sys-data/manager-passwordHash"; #  mkpasswd -m sha-512 
     };
     rclone = {
+			shell = lib.mkForce pkgs.bash;
       isSystemUser = true;
       #home = "/home/manager";
       description  = "rclone user for ssh access";
