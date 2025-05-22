@@ -8,6 +8,9 @@
         "nofail"
         "allow_other"
         "args2env"
+        "x-systemd.automount"
+        "x-systemd.mount-timeout=86400s"
+        "x-systemd.after=network-online.target"
         "config=/stateful/sys-data/rclone-mnt.conf"
     ];
     };
@@ -19,6 +22,9 @@
         "nofail"
         "allow_other"
         "args2env"
+        "x-systemd.automount"
+        "x-systemd.mount-timeout=86400s"
+        "x-systemd.after=network-online.target"
         "config=/stateful/sys-data/rclone-mnt.conf"
     ];
     };
@@ -30,6 +36,9 @@
         "nofail"
         "allow_other"
         "args2env"
+        "x-systemd.automount"
+        "x-systemd.mount-timeout=86400s"
+        "x-systemd.after=network-online.target"
         "config=/stateful/sys-data/rclone-mnt.conf"
     ];
     };
@@ -41,9 +50,13 @@
         "nofail"
         "allow_other"
         "args2env"
+        "x-systemd.automount"
+        "x-systemd.mount-timeout=86400s"
+        "x-systemd.after=network-online.target"
         "config=/stateful/sys-data/rclone-mnt.conf"
     ];
     };
+
 }
 
 
