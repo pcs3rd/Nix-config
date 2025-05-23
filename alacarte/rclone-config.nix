@@ -57,7 +57,7 @@
         "gid=911"
         "uid=911"
         "allow_other"
-        "umask=750"
+        "umask=0750"
         "args2env"
         "x-systemd.automount"
         "x-systemd.mount-timeout=86400s"
