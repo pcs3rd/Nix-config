@@ -58,13 +58,9 @@
         "uid=911"
         "allow_other"
         "umask=0750"
-        "args2env"
-        "dir-perms=0750" 
-        "file-perms=0750"
         "x-systemd.automount"
         "x-systemd.mount-timeout=86400s"
         "x-systemd.after=network-online.target"
-        "config=/stateful/sys-data/rclone-mnt.conf"
     ];
     };
 
