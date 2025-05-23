@@ -49,8 +49,8 @@
     ];
     };
     fileSystems."/persist" = {
-    device = "sevenofnine:/persist";
-    fsType = "rclone";
+  device = "rclone@locutusofborg:/persist";
+  fsType = "sshfs";
     options = [
         "nodev"
         "nofail"
