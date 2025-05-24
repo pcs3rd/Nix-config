@@ -76,6 +76,7 @@
     hideMounts = true;
     directories = [
         "/var/log"
+        "root/.ssh"
         "/var/lib/nixos"
         "/var/lib/tailscale/"
         "/var/lib/systemd/coredump"
