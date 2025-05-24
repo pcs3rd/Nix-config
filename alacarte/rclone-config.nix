@@ -55,6 +55,7 @@
         "nodev"
         "IdentityFile=/root/.ssh/id_ed25519"
         "umask=0750"
+        "allow_other"
         "x-systemd.automount"
         "x-systemd.mount-timeout=86400s"
         "x-systemd.after=network-online.target"
