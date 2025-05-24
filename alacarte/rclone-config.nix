@@ -49,7 +49,7 @@
     ];
     };
     fileSystems."/persist" = {
-  device = "rclone@locutusofborg:/persist";
+  device = "root@locutusofborg:/persist";
   fsType = "sshfs"; # Supposedly preseves ownership and crap
     options = [
         "nodev"
