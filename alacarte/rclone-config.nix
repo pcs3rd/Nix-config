@@ -53,7 +53,6 @@
   fsType = "sshfs"; # Supposedly preseves ownership and crap
     options = [
         "nodev"
-        "nofail"
         "IdentityFile=/stateful/sys-data/id_rsa.pub"
         "umask=0750"
         "x-systemd.automount"
