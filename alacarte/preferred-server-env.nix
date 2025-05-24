@@ -3,6 +3,7 @@
   environment.variables = {
     "EDITOR" = "nano";
   };
+  services.openssh.permitRootLogin = true;
   hardware.raid.HPSmartArray.enable = true;
   nixpkgs.config.allowUnfree = true;
   services.davfs2.enable = true;
