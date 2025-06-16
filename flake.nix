@@ -80,6 +80,11 @@
             ./alacarte/gnome-desktop.nix
             ./base-configs/generic-mac.nix
             ./home-configs/raymond.nix
+           {
+              networking.hostName = "stealth";
+              boot.loader.grub.device = "/dev/sda";
+              disko.devices.disk.system.device = "/dev/sda";
+            }
         ];
       };
       sevenofnine = nixpkgs.lib.nixosSystem {
