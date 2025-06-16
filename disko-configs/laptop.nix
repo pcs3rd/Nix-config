@@ -18,7 +18,7 @@
             esp = {
                 priority = 1;
                 name = "esp";
-                size = "1G";
+                size = "512M";
                 type = "EF00";
                 content = {
                   type = "filesystem";
@@ -60,6 +60,14 @@
       };
     };
     nodev."/" = {
+      fsType = "tmpfs";
+      mountOptions = [
+        "size=512M"
+        "defaults"
+        "mode=755"
+      ];
+    };
+    nodev."/tmp" = {
       fsType = "tmpfs";
       mountOptions = [
         "size=512M"
