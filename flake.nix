@@ -71,6 +71,17 @@
             ./base-configs/kodama.nix
         ];
       };
+      stealth = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            ./alacarte/tailscale.nix
+            ./alacarte/grub.nix
+            ./alacarte/tailscale.nix
+            ./alacarte/gnome-desktop.nix
+            ./base-configs/generic-mac.nix
+            ./home-configs.
+        ];
+      };
       sevenofnine = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
