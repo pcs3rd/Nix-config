@@ -80,6 +80,7 @@
             ./alacarte/gnome-desktop.nix
             ./base-configs/generic-mac.nix
             ./home-configs/raymond.nix
+						./disko-configs/laptop.nix
            {
               networking.hostName = "stealth";
               boot.loader.grub.device = "/dev/sda";
