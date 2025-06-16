@@ -79,7 +79,7 @@
             ./alacarte/tailscale.nix
             ./alacarte/gnome-desktop.nix
             ./base-configs/generic-mac.nix
-            ./home-configs.
+            ./home-configs/raymond.nix
         ];
       };
       sevenofnine = nixpkgs.lib.nixosSystem {
