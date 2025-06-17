@@ -18,7 +18,7 @@ id_provider = ldap
 chpass_provider = ldap
 auth_provider = ldap
 access_provider = ldap
-ldap_uri = ldaps://${authentik.company}:636
+ldap_uri = ldaps://${authentik_url}:636
 
 ldap_schema = rfc2307bis
 ldap_search_base = ${ldap.baseDN}
