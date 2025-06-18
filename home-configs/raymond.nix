@@ -13,6 +13,7 @@ users.users.rdean = {
     home.packages = with pkgs; [
       tmux
       htop 
+      python313Packages.meshtastic
     ];
     home.stateVersion = "25.05";
 
