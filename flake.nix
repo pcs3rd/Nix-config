@@ -98,8 +98,6 @@
 						./disko-configs/laptop.nix
            {
               networking.hostName = "stealth-vm";
-              boot.loader.grub.device = "/dev/vda";
-              disko.devices.disk.system.device = "/dev/vda";
             }
         ];
       };
