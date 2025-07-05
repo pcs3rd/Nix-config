@@ -88,6 +88,23 @@
             }
         ];
       };
+      stealth-vm = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            ./alacarte/tailscale.nix
+            ./alacarte/grub.nix
+            ./alacarte/tailscale.nix
+            ./alacarte/gnome-desktop.nix
+            ./base-configs/generic-mac.nix
+            ./home-configs/raymond.nix
+						./disko-configs/laptop.nix
+           {
+              networking.hostName = "stealth-vm";
+              boot.loader.grub.device = "/dev/vda";
+              disko.devices.disk.system.device = "/dev/vda";
+            }
+        ];
+      };
       sevenofnine = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
