@@ -92,10 +92,8 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
             ./alacarte/tailscale.nix
-            ./alacarte/grub.nix
-            ./alacarte/tailscale.nix
             ./alacarte/gnome-desktop.nix
-            ./base-configs/generic-mac.nix
+            ./base-configs/generic-vm.nix
             ./home-configs/raymond.nix
 						./disko-configs/laptop.nix
            {
