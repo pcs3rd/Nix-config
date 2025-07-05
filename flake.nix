@@ -94,6 +94,7 @@
             ./alacarte/tailscale.nix
             ./alacarte/gnome-desktop.nix
             ./base-configs/generic-vm.nix
+            ./alacarte/grub.nix
             ./home-configs/raymond.nix
 						./disko-configs/laptop.nix
            {
