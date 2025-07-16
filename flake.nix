@@ -80,7 +80,7 @@
             ./alacarte/gnome-desktop.nix
             ./base-configs/generic-mac.nix
             ./home-configs/raymond.nix
-						./disko-configs/laptop.nix
+	    ./disko-configs/laptop.nix
            {
               networking.hostName = "stealth";
               boot.loader.grub.device = "/dev/sda";
@@ -96,7 +96,8 @@
             ./base-configs/generic-vm.nix
             ./alacarte/grub.nix
             ./home-configs/raymond.nix
-						./disko-configs/laptop.nix
+            ./alacarte/docker.nix
+	    ./disko-configs/laptop.nix
            {
               networking.hostName = "stealth-vm";
               boot.loader.grub.device = "/dev/vda";
