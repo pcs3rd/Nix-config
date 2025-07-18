@@ -21,7 +21,7 @@
         pkgs.stdenv.cc
         pkgs.binutils
     ];
-  services.xserver.videoDrivers
+  services.xserver.videoDrivers = [ "nvidia" ]
   hardware.graphics = {
     enable = true;
   };
