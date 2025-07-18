@@ -1,4 +1,4 @@
-{ inputs, outputs, lib, pkgs, ... }:{
+{ inputs, outputs, lib, pkgs, config, ... }:{
     environment.defaultPackages = lib.mkForce [
         pkgs.nvidia-container-toolkit
     ];
