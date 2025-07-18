@@ -56,4 +56,27 @@
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+    virtualisation.docker = {
+    enable = true;
+    rootless = {
+        enable = true;
+        setSocketVariable = true;
+        daemon.settings = {
+        features.cdi = true;
+        cdi-spec-dirs = ["/home/${username}/.cdi"];
+        };
+    };
+    daemon.settings = {
+        features.cdi = true;
+    };
+    };
+    hardware = {
+    nvidia = {
+        modesetting.enable = true;
+        nvidiaSettings = false;
+        open = false;
+    };
+    nvidia-container-toolkit.enable = true;
+    };
+    services.xserver.videoDrivers = ["nvidia"];
 }
