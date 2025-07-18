@@ -63,7 +63,7 @@
         setSocketVariable = true;
         daemon.settings = {
         features.cdi = true;
-        cdi-spec-dirs = ["/home/${username}/.cdi"];
+        cdi-spec-dirs = ["/persist/cdi"];
         };
     };
     daemon.settings = {
