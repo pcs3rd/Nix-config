@@ -21,6 +21,7 @@
         pkgs.stdenv.cc
         pkgs.binutils
     ];
+  services.xserver.videoDrivers
   hardware.graphics = {
     enable = true;
   };
