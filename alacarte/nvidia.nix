@@ -1,10 +1,30 @@
 { inputs, outputs, lib, pkgs, config, ... }:{
     environment.defaultPackages = lib.mkForce [
         pkgs.nvidia-container-toolkit
+        pkgs.git
+        pkgs.gitRepo
+        pkgs.gnupg
+        pkgs.autoconf
+        pkgs.curl
+        pkgs.procps
+        pkgs.gnumake
+        pkgs.util-linux
+        pkgs.m4
+        pkgs.gperf
+        pkgs.unzip
+        pkgs.cudatoolkit
+        pkgs.linuxPackages.nvidia_x11
+        pkgs.libGLU libGL
+        pkgs.xorg.libXi pkgs.xorg.libXmu pkgs.freeglut
+        pkgs.xorg.libXext pkgs.xorg.libX11 pkgs.xorg.libXv pkgs.xorg.libXrandr pkgs.zlib 
+        pkgs.ncurses5
+        pkgs.stdenv.cc
+        pkgs.binutils
     ];
   hardware.graphics = {
     enable = true;
   };
+  hardware.nvidia-container-toolkit.enable = true;
   hardware.nvidia = {
 
     # Modesetting is required.
