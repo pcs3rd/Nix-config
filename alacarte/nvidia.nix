@@ -2,7 +2,6 @@
     environment.defaultPackages = lib.mkForce [
         pkgs.nvidia-container-toolkit
     ];
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable; # Same as production
   hardware.graphics = {
     enable = true;
   };
