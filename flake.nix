@@ -132,6 +132,7 @@
             ./alacarte/tailscale.nix
             ./alacarte/docker.nix
             ./alacarte/grub.nix
+            ./alacarte/nvidia.nix
             {
               networking.hostName = "locutusofborg";
               boot.loader.grub.device = "/dev/sda";
