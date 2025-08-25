@@ -33,7 +33,7 @@
   services.xserver = {
     enable = true;
 
-    desktopManager.plasma6.mobile.enable = true;
+    desktopManager.plasma5.mobile.enable = true;
     
     displayManager.lightdm = {
       enable = true;
@@ -70,6 +70,6 @@
     pkgs.styluslabs-write
   ];
   system.stateVersion = "25.05";
-  
+
 }
 
