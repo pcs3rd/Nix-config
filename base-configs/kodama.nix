@@ -67,6 +67,7 @@
     pkgs.jellyfin-media-player
     pkgs.firefox
     pkgs.seafile-client
+    pkgs.styluslabs-write
   ];
 }
 
