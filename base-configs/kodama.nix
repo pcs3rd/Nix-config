@@ -69,7 +69,7 @@
     pkgs.seafile-client
     pkgs.styluslabs-write
     pkgs.libevdev
-    pkgs.pkgconfig
+    pkgs.pkg-config
   ];
   system.stateVersion = "25.05";
 
