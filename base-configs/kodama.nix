@@ -68,6 +68,7 @@
     pkgs.firefox
     pkgs.seafile-client
     pkgs.styluslabs-write
+    pkgs.libevdev
   ];
   system.stateVersion = "25.05";
 
