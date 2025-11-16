@@ -157,7 +157,7 @@
       dev = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-            ./base-configs/generic-server.nix
+            ./base-configs/arm-server.nix
             ./disko-configs/dev-server.nix
             ./alacarte/preferred-server-env.nix
             ./alacarte/tailscale.nix
