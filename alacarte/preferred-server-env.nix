@@ -4,7 +4,6 @@
     "EDITOR" = "nano";
   };
   services.openssh.permitRootLogin = "prohibit-password";
-  hardware.raid.HPSmartArray.enable = true;
   nixpkgs.config.allowUnfree = true;
   services.davfs2.enable = true;
   documentation.enable = false; # documentation of packages
