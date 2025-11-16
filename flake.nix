@@ -162,7 +162,7 @@
             ./alacarte/preferred-server-env.nix
             ./alacarte/tailscale.nix
             ./alacarte/docker.nix
-            ./alacarte/arm-grub.nix
+            ./alacarte/grub.nix
             {
               networking.hostName = "dev";
               boot.loader.grub.device = "/dev/vda";
