@@ -46,7 +46,7 @@
                   };
                   "/persist" = {
                       mountOptions = [ "compress=zstd" "noatime" ];
-                      mountpoint = "/var/lib/docker";
+                      mountpoint = "/persist";
                   };
                 };
               };
