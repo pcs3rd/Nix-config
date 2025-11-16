@@ -154,6 +154,22 @@
             }
         ];
       };
+      dev = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            ./base-configs/generic-server.nix
+            ./disko-configs/dev-server.nix
+            ./alacarte/preferred-server-env.nix
+            ./alacarte/tailscale.nix
+            ./alacarte/docker.nix
+            ./alacarte/grub.nix
+            {
+              networking.hostName = "dev";
+              boot.loader.grub.device = "/dev/vda1";
+              disko.devices.disk.system.device = "/dev/vda1";
+            }
+        ];
+      };
     };
 
     kodama-disk-image =
