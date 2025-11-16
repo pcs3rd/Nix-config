@@ -165,8 +165,8 @@
             ./alacarte/grub.nix
             {
               networking.hostName = "dev";
-              boot.loader.grub.device = "/dev/vda1";
-              disko.devices.disk.system.device = "/dev/vda1";
+              boot.loader.grub.device = "/dev/vda";
+              disko.devices.disk.system.device = "/dev/vda";
             }
         ];
       };
