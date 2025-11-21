@@ -17,7 +17,8 @@
   services.devmon.enable = true; # I want to auto-mount disks.
   services.gvfs.enable = true; 
   services.udisks2.enable = true;
-  programs.fuse.enable = true;
+  services.envfs.enable = true;
+  programs.fuse.userAllowOther = true;
 
 
   services.chrony = {
