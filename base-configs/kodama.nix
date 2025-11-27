@@ -68,6 +68,20 @@
     pkgs.styluslabs-write
     pkgs.libevdev
     pkgs.pkg-config
+    pkgs.wsjtx
+    pkgs.fldigi
+    pkgs.hamrs
+    pkgs.hamlib
+    pkgs.hamtransfer
+    pkgs.ax25-apps
+    pkgs.digiham
+    pkgs.tlf
+    pkgs.grig
+    pkgs.klog
+    pkgs.libax25
+    pkgs.flex-ncat
+    pkgs.gpredict
+    
   ];
   system.stateVersion = "25.05";
 
