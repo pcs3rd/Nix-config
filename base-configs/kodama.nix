@@ -10,15 +10,15 @@
     '';
   };
   services.xserver.desktopManager.phosh = {
-    user = "mobile-nixos";
+    user = "operator";
   };
   mobile.boot.stage-1.kernel.useStrictKernelConfig = lib.mkDefault true;
-  users.users.mobile-nixos = {
+  users.users.operator = {
     isNormalUser = true;
-    home  = "/home/mobile-nixos";
+    home  = "/home/operator";
     description  = "mobile-nixos";
     extraGroups  = [ "wheel" "networkmanager" "dialout" "feedbackd" "networkmanager" "video" ];
-    hashedPassword = "$y$j9T$mPFMquJN3r6ENhAT0pQ1n.$7stMBcOs7CwkNxF5EvwlJW9H54jdBPm/GE8PvODiKk6"; #  mkpasswd
+    hashedPassword = "$y$j9T$XC.lwIBT14ILS8kl.y6TS0$iJ/xXhTwGpAh2.aVe5E4NkEG3nCLClwH4AECFZeNUi/"; # 1234 by default
   };
  # environment.plasma5.mobile.excludePackages = [
  #   pkgs.kdePackages.kasts
@@ -64,9 +64,7 @@
   };
   
   environment.systemPackages = [
-    pkgs.jellyfin-media-player
     pkgs.firefox
-    pkgs.seafile-client
     pkgs.styluslabs-write
     pkgs.libevdev
     pkgs.pkg-config
