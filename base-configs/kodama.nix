@@ -30,14 +30,13 @@
 
   services.xserver = {
     enable = true;
-
-xserver.desktopManager.phosh = {
-  enable = true;
-  user = "operator";
-  group = "users";
-  # for better compatibility with x11 applications
-  phocConfig.xwayland = "immediate";
-};
+    desktopManager.phosh = {
+      enable = true;
+      user = "operator";
+      group = "users";
+      # for better compatibility with x11 applications
+      phocConfig.xwayland = "immediate";
+  };
 
   };
   services.displayManager.autoLogin.user = "mobile-nixos";
