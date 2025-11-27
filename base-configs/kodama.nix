@@ -72,6 +72,7 @@
     
   ];
   system.stateVersion = "25.05";
+  allowUnfree = true;
 
 }
 
