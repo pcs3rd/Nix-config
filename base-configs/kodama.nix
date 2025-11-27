@@ -18,11 +18,6 @@
     extraGroups  = [ "wheel" "networkmanager" "dialout" "feedbackd" "networkmanager" "video" ];
     hashedPassword = "$y$j9T$XC.lwIBT14ILS8kl.y6TS0$iJ/xXhTwGpAh2.aVe5E4NkEG3nCLClwH4AECFZeNUi/"; # 1234 by default
   };
- # environment.plasma5.mobile.excludePackages = [
- #   pkgs.kdePackages.kasts
- #   pkgs.kdePackages.plasma-dialer
- #   
- # ];
   mobile.beautification = {
     silentBoot = lib.mkDefault true;
     splash = lib.mkDefault true;
@@ -47,7 +42,6 @@
   networking.wireless.enable = false;
   powerManagement.enable = true;
   services.libinput.enable = true;
-  services.displayManager.defaultSession = "plasma-mobile";
   services.displayManager.autoLogin.enable = true;
   services.printing.enable = true;
   networking.firewall.enable = true;
