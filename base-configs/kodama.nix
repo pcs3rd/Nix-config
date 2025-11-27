@@ -9,9 +9,7 @@
     experimental-features = nix-command flakes
     '';
   };
-  services.xserver.desktopManager.phosh = {
-    user = "operator";
-  };
+
   mobile.boot.stage-1.kernel.useStrictKernelConfig = lib.mkDefault true;
   users.users.operator = {
     isNormalUser = true;
@@ -33,16 +31,13 @@
   services.xserver = {
     enable = true;
 
-    desktopManager.plasma5.mobile.enable = true;
-    
-    displayManager.lightdm = {
-      enable = true;
-      # Workaround for autologin only working at first launch.
-      # A logout or session crashing will show the login screen otherwise.
-      extraSeatDefaults = ''
-        session-cleanup-script=${pkgs.procps}/bin/pkill -P1 -fx ${pkgs.lightdm}/sbin/lightdm
-      '';
-    };
+xserver.desktopManager.phosh = {
+  enable = true;
+  user = "operator";
+  group = "users";
+  # for better compatibility with x11 applications
+  phocConfig.xwayland = "immediate";
+};
 
   };
   services.displayManager.autoLogin.user = "mobile-nixos";
