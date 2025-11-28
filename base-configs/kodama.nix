@@ -45,6 +45,7 @@
   services.displayManager.autoLogin.enable = true;
   services.printing.enable = true;
   networking.firewall.enable = true;
+  services.upower.enable = true;
   services.avahi = {
     enable = true;
     nssmdns4 = true;
@@ -69,6 +70,9 @@
     pkgs.libax25
     pkgs.flex-ncat
     pkgs.gpredict
+    pkgs.soundmodem
+    pkgs.grig
+    pkgs.direwolf
     
   ];
   system.stateVersion = "25.05";
