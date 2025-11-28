@@ -22,7 +22,10 @@
     silentBoot = lib.mkDefault true;
     splash = lib.mkDefault true;
   };
-
+  services.udev.extraHwdb = lib.mkBefore ''
+    sensor:modalias:platform:*
+      ACCEL_MOUNT_MATRIX=0, 1, 0; -1, 0, 0; 0, 0, -1
+  '';
   services.xserver = {
     enable = true;
     desktopManager.phosh = {
@@ -73,7 +76,7 @@
     pkgs.soundmodem
     pkgs.grig
     pkgs.direwolf
-    
+    pkgs.cqrlog
   ];
   system.stateVersion = "25.05";
   nixpkgs.config.allowUnfree = true;
