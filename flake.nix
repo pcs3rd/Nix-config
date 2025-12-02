@@ -71,37 +71,18 @@
             ./base-configs/kodama.nix
         ];
       };
-      stealth = nixpkgs.lib.nixosSystem {
+      hammock = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
+            ./base-configs/ham-laptop.nix
+            ./disko-configs/laptop.nix
             ./alacarte/tailscale.nix
+            ./alacarte/ham-packages.nix
             ./alacarte/grub.nix
-            ./alacarte/tailscale.nix
-            ./alacarte/gnome-desktop.nix
-            ./base-configs/generic-mac.nix
-            ./home-configs/raymond.nix
-	    ./disko-configs/laptop.nix
-           {
-              networking.hostName = "stealth";
+            {
+              networking.hostName = "KC3ZXI-hammock";
               boot.loader.grub.device = "/dev/sda";
               disko.devices.disk.system.device = "/dev/sda";
-            }
-        ];
-      };
-      stealth-vm = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-            ./alacarte/tailscale.nix
-            ./alacarte/gnome-desktop.nix
-            ./base-configs/generic-vm.nix
-            ./alacarte/grub.nix
-            ./home-configs/raymond.nix
-            ./alacarte/docker.nix
-	    ./disko-configs/laptop.nix
-           {
-              networking.hostName = "stealth-vm";
-              boot.loader.grub.device = "/dev/vda";
-              disko.devices.disk.system.device = "/dev/vda";
             }
         ];
       };
