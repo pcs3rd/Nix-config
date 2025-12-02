@@ -1,9 +1,12 @@
 { outputs, inputs, lib, config, pkgs, options, modulesPath, ... }:{
 
   services = {
-    desktopManager = {
-      xterm.enable = false;
-      xfce.enable = true;
+    xserver = {
+      enable = true;
+      desktopManager = {
+        xterm.enable = false;
+        xfce.enable = true;
+      };
     };
     displayManager.defaultSession = "xfce";
     displayManager.autoLogin.enable = true;
