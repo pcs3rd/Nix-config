@@ -33,6 +33,7 @@
     digiham
     carla
     browsh
+    calf
     git
     kdePackages.kcalc # Calculator
     kdePackages.kcharselect # Tool to select and copy special characters from all installed fonts
