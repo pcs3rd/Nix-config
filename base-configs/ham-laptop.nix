@@ -20,7 +20,7 @@
       description  = "operator user";
       uid = 1000; 
       extraGroups = [ "wheel" "docker" "networkmanager" "storage" ]; 
-      hashedPasswordFile = "/stateful/sys-data/operator-passwordHash"; #  mkpasswd -m sha-512 
+      password = "";
     };
   };
 
