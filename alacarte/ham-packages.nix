@@ -20,6 +20,7 @@
     grig
     direwolf
     cqrlog
+    flrig
     gqrx
     gnuradio
     telegraph
