@@ -12,7 +12,15 @@
     displayManager.autoLogin.enable = true;
     displayManager.autoLogin.user = "operator";
   };
-
+	security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true; # if not already enabled
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment the following
+    jack.enable = true;
+  };
   users.users = {
     operator = {
       isNormalUser = true;
