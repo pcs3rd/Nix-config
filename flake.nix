@@ -96,7 +96,6 @@
             ./alacarte/docker.nix
             ./alacarte/grub.nix
             ./alacarte/sevenofnine-disk-mounts.nix
-            ./alacarte/doco-cd.nix
             {
               networking.hostName = "sevenofnine";
               boot.loader.grub.device = "/dev/nvme0n1";
