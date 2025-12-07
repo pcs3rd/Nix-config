@@ -36,7 +36,6 @@
     ];
     forAllSystems = nixpkgs.lib.genAttrs systems;
   in {
-
     homeConfigurations = {
       # FIXME replace with your username@hostname
       "rdean@macair" = home-manager.lib.homeManagerConfiguration {
@@ -121,21 +120,25 @@
             }
         ];
       };
-      router = nixpkgs.lib.nixosSystem {
+      air-traffic-control = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-            ./base-configs/bl460c.nix
-            ./disko-configs/backplane.nix
+            ./base-configs/generic-server.nix
+            ./disko-configs/server.nix
             ./alacarte/preferred-server-env.nix
             ./alacarte/tailscale.nix
+            ./alacarte/docker.nix
             ./alacarte/grub.nix
             {
+              networking.hostName = "air-traffic-control";
               boot.loader.grub.device = "/dev/sda";
               disko.devices.disk.system.device = "/dev/sda";
             }
         ];
       };
-      dev = nixpkgs.lib.nixosSystem {
+
+
+      dev-server = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
             ./base-configs/arm-server.nix
@@ -145,7 +148,7 @@
             ./alacarte/docker.nix
             ./alacarte/grub.nix
             {
-              networking.hostName = "dev";
+              networking.hostName = "dev-server";
               boot.loader.grub.device = "/dev/vda";
               disko.devices.disk.system.device = "/dev/vda";
             }
