@@ -29,7 +29,7 @@
 
     networking.firewall = {
         enable = false;
-        allowedTCPPorts = [ 80 443 22 ];
+        allowedTCPPorts = [ 80 443 22 23 ];
         # allowedUDPPortRanges = [
         #    { from = 4000; to = 4007; }
         #    { from = 8000; to = 8010; }
@@ -61,6 +61,7 @@
         pkgs.talosctl
     ];
     services.openssh = {
+        ports = [99 ];
         enable = true;
         passwordAuthentication = true;
         allowSFTP = true; # Don't set this if you need sftp
