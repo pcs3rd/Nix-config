@@ -13,11 +13,17 @@
         fsType = "btrfs";
         options = [ "subvol=media" ];
       };
+   fileSystems."/Disks/Jellyfin/2f3d" =
+      { device = "/dev/disk/by-uuid/2f3daa98-e81a-4c98-bcb9-ada87fe8f81a";
+        fsType = "btrfs";
+        options = [ "subvol=media" "compress=zstd" ];
+      };
   fileSystems."/persist" = #appdata and crap
     { device = "/dev/disk/by-uuid/fdb0778a-4425-4fc1-9bc9-e9e1fd1550ec";
       fsType = "btrfs";
       options = [ "subvol=AppData" "compress=zstd" ];
     };
+
 
 
   #Make sure rclone is there  
