@@ -99,7 +99,6 @@
             ./alacarte/grub.nix
             {
               networking.hostName = "KC3ZXI-Media";
-              system.stateVersion = "25.11";
               disko.devices.disk.system.imageSize = "8G";
               disko.devices.disk.system.imageName = "nixos-x86_64-hammock";
               boot.loader.grub.efiSupport = lib.mkDefault true;
