@@ -81,8 +81,8 @@
             ./disko-configs/laptop.nix
             {
               networking.hostName = "core";
-              boot.loader.grub.device = "/dev/sda";
-              disko.devices.disk.system.device = "/dev/sda";
+              boot.loader.grub.device = "/dev/sdb";
+              disko.devices.disk.system.device = "/dev/sdb";
             }
         ];
       };
