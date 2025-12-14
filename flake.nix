@@ -77,6 +77,7 @@
             ./disko-configs/laptop.nix
             ./alacarte/tailscale.nix
             ./alacarte/ham-packages.nix
+            ./alacarte/niri.nix
             ./alacarte/grub.nix
             {
               networking.hostName = "KC3ZXI-hammock";

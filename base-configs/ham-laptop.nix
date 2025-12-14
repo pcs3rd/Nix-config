@@ -1,17 +1,6 @@
 { outputs, inputs, lib, config, pkgs, options, modulesPath, ... }:{
 
-  services = {
-    xserver = {
-      enable = true;
-      desktopManager = {
-        xterm.enable = false;
-        xfce.enable = true;
-      };
-    };
-    displayManager.defaultSession = "xfce";
-    displayManager.autoLogin.enable = true;
-    displayManager.autoLogin.user = "operator";
-  };
+  security.polkit.enable = true;
 	security.rtkit.enable = true;
   services.pipewire = {
     enable = true; # if not already enabled

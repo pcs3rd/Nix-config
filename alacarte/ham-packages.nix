@@ -34,13 +34,5 @@
     carla
     browsh
     calf
-    git
-    kdePackages.kcalc # Calculator
-    kdePackages.kcharselect # Tool to select and copy special characters from all installed fonts
-    kdePackages.ksystemlog # KDE SystemLog Application
-    kdePackages.sddm-kcm # Configuration module for SDDM
-    kdePackages.partitionmanager # Optional: Manage the disk devices, partitions and file systems on your computer
-    wayland-utils # Wayland utilities
-
   ];
 }
