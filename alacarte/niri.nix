@@ -32,6 +32,7 @@
     ];
   };
   services = {
+    xserver.enable = true;
     displayManager.enable = true;
     xserver.displayManager.lightdm.enable = true;
     # services.openssh.enable = true;
