@@ -77,6 +77,7 @@
             ./alacarte/tailscale.nix
             ./alacarte/niri.nix
             ./alacarte/grub.nix
+            ./base-configs/core.nix
             {
               networking.hostName = "core";
               boot.loader.grub.device = "/dev/sda";
