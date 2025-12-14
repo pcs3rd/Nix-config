@@ -103,6 +103,7 @@
               disko.devices.disk.system.imageName = "nixos-x86_64-hammock";
               boot.loader.grub.efiSupport = lib.mkDefault true;
               boot.loader.grub.efiInstallAsRemovable = lib.mkDefault true;
+              boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
             }
         ];
       };
