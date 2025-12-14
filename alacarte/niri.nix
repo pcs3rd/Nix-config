@@ -36,6 +36,7 @@
     displayManager.ly.enable = true;
     # services.openssh.enable = true;
     displayManager.autoLogin.enable = true;
+    services.displayManager.autoLogin.user = "operator";
   };
   programs = {
     nix-ld.enable = true;
