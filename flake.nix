@@ -81,8 +81,8 @@
             ./alacarte/grub.nix
             {
               networking.hostName = "KC3ZXI-hammock";
-              boot.loader.grub.device = "/dev/sda";
-              disko.devices.disk.system.device = "/dev/sda";
+              boot.loader.grub.device = "/dev/mmcblk0";
+              disko.devices.disk.system.device = "/dev/mmcblk0";
             }
         ];
       };
