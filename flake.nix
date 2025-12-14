@@ -71,6 +71,19 @@
             ./base-configs/kodama.nix
         ];
       };
+      core = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            ./alacarte/tailscale.nix
+            ./alacarte/niri.nix
+            ./alacarte/grub.nix
+            {
+              networking.hostName = "core";
+              boot.loader.grub.device = "/dev/sda";
+              disko.devices.disk.system.device = "/dev/sda";
+            }
+        ];
+      };
       hammock = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
