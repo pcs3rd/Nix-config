@@ -86,6 +86,25 @@
             }
         ];
       };
+      hammock-disk-image = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            ./base-configs/ham-laptop.nix
+            ./disko-configs/laptop.nix
+            ./alacarte/tailscale.nix
+            ./alacarte/ham-packages.nix
+            ./alacarte/niri.nix
+            ./alacarte/grub.nix
+            {
+              networking.hostName = "KC3ZXI-Media";
+              system.stateVersion = config.system.nixos.release;
+              disko.devices.disk.system.imageSize = "8G";
+              disko.devices.disk.system.imageName = "nixos-x86_64-linux-generic-btrfs";
+              boot.loader.grub.efiSupport = lib.mkDefault true;
+              boot.loader.grub.efiInstallAsRemovable = lib.mkDefault true;
+            }
+        ];
+      };
       sevenofnine = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
