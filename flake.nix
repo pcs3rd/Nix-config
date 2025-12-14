@@ -21,7 +21,6 @@
     home-manager,
     impermanence,
     disko,
-    darwin,
     mobile-nixos, 
     ...
   } @ inputs: let
