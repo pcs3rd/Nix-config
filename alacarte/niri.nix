@@ -33,7 +33,7 @@
   };
   services = {
     displayManager.enable = true;
-    displayManager.lightdm.enable = true;
+    xserver.displayManager.lightdm.enable = true;
     # services.openssh.enable = true;
     displayManager.autoLogin.enable = true;
     displayManager.autoLogin.user = "operator";
