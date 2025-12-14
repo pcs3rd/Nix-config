@@ -87,6 +87,7 @@
         ];
       };
       hammock-disk-image = nixpkgs.lib.nixosSystem {
+#      nix build .#nixosConfigurations.hammock-disk-image.config.system.build.diskoImagesScript
         specialArgs = {inherit inputs outputs;};
         modules = [
             ./base-configs/ham-laptop.nix
@@ -97,7 +98,7 @@
             ./alacarte/grub.nix
             {
               networking.hostName = "KC3ZXI-Media";
-              system.stateVersion = config.system.nixos.release;
+              system.stateVersion = "25.11";
               disko.devices.disk.system.imageSize = "8G";
               disko.devices.disk.system.imageName = "nixos-x86_64-linux-generic-btrfs";
               boot.loader.grub.efiSupport = lib.mkDefault true;
