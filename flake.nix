@@ -19,6 +19,7 @@
   };
 
   outputs = {
+    lib,
     self,
     nixpkgs,
     home-manager,
