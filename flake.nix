@@ -19,7 +19,6 @@
   };
 
   outputs = {
-    lib,
     self,
     nixpkgs,
     home-manager,
@@ -99,11 +98,11 @@
             ./alacarte/grub.nix
             {
               networking.hostName = "KC3ZXI-Media";
-              system.stateVersion = "25.11";
+              system.stateVersion = nixpkgs.config.system.nixos.release;
               disko.devices.disk.system.imageSize = "8G";
-              disko.devices.disk.system.imageName = "nixos-x86_64-linux-generic-btrfs";
-              boot.loader.grub.efiSupport = lib.mkDefault true;
-              boot.loader.grub.efiInstallAsRemovable = lib.mkDefault true;
+              disko.devices.disk.system.imageName = "nixos-x86_64-hammock";
+              boot.loader.grub.efiSupport = nixpkgs.lib.mkDefault true;
+              boot.loader.grub.efiInstallAsRemovable = nixpkgs.lib.mkDefault true;
             }
         ];
       };
