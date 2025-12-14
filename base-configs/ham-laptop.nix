@@ -1,4 +1,7 @@
 { outputs, inputs, lib, config, pkgs, options, modulesPath, ... }:{
+  imports = [ 
+    (modulesPath + "/installer/scan/not-detected.nix")
+    ];
 
   security.polkit.enable = true;
 	security.rtkit.enable = true;
