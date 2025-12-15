@@ -83,7 +83,7 @@
               boot.initrd.systemd.enable = true;
               boot.initrd.systemd.emergencyAccess = "$y$j9T$..TY4llmADzQLIviCgtR21$1UjGaeD7d.GMcT8wYnLRPONY/XkjFPM7oN4dW..F.d9";
               networking.hostName = "KC3ZXI-hammock";
-              boot.loader.grub.device = "/dev/mmcblk0";
+              #boot.loader.grub.device = "/dev/mmcblk0";
               disko.devices.disk.system.device = "/dev/mmcblk0";
             }
         ];
