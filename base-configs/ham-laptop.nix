@@ -1,4 +1,5 @@
-{ outputs, inputs, lib, config, pkgs, options, modulesPath, ... }:{
+{ outputs, inputs, lib, config,  pkgs, options, modulesPath, ... }:{
+  systemd.enableEmergencyMode = true;
 
   security.polkit.enable = true;
 	security.rtkit.enable = true;
@@ -10,6 +11,7 @@
     # If you want to use JACK applications, uncomment the following
     jack.enable = true;
   };
+
   users.users = {
     operator = {
       isNormalUser = true;

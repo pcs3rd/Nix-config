@@ -11,10 +11,6 @@
         content = {
           type = "gpt";
           partitions = {
-            boot = {
-              size = "1M";
-              type = "EF02"; # for grub MBR
-            };
             esp = {
                 priority = 1;
                 name = "esp";
@@ -47,7 +43,7 @@
                 };
               };
             };
-            plainSwap = {
+            Swap = {
               size = "4G";
               content = {
                 type = "swap";

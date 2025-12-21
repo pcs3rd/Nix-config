@@ -21,9 +21,7 @@
     xwayland
     xwayland-satellite
     wayland-utils # Wayland utilities
-
   ];
-
   xdg.portal.wlr.enable = true;
   fonts = {
     fontconfig.enable = true;
@@ -32,13 +30,11 @@
     ];
   };
   services = {
-    xserver.enable = true;
     displayManager.enable = true;
-    xserver.displayManager.lightdm.enable = true;
+    displayManager.ly.enable = true;
     # services.openssh.enable = true;
-    displayManager.autoLogin.enable = true;
-    displayManager.autoLogin.user = "operator";
   };
+  
   programs = {
     nix-ld.enable = true;
     niri.enable = true;

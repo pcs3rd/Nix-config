@@ -74,15 +74,9 @@
       hammock = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-            ./base-configs/ham-laptop.nix
-            ./disko-configs/laptop.nix
-            ./alacarte/tailscale.nix
-            ./alacarte/ham-packages.nix
             ./alacarte/niri.nix
-            ./alacarte/grub.nix
             {
-              networking.hostName = "KC3ZXI-hammock";
-              boot.loader.grub.device = "/dev/mmcblk0";
+              networking.hostName = "hammock";
               disko.devices.disk.system.device = "/dev/mmcblk0";
             }
         ];
