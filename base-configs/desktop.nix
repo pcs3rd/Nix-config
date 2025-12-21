@@ -42,6 +42,7 @@
       home = "/home/rdean3";
       description  = "Raymond Dean III";
       uid = 1000; 
+      initialPassword = "changeme";
       extraGroups = [ "wheel" "networkmanager" "storage" ]; 
     };
   };
