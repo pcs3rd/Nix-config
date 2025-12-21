@@ -64,6 +64,7 @@
         gamescope-wsi # HDR won't work without this
         steam-run
         protonup-qt
+        firefox
     ];
     programs.steam.extraCompatPackages = with pkgs; [
         proton-ge-bin
