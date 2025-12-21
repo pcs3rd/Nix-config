@@ -74,7 +74,7 @@
     ];
 
     # Gamescope Auto Boot from TTY (example)
-    services.xserver.enable = false; # Assuming no other Xserver needed
+    services.xserver.enable = true; # Assuming no other Xserver needed
     services.getty.autologinUser = "rdean3";
 
     services.greetd = {
@@ -82,7 +82,7 @@
         settings = {
             default_session = {
             command = "${pkgs.gamescope}/bin/gamescope -W 1920 -H 1080 -f -e --xwayland-count 2 --hdr-enabled --hdr-itm-enabled -- steam -pipewire-dmabuf -gamepadui -steamdeck -steamos3 > /dev/null 2>&1";
-            user = "USERNAME_HERE";
+            user = "rdean3";
             };
         };
     };
