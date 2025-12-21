@@ -92,6 +92,7 @@
             ./disko-configs/desktop.nix
             #./alacarte/steam-radeon.nix
             {
+              users.mutableUsers = true;
               networking.hostName = "steam_machine";
               disko.devices.disk.system.device = "/dev/sda";
             }
