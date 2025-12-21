@@ -32,13 +32,9 @@
                     mountOptions = [ "compress=zstd" "noatime" ];
                     mountpoint = "/nix";
                   };
-                  "/home" = {
-                      mountOptions = [ "compress=zstd" ];
-                      mountpoint = "/home";
-                  };
-                  "/etc" = {
+                  "/system-root" = {
                       mountOptions = [ "compress=zstd" "noatime" ];
-                      mountpoint = "/etc";
+                      mountpoint = "/";
                   };
                 };
               };
@@ -54,22 +50,6 @@
           };
         };
       };
-    };
-    nodev."/" = {
-      fsType = "tmpfs";
-      mountOptions = [
-        "size=512M"
-        "defaults"
-        "mode=755"
-      ];
-    };
-    nodev."/tmp" = {
-      fsType = "tmpfs";
-      mountOptions = [
-        "size=512M"
-        "defaults"
-        "mode=755"
-      ];
     };
   };
 }
