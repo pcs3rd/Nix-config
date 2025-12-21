@@ -30,12 +30,19 @@
     loader.timeout = 0;
 
   };
+  environment.systemPackages = with pkgs; [ 
+    nmtui
+    git 
+    tmux
+  ];
   systemd.enableEmergencyMode = true;
   boot.initrd.systemd.enable = true;
   boot.initrd.systemd.emergencyAccess = "$y$j9T$6GwTquCtnA..a0Q3twb5q.$KfIKAmpzRIpg28AFswEF41TPpqmmGPjO8poC7sPNIK4";
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 2;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  networking.networkmanager.enable = true;
 
   security.polkit.enable = true;
 	security.rtkit.enable = true;
@@ -54,7 +61,7 @@
       home = "/home/operator";
       description  = "operator user";
       uid = 1000; 
-      extraGroups = [ "wheel" "docker" "networkmanager" "storage" ]; 
+      extraGroups = [ "wheel" "networkmanager" "storage" ]; 
       password = "$y$j9T$0ZiFCQ2dn.zGxVX62JfZo.$dnftReWlS2qlqTg7ByAKSDt0ZSPv.CZjsCZp5F8tTn0";
     };
   };
