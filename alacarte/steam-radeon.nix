@@ -100,7 +100,7 @@
     services.system76-scheduler.enable = true;
     environment.sessionVariables.COSMIC_DATA_CONTROL_ENABLED = 1;
     services.displayManager.autoLogin = {
-        enable = true;
+        enable = false;
         # Replace `yourUserName` with the actual username of user who should be automatically logged in
         #user = "rdean3";
     };
