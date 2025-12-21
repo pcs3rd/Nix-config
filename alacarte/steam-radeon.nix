@@ -105,4 +105,8 @@
         # Replace `yourUserName` with the actual username of user who should be automatically logged in
         #user = "rdean3";
     };
+  fileSystems."/home/rdean3/steam-lib" =
+    { device = "dev/disk/by-uuid/cca862c1-e8cc-405e-bb6a-d0d5a6bcf6cc";
+      fsType = "ext4";
+    };
 }
