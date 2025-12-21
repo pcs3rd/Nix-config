@@ -82,26 +82,21 @@
             }
         ];
       };
-      hammock-disk-image = nixpkgs.lib.nixosSystem {
-#      nix build .#nixosConfigurations.hammock-disk-image.config.system.build.diskoImagesScript
+
+      steam_machine = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-            ./base-configs/ham-laptop.nix
-            ./disko-configs/laptop.nix
             ./alacarte/tailscale.nix
-            ./alacarte/ham-packages.nix
-            ./alacarte/niri.nix
-            ./alacarte/grub.nix
+            ./base-configs/desktop.nix
+            ./disko-configs/desktop.nix
+            ./alacarte/steam-radeon.nix
             {
-              networking.hostName = "KC3ZXI-Media";
-              disko.devices.disk.system.imageSize = "8G";
-              disko.devices.disk.system.imageName = "nixos-x86_64-hammock";
-              boot.loader.grub.efiSupport = lib.mkDefault true;
-              boot.loader.grub.efiInstallAsRemovable = lib.mkDefault true;
-              boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
+              networking.hostName = "steam_machine";
+              disko.devices.disk.system.device = "/dev/sda";
             }
         ];
       };
+  
       sevenofnine = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
