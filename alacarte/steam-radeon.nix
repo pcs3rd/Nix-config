@@ -57,8 +57,6 @@
         };
         
     # Clean Quiet Boot
-    boot.kernelParams = [ "quiet" "splash" "console=/dev/null" ];
-    boot.plymouth.enable = true;
 
     programs.gamescope = {
         enable = true;
