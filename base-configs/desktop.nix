@@ -2,15 +2,6 @@
   imports = [ 
     (modulesPath + "/installer/scan/not-detected.nix")
     ];
-  boot = {
-    plymouth = {
-      enable = true;
-      theme = "nixos-bgrt";
-      themePackages = with pkgs; [
-        nixos-bgrt-plymouth
-      ];
-    };
-
     # Enable "Silent boot"
     consoleLogLevel = 3;
     initrd.verbose = false;
