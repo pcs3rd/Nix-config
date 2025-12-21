@@ -8,8 +8,8 @@
       theme = "rings";
       themePackages = with pkgs; [
         # By default we would install all themes
-        (adi1090x-plymouth-themes.override {
-          selected_themes = [ "rings" ];
+        (nixos-bgrt-plymouth.override {
+          selected_themes = [ "nixos-bgrt" ];
         })
       ];
     };
@@ -23,6 +23,7 @@
       "boot.shell_on_fail"
       "udev.log_priority=3"
       "rd.systemd.show_status=auto"
+      "bgrt_disable=0" 
     ];
     # Hide the OS choice for bootloaders.
     # It's still possible to open the bootloader list by pressing any key
