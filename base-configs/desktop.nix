@@ -17,8 +17,6 @@
     # It will just not appear on screen unless a key is pressed
     loader.timeout = 0;
 
-  };
-
   systemd.enableEmergencyMode = true;
   boot.initrd.systemd.enable = true;
   boot.loader.systemd-boot.enable = true;
