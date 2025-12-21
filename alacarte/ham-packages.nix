@@ -2,7 +2,6 @@
   environment.systemPackages = with pkgs; [
     contact
     python313Packages.meshtastic
-    firefox
     wsjtx
     fldigi
     hamrs
@@ -21,9 +20,6 @@
     direwolf
     cqrlog
     flrig
-    gqrx
-    gnuradio
-    telegraph
     js8call
     openwebrx
     sigdigger
@@ -32,8 +28,8 @@
     qradiolink
     digiham
     carla
-    browsh
+		firefox
     calf
-    vscode
+
   ];
 }
