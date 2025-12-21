@@ -59,7 +59,6 @@
       description  = "operator user";
       uid = 1000; 
       extraGroups = [ "wheel" "networkmanager" "storage" ]; 
-      password = "$y$j9T$0ZiFCQ2dn.zGxVX62JfZo.$dnftReWlS2qlqTg7ByAKSDt0ZSPv.CZjsCZp5F8tTn0";
     };
   };
 
