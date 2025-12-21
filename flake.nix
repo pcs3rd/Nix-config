@@ -74,6 +74,8 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
             ./alacarte/niri.nix
+            ./base-configs/ham-laptop.nix
+            ./disko-configs/laptop.nix
             {
               networking.hostName = "hammock";
               disko.devices.disk.system.device = "/dev/mmcblk0";
