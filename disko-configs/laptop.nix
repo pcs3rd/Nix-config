@@ -28,6 +28,10 @@
                   type = "btrfs";
                   extraArgs = [ "-f" ];
                 subvolumes = {
+                  "/etc" = {
+                      mountOptions = [ "compress=zstd" "noexec" ];
+                      mountpoint = "/etc";
+                  };
                   "/stateful" = {
                       mountOptions = [ "compress=zstd" "noexec" ];
                       mountpoint = "/stateful";
@@ -81,14 +85,6 @@
         "/var/log"
         "/var/lib/nixos"
         "/var/lib/tailscale/"
-        "/etc/NetworkManager/system-connections"
-    ];
-    files = [
-      { file = "/etc/machine-id"; parentDirectory = { mode = "u=rwx,g=rwx,o=r"; }; }
-      { file = "/etc/ssh/ssh_host_rsa_key"; parentDirectory = { mode = "u=rwx,g=r,o=r"; }; }
-      { file = "/etc/ssh/ssh_host_rsa_key.pub"; parentDirectory = { mode = "u=rwx,g=r,o=r"; }; }
-      { file = "/etc/ssh/ssh_host_ed25519_key"; parentDirectory = { mode = "u=rwx,g=r,o=r"; }; }
-      { file = "/etc/ssh/ssh_host_ed25519_key.pub"; parentDirectory = { mode = "u=rwx,g=r,o=r"; }; }
     ];
   };
 }
