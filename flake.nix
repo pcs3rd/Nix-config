@@ -9,9 +9,6 @@
     impermanence.url = "github:nix-community/impermanence";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-25.11-darwin";
-    darwin.url = "github:lnl7/nix-darwin";
-    darwin.inputs.nixpkgs.follows = "nixpkgs-darwin";
     mobile-nixos = {
       url = github:pcs3rd/mobile-nixos/Lenovo-kodama;
       flake = false;
@@ -24,7 +21,6 @@
     home-manager,
     impermanence,
     disko,
-    darwin,
     mobile-nixos, 
     ...
   } @ inputs: let
@@ -48,18 +44,6 @@
         ];
       };
     };
-    darwinConfigurations = {
-      "a2681" = darwin.lib.darwinSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-          ./modules/nix-core.nix
-          ./modules/system.nix
-          ./modules/apps.nix
-          ./modules/host-users.nix
-          ./darwin-alacarte/nix-conf.nix
-        ];
-      };
-  };
     nixosConfigurations = {
       kodama = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
@@ -69,6 +53,21 @@
               })
             ./alacarte/tailscale.nix
             ./base-configs/kodama.nix
+        ];
+      };
+      core = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            ./alacarte/tailscale.nix
+            ./alacarte/niri.nix
+            ./alacarte/grub.nix
+            ./base-configs/core.nix
+            ./disko-configs/laptop.nix
+            {
+              networking.hostName = "core";
+              boot.loader.grub.device = "/dev/mmcblk0";
+              disko.devices.disk.system.device = "/dev/mmcblk0";
+            }
         ];
       };
       hammock = nixpkgs.lib.nixosSystem {
