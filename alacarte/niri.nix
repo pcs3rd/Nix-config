@@ -12,7 +12,6 @@
     tmux
     wofi
     ghostty
-    vscode
     adw-gtk3
     papirus-icon-theme
     nautilus
@@ -34,7 +33,7 @@
     displayManager.ly.enable = true;
     # services.openssh.enable = true;
   };
-  
+
   programs = {
     nix-ld.enable = true;
     niri.enable = true;

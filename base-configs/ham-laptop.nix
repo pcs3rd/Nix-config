@@ -3,7 +3,8 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     ];
   systemd.enableEmergencyMode = true;
-
+  boot.initrd.systemd.enable = true;
+  boot.initrd.systemd.emergencyAccess = "$y$j9T$6GwTquCtnA..a0Q3twb5q.$KfIKAmpzRIpg28AFswEF41TPpqmmGPjO8poC7sPNIK4"
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 2;
   boot.loader.efi.canTouchEfiVariables = true;

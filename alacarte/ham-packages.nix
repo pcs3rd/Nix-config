@@ -34,5 +34,6 @@
     carla
     browsh
     calf
+    vscode
   ];
 }
