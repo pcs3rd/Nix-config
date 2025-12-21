@@ -22,7 +22,7 @@
         autoStart = true;
 
         # If you're running this with an nVidia GPU and want to use GPU Encoding (and don't otherwise have CUDA enabled system wide), you need to override the cudaSupport variable.
-        package = (pkgs.wivrn.override { cudaSupport = true; });
+        #package = (pkgs.wivrn.override { cudaSupport = true; });
 
         # You should use the default configuration (which is no configuration), as that works the best out of the box.
         # However, if you need to configure something see https://github.com/WiVRn/WiVRn/blob/master/docs/configuration.md for configuration options and https://mynixos.com/nixpkgs/option/services.wivrn.config.json for an example configuration.
@@ -55,9 +55,6 @@
         remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
         dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
         };
-        
-    # Clean Quiet Boot
-
     programs.gamescope = {
         enable = true;
         capSysNice = true;
@@ -72,30 +69,16 @@
     programs.steam.extraCompatPackages = with pkgs; [
         proton-ge-bin
     ];
-
-    # Gamescope Auto Boot from TTY (example)
-    services.xserver.enable = true; # Assuming no other Xserver needed
-    services.getty.autologinUser = "rdean3";
-
-    services.greetd = {
-        enable = true;
-        settings = {
-            default_session = {
-            command = "${pkgs.gamescope}/bin/gamescope -W 1920 -H 1080 -f -e --xwayland-count 2 --hdr-enabled --hdr-itm-enabled -- steam -pipewire-dmabuf -gamepadui -steamdeck -steamos3 > /dev/null 2>&1";
-            user = "rdean3";
-            };
-        };
-    };
     boot = {
         # Enable "Silent boot"
         consoleLogLevel = 3;
         initrd.verbose = false;
         kernelParams = [
-        "quiet"
-        "splash"
-        "boot.shell_on_fail"
-        "udev.log_priority=3"
-        "rd.systemd.show_status=auto"
+            "quiet"
+            "splash"
+            "boot.shell_on_fail"
+            "udev.log_priority=3"
+            "rd.systemd.show_status=auto"
         ];
         # Hide the OS choice for bootloaders.
         # It's still possible to open the bootloader list by pressing any key
