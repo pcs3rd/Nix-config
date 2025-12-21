@@ -5,12 +5,9 @@
   boot = {
     plymouth = {
       enable = true;
-      theme = "rings";
+      theme = "nixos-bgrt";
       themePackages = with pkgs; [
-        # By default we would install all themes
-        (nixos-bgrt-plymouth.override {
-          selected_themes = [ "nixos-bgrt" ];
-        })
+        nixos-bgrt-plymouth
       ];
     };
 
