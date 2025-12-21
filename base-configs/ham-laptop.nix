@@ -4,7 +4,7 @@
     ];
   systemd.enableEmergencyMode = true;
   boot.initrd.systemd.enable = true;
-  boot.initrd.systemd.emergencyAccess = "$y$j9T$6GwTquCtnA..a0Q3twb5q.$KfIKAmpzRIpg28AFswEF41TPpqmmGPjO8poC7sPNIK4"
+  boot.initrd.systemd.emergencyAccess = "$y$j9T$6GwTquCtnA..a0Q3twb5q.$KfIKAmpzRIpg28AFswEF41TPpqmmGPjO8poC7sPNIK4";
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 2;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -36,8 +36,8 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-  boot.initrd.availableKernelModules = [ "uhci_hcd" "ehci_pci" "usbhid" "usb_storage" "sd_mod" "sr_mod" "mmc_block" "sdhci_acpi" ];  
-  boot.initrd.kernelModules = [ "mmc_block" "sdhci_acpi" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "sdhci_pci" "usb_storage" "sd_mod" ];  
+  boot.initrd.kernelModules = [];
   boot.kernelModules = [ "kvm-intel" ];
 }
 
