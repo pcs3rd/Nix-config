@@ -31,7 +31,6 @@
 
   };
   environment.systemPackages = with pkgs; [ 
-    nmtui
     git 
     tmux
   ];
