@@ -36,8 +36,8 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-  boot.initrd.availableKernelModules = [ "uhci_hcd" "ehci_pci" "usbhid" "usb_storage" "sd_mod" "sr_mod" "mmc_block" "sdhci_acpi" ];  
-  boot.initrd.kernelModules = [ "mmc_block" "sdhci_acpi" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "sdhci_pci" "usb_storage" "sd_mod" ];  
+  boot.initrd.kernelModules = [];
   boot.kernelModules = [ "kvm-intel" ];
 }
 
