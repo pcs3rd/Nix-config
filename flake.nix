@@ -91,7 +91,6 @@
             ./base-configs/desktop.nix
             ./disko-configs/desktop.nix
             ./alacarte/steam-radeon.nix
-            ./alacarte/cosmic.nix
             {
               networking.hostName = "steam_machine";
               disko.devices.disk.system.device = "/dev/sda";
