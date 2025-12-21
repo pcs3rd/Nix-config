@@ -90,9 +90,9 @@
             ./alacarte/tailscale.nix
             ./base-configs/desktop.nix
             ./disko-configs/desktop.nix
-            #./alacarte/steam-radeon.nix
+            ./alacarte/steam-radeon.nix
             {
-              users.mutableUsers = true;
+              users.mutableUsers = true;                                          
               networking.hostName = "steam_machine";
               disko.devices.disk.system.device = "/dev/sda";
             }
