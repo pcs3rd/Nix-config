@@ -1,39 +1,19 @@
 { inputs, outputs, lib, pkgs, ... }:{
   environment.systemPackages = with pkgs; [
-    contact
     python313Packages.meshtastic
-    firefox
     wsjtx
     fldigi
-    hamrs
     hamlib
-    hamtransfer
-    ax25-apps
-    digiham
-    tlf
-    grig
-    klog
-    libax25
-    flex-ncat
     gpredict
     soundmodem
-    grig
     direwolf
     cqrlog
     flrig
-    gqrx
-    gnuradio
-    telegraph
     js8call
-    openwebrx
-    sigdigger
-    sigutils
     suwidgets
     qradiolink
     digiham
     carla
-    browsh
-    calf
-    vscode
+		firefox
   ];
 }

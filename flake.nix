@@ -76,6 +76,7 @@
             ./alacarte/cosmic.nix
             ./base-configs/ham-laptop.nix
             ./disko-configs/laptop.nix
+						./alacarte/ham-packages.nix
             {
               networking.hostName = "hammock";
               disko.devices.disk.system.device = "/dev/mmcblk0";
