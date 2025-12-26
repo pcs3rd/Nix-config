@@ -56,7 +56,7 @@
     operator = {
       isNormalUser = true;
       home = "/home/operator";
-      description  = "operator user";
+      description  = "KC3ZXI (operator)";
       uid = 1000; 
       extraGroups = [ "wheel" "networkmanager" "storage" ]; 
     };
