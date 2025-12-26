@@ -15,5 +15,6 @@
     digiham
     carla
 		firefox
+    pat
   ];
 }
