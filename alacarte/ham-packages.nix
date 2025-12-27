@@ -16,5 +16,6 @@
     carla
 		firefox
     pat
+		minicom
   ];
 }
