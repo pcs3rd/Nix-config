@@ -66,7 +66,7 @@
   system.stateVersion = "25.05";
   nixpkgs.config.allowUnfree = true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   boot.initrd.availableKernelModules = [ "xhci_pci" "sdhci_pci" "usb_storage" "sd_mod" ];  
   boot.initrd.kernelModules = [];
   boot.kernelModules = [ "kvm-intel" ];
