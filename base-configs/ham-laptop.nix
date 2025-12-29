@@ -58,7 +58,7 @@
       home = "/home/operator";
       description  = "KC3ZXI (operator)";
       uid = 1000; 
-      extraGroups = [ "wheel" "networkmanager" "storage" ]; 
+      extraGroups = [ "wheel" "networkmanager" "storage" "dialout" ]; 
     };
   };
 
