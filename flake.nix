@@ -73,7 +73,8 @@
       hammock = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-            ./alacarte/cosmic.nix
+            #./alacarte/cosmic.nix
+            ./alacarte/lomiri.nix
             ./base-configs/ham-laptop.nix
             ./disko-configs/laptop.nix
 						./alacarte/ham-packages.nix
