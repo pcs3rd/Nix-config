@@ -4,21 +4,15 @@
     wsjtx
     fldigi
     hamlib
-    gpredict
     soundmodem
     direwolf
-    cqrlog
     flrig
     js8call
-    suwidgets
-    qradiolink
     digiham
-    carla
 		firefox
     pat
 		minicom
     qlog
-    nanovna-qt
     nanovna-saver
   ];
 }
