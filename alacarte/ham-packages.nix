@@ -18,5 +18,7 @@
     pat
 		minicom
     qlog
+    nanovna-qt
+    nanovna-saver
   ];
 }

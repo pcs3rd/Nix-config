@@ -55,25 +55,22 @@
             ./base-configs/kodama.nix
         ];
       };
-      core = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-            ./alacarte/tailscale.nix
-            ./alacarte/niri.nix
-            ./alacarte/grub.nix
-            ./base-configs/core.nix
-            ./disko-configs/laptop.nix
-            {
-              networking.hostName = "core";
-              boot.loader.grub.device = "/dev/mmcblk0";
-              disko.devices.disk.system.device = "/dev/mmcblk0";
-            }
-        ];
-      };
-      hammock = nixpkgs.lib.nixosSystem {
+      macaw = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
             ./alacarte/cosmic.nix
+            ./base-configs/generic-mac.nix
+            ./disko-configs/laptop.nix
+            {
+              networking.hostName = "macaw";
+              disko.devices.disk.system.device = "/dev/sda";
+            }
+        ];
+      };
+
+      hammock = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
             ./base-configs/ham-laptop.nix
             ./disko-configs/laptop.nix
 						./alacarte/ham-packages.nix
