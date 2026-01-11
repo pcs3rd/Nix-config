@@ -71,7 +71,7 @@
       description  = "Raymond Dean III";
       uid = 1000; 
       extraGroups = [ "wheel" "docker" "networkmanager" "storage" "dialout" ]; 
-      hashedPasswordFile = "$6$jjHT9q.f4rNdXvm6$tul/4JwWPSxSu7jr/dB3WF1RXjOcGeymbIZv5EsefHSPta2yL/.04F9FBFO6xEvXhxhylConjPmzbIrgxtXz.0"; #  mkpasswd -m sha-512 
+      hashedPassword = "$6$jjHT9q.f4rNdXvm6$tul/4JwWPSxSu7jr/dB3WF1RXjOcGeymbIZv5EsefHSPta2yL/.04F9FBFO6xEvXhxhylConjPmzbIrgxtXz.0"; #  mkpasswd -m sha-512 
     };
   };
   system.stateVersion = "25.11";
