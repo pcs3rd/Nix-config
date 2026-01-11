@@ -4,15 +4,22 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
-    disko.url = "github:nix-community/disko";
+    # Disko
+    disko.url = "github:nix-community/disko";s
     disko.inputs.nixpkgs.follows = "nixpkgs";
+    # Impermanence
     impermanence.url = "github:nix-community/impermanence";
+    # Home-manager
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    # Mobile-nixos
     mobile-nixos = {
       url = github:pcs3rd/mobile-nixos/Lenovo-kodama;
       flake = false;
     };
+    # NixOS-hardware
+    inputs.nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
   };
 
   outputs = {
@@ -22,6 +29,7 @@
     impermanence,
     disko,
     mobile-nixos, 
+    nixos-hardware,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -80,7 +88,20 @@
             }
         ];
       };
-
+      stealth = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            nixos-hardware.nixosModules.microsoft-surface-pro-intel
+            ./base-configs/laptop.nix
+            ./disko-configs/laptop.nix
+						./alacarte/ham-packages.nix
+            ./alacarte/gnome-desktop.nix
+            {
+              networking.hostName = "stealth";
+              disko.devices.disk.system.device = "/dev/nvme0n1";
+            }
+        ];
+      };
       steam_machine = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
