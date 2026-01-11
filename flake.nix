@@ -91,7 +91,7 @@
       stealth = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-            nixos-hardware.nixosModules.microsoft-surface-common
+            nixos-hardware.nixosModules.microsoft-surface-pro-intel
             ./base-configs/laptop.nix
             ./disko-configs/laptop.nix
 						./alacarte/ham-packages.nix
