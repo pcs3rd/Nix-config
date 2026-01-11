@@ -92,7 +92,7 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
             nixos-hardware.nixosModules.microsoft-surface-pro-intel
-            ./base-configs/laptop-surface.nix
+            ./base-configs/laptop.nix
             ./disko-configs/laptop.nix
 						./alacarte/ham-packages.nix
             ./alacarte/gnome-desktop.nix
