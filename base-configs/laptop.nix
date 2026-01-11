@@ -7,7 +7,7 @@
   nixpkgs.config.allowUnfree = true;
 
   boot.initrd.systemd.enable = true;
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.limine.enable = true
   boot.loader.systemd-boot.configurationLimit = 2;
   boot.loader.efi.canTouchEfiVariables = true;
   boot = {
@@ -34,8 +34,11 @@
     # It's still possible to open the bootloader list by pressing any key
     # It will just not appear on screen unless a key is pressed
     loader.timeout = 0;
-
   };
+
+  environment.systemPackages = with pkgs; [
+    sbctl
+  ];
 
   security.polkit.enable = true;
   security.rtkit.enable = true;
