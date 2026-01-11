@@ -96,6 +96,9 @@
             ./disko-configs/laptop.nix
 						./alacarte/ham-packages.nix
             ./alacarte/gnome-desktop.nix
+            # packages
+            ./alacarte/tailscale.nix
+            ./alacarte/ham-packages.nix
             {
               networking.hostName = "stealth";
               disko.devices.disk.system.device = "/dev/nvme0n1";
