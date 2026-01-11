@@ -5,7 +5,7 @@
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     # Disko
-    disko.url = "github:nix-community/disko";s
+    disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     # Impermanence
     impermanence.url = "github:nix-community/impermanence";
