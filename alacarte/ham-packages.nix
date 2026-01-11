@@ -13,7 +13,7 @@
     pat
 		minicom
     qlog
-    carla
+    contact
     nanovna-saver
   ];
 }

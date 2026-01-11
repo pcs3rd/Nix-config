@@ -37,6 +37,13 @@
   };
 
   environment.systemPackages = with pkgs; [
+    google-chrome
+    tmux
+    vscode
+    steam
+    moonlight
+    discord
+    carla
     sbctl
   ];
 
