@@ -18,7 +18,7 @@
       flake = false;
     };
     # NixOS-hardware
-    inputs.nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
   };
 
