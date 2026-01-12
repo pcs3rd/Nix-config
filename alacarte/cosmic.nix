@@ -7,5 +7,5 @@
 
   services.system76-scheduler.enable = true;
   environment.sessionVariables.COSMIC_DATA_CONTROL_ENABLED = 1;
-  
+  networking.networkmanager.enable = true;
 }
