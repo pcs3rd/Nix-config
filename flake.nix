@@ -95,8 +95,8 @@
             ./base-configs/laptop.nix
             ./disko-configs/laptop.nix
 						./alacarte/ham-packages.nix
-            #./alacarte/gnome-desktop.nix
-						./alacarte/cosmic.nix
+            ./alacarte/gnome-desktop.nix
+						#./alacarte/cosmic.nix
             # packages
             ./alacarte/tailscale.nix
             ./alacarte/ham-packages.nix
