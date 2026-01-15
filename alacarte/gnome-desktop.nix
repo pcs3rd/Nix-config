@@ -3,8 +3,7 @@
         pkgs.git
         pkgs.gh
         pkgs.gnomeExtensions.tailscale-status
-        pkgs.gnomeExtensions.dock-from-dash
-        pkgs.gnomeExtensions.frippery-applications-menu
+        pkgs.gnomeExtensions.dock-ng
         pkgs.gnomeExtensions.clipboard-indicator
         pkgs.gnome-tweaks
         
