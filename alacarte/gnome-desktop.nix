@@ -3,7 +3,7 @@
         pkgs.git
         pkgs.gh
         pkgs.gnomeExtensions.tailscale-status
-        pkgs.gnomeExtensions.dock-ng
+        pkgs.gnomeExtensions.dash2dock-lite
         pkgs.gnomeExtensions.clipboard-indicator
         pkgs.gnome-tweaks
         
