@@ -6,6 +6,7 @@
         pkgs.gnomeExtensions.dock-from-dash
         pkgs.gnomeExtensions.frippery-applications-menu
         pkgs.gnomeExtensions.clipboard-indicator
+        pkgs.gnome-tweaks
         
     ];
   services.xserver.enable = true;
