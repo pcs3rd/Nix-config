@@ -1,5 +1,6 @@
 { outputs, inputs, lib, config, pkgs, modulesPath, ... }:{
   imports = [ 
+    inputs.companion.nixosModules.default
     (modulesPath + "/installer/scan/not-detected.nix")
     ];
 #https://github.com/noblepayne/bitfocus-companion-flake
@@ -47,6 +48,10 @@
     sbctl
     remmina
   ];
+  programs.companion.enable = true;
+  programs.companion.runAsService = true;
+  programs.companion.user = "rdean3";
+  programs.companion.group = "companion";
 
   security.polkit.enable = true;
   security.rtkit.enable = true;
