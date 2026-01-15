@@ -47,6 +47,7 @@
     carla
     sbctl
     remmina
+    mokutil
   ];
   programs.companion.enable = true;
   programs.companion.runAsService = true;
