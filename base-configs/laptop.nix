@@ -52,7 +52,7 @@
   programs.companion.enable = true;
   programs.companion.runAsService = true;
   programs.companion.user = "rdean3";
-  programs.companion.group = "companion";
+  programs.companion.group = "users";
 
   security.polkit.enable = true;
   security.rtkit.enable = true;
