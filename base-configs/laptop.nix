@@ -2,7 +2,7 @@
   imports = [ 
     (modulesPath + "/installer/scan/not-detected.nix")
     ];
-
+#https://github.com/noblepayne/bitfocus-companion-flake
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
 
@@ -45,6 +45,7 @@
     discord
     carla
     sbctl
+    remmina
   ];
 
   security.polkit.enable = true;
