@@ -51,7 +51,7 @@
   ];
   programs.companion.enable = true;
   programs.companion.runAsService = true;
-  programs.companion.user = "rdean3";
+  programs.companion.user = "1000";
   programs.companion.group = "100";
 
   security.polkit.enable = true;
