@@ -10,5 +10,5 @@
   networking.networkmanager.enable = true;
   environment.systemPackages = with pkgs; [
    cosmic-ext-tweaks
-  };
+  ];
 }
