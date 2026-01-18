@@ -5,6 +5,7 @@
         pkgs.gnomeExtensions.tailscale-status
         pkgs.gnomeExtensions.dash-to-dock
         pkgs.gnomeExtensions.clipboard-indicator
+        pkgs.gnomeExtensions.tray-icons-reloaded
         pkgs.gnome-tweaks
         
     ];
