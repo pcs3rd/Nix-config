@@ -49,6 +49,15 @@
       fsType = "ext4";
       options = [ "noatime" ];
     };
+  zramSwap.enable = true;
+  zramSwap.memoryPercent = 150;
+
+  # Needed for rebuilding on the Pi. You might not need this with more
+  #memory, but my Pi only has 1GB.
+  swapDevices = [{
+    device = "/swapfile";
+    size = 4048;
+  }];
 
   networking.useDHCP = lib.mkDefault true;
   networking.networkmanager.enable = true;

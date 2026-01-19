@@ -22,6 +22,8 @@
 		nixos-hardware.url = "github:8bitbuddhist/nixos-hardware?ref=surface-rust-target-spec-fix";
     # Bitfocus Companion modules
     companion.url = "github:pcs3rd/bitfocus-companion-flake";
+    nixos-generators.url = "github:nix-community/nixos-generators";
+
   };
 
   outputs = {
@@ -33,6 +35,7 @@
     mobile-nixos, 
     nixos-hardware,
     companion,
+    nixos-generators,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -194,22 +197,15 @@
             }
         ];
       };
-      hampi = nixpkgs.lib.nixosSystem { #nix build .#nixosConfigurations.hampi.config.system.build.sdImage
+    hampi = nixpkgs.lib.nixosSystem { #nix build .#nixosConfigurations.hampi.config.system.build.sdImage
         specialArgs = {inherit inputs outputs;};
         modules = [
+            nixos-hardware.nixosModules.raspberry-pi-3
            "${inputs.nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
           ./base-configs/hampi.nix
           ./alacarte/tailscale.nix
         ];
       };
     };
-
-    kodama-disk-image =
-      (import "${mobile-nixos}/lib/eval-with-configuration.nix" {
-        configuration = [ (import ./base-configs/kodama.nix) ];
-        device = "lenovo-kodama";
-        pkgs = nixpkgs.legacyPackages.aarch64-linux;
-      }).outputs.disk-image;
-     #nix build .#pinephone-disk-image --impure
   };
 }
