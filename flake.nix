@@ -194,6 +194,12 @@
             }
         ];
       };
+      hampi = { #$ nix run nixpkgs#nixos-generators -- -f sd-aarch64 --flake .#pi --system aarch64-linux -o ./pi.sd. , https://blog.janissary.xyz/posts/nixos-install-custom-image
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./base-configs/hampi.nix
+        ];
+      };
     };
 
     kodama-disk-image =
