@@ -56,7 +56,7 @@
   services.xserver.desktopManager.phosh.enable = true;
   services.xserver.desktopManager.phosh.user = "operator";
   services.xserver.desktopManager.phosh.group = "100";
-  nixpkgs.buildPlatform.system = "aarch64-darwin";
+  nixpkgs.buildPlatform = builtins.currentSystem;
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 
 }
