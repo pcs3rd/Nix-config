@@ -38,7 +38,6 @@
   security.sudo.wheelNeedsPassword = false;
   system.stateVersion = "25.11";
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
   
   boot.initrd.availableKernelModules = [ "xhci_pci" "usbhid" ];
   boot.initrd.kernelModules = [ ];
@@ -58,6 +57,7 @@
   services.xserver.desktopManager.phosh.user = "operator";
   services.xserver.desktopManager.phosh.group = "100";
   nixpkgs.buildPlatform.system = "aarch64-darwin";
-  nixpkgs.hostPlatform.system = "aarch64-linux";
+  nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
+
 }
 
