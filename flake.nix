@@ -202,8 +202,6 @@
           ./alacarte/tailscale.nix
         ];
       };
-      hampi-image = nixosConfigurations.hampi.config.system.build.sdImage;
-
     };
 
     kodama-disk-image =
