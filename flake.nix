@@ -198,6 +198,7 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./base-configs/hampi.nix
+          ./alacarte/tailscale.nix
         ];
       };
     };
