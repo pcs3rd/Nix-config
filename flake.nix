@@ -194,7 +194,7 @@
             }
         ];
       };
-      hampi = { #nix build .#nixosConfigurations.hampi.config.system.build.sdImageß
+      hampi = { #nix build .#nixosConfigurations.hampi.config.system.build.sdImage
         specialArgs = {inherit inputs outputs;};
         modules = [
            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
