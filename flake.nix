@@ -194,9 +194,10 @@
             }
         ];
       };
-      hampi = { #$ nix run nixpkgs#nixos-generators -- -f sd-aarch64 --flake .#pi --system aarch64-linux -o ./pi.sd. , https://blog.janissary.xyz/posts/nixos-install-custom-image
+      hampi = { #nix build .#nixosConfigurations.hampi.config.system.build.sdImageß
         specialArgs = {inherit inputs outputs;};
         modules = [
+           "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
           ./base-configs/hampi.nix
           ./alacarte/tailscale.nix
         ];
