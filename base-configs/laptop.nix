@@ -51,6 +51,7 @@
     teams
     p3x-onenote
   ];
+  programs.steam.enable = true;
   programs.companion.enable = true;
   programs.companion.runAsService = true;
   programs.companion.user = "1000";
