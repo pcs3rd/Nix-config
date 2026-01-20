@@ -48,8 +48,6 @@
     sbctl
     remmina
     mokutil
-    teams
-    p3x-onenote
   ];
   programs.steam.enable = true;
   programs.companion.enable = true;
