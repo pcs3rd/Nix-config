@@ -48,6 +48,8 @@
     sbctl
     remmina
     mokutil
+    teams
+    p3x-onenote
   ];
   programs.companion.enable = true;
   programs.companion.runAsService = true;
