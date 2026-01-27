@@ -97,7 +97,7 @@
     services.displayManager.autoLogin = {
         enable = true;
         user = "rdean3";
-    }
+    };aa
     # Enable the COSMIC desktop environment
     services.desktopManager.cosmic.enable = true;
 
