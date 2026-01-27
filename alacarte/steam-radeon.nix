@@ -94,19 +94,17 @@
     };
     # Enable the COSMIC login manager
     services.displayManager.cosmic-greeter.enable = true;
-
+    services.displayManager.autoLogin = {
+        enable = true;
+        user = "rdean3";
+    }
     # Enable the COSMIC desktop environment
     services.desktopManager.cosmic.enable = true;
 
     services.system76-scheduler.enable = true;
     environment.sessionVariables.COSMIC_DATA_CONTROL_ENABLED = 1;
-    services.displayManager.autoLogin = {
-        enable = false;
-        # Replace `yourUserName` with the actual username of user who should be automatically logged in
-        #user = "rdean3";
-    };
-  fileSystems."/home/rdean3/steam-lib" =
-    { device = "dev/disk/by-uuid/cca862c1-e8cc-405e-bb6a-d0d5a6bcf6cc";
-      fsType = "ext4";
+    fileSystems."/home/rdean3/steam-lib" =
+        { device = "dev/disk/by-uuid/cca862c1-e8cc-405e-bb6a-d0d5a6bcf6cc";
+        fsType = "ext4";
     };
 }
