@@ -28,8 +28,7 @@
       fsType = "btrfs";
       options = [ "subvol=media" "compress=zstd" ];
     };
-
-
+    
   #Make sure rclone is there  
   environment.systemPackages = [ pkgs.rclone ];
 

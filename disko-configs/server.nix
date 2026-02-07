@@ -84,7 +84,6 @@
         { directory = "/home/manager/.config"; user = "manager"; group = "1000"; mode = "u=rwx,g=rx,o=r"; }
         { directory = "/home/manager/.cache"; user = "manager"; group = "1000"; mode = "u=rwx,g=rx,o=r"; }
         { directory = "/home/manager/.ssh"; user = "manager"; group = "1000"; mode = "u=rwx,g=rx,o=r"; }
-        { directory = "/home/manager/docker-compose"; user = "manager"; group = "1000"; mode = "u=rwx,g=rx,o=r"; }
         { directory = "/home/manager/scratchpad"; user = "manager"; group = "1000"; mode = "u=rwx,g=rx,o=r"; }
     ];
     files = [
