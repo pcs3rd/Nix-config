@@ -8,7 +8,7 @@
     { device = "/dev/disk/by-uuid/242b9249-f2d0-4f81-93d5-54919f03cf3e";
       fsType = "ext4";
     };
-   fileSystems."/Disks/Jellyfin/2111" =
+   fileSystems."/Disks/Jellyfin/2111" = # Media
       { device = "/dev/disk/by-uuid/2111d93a-159d-4a2c-8fc5-24b93026e254";
         fsType = "btrfs";
         options = [ "subvol=media" ];
@@ -23,7 +23,11 @@
       fsType = "btrfs";
       options = [ "subvol=AppData" "compress=zstd" ];
     };
-
+  fileSystems."/Disks/Jellyfin/72da" =
+    { device = "/dev/disk/by-uuid/50910253-6184-478f-8c0c-d9063eb558c3";
+      fsType = "btrfs";
+      options = [ "subvol=media" "compress=zstd" ];
+    };
 
 
   #Make sure rclone is there  
