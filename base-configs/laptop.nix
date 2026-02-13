@@ -6,7 +6,9 @@
 #https://github.com/noblepayne/bitfocus-companion-flake
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
-
+  services.openssh = {
+    enable = true;
+  };
   boot.initrd.systemd.enable = true;
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 2;
