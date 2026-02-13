@@ -5,7 +5,9 @@
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
+  services.openssh = {
+    enable = true;
+  };
 # Network
   hardware.pulseaudio.enable = false;
   services.pipewire = {

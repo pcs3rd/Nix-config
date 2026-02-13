@@ -100,8 +100,8 @@
             nixos-hardware.nixosModules.microsoft-surface-pro-intel
             ./base-configs/laptop.nix
             ./disko-configs/laptop.nix
-						#./alacarte/ham-packages.nix
-            #./alacarte/gnome-desktop.nix
+						./alacarte/ham-packages.nix
+            ./alacarte/gnome-desktop.nix
 						#./alacarte/cosmic.nix
             #./alacarte/lomiri.nix
             # packages
@@ -113,6 +113,22 @@
             }
         ];
       };
+
+      flight = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            nixos-hardware.nixosModules.microsoft-surface-pro-intel
+            ./base-configs/laptop.nix
+            ./disko-configs/laptop.nix
+            # packages
+            ./alacarte/tailscale.nix
+            {
+              networking.hostName = "flight";
+              disko.devices.disk.system.device = "/dev/sda";
+            }
+        ];
+      };
+
       steam_machine = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
