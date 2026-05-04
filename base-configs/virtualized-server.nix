@@ -22,6 +22,15 @@
       hashedPasswordFile = "/stateful/sys-data/manager-passwordHash"; #  mkpasswd -m sha-512 
     };
   };
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  # Set the mount point to your EFI partition, usually /boot or /boot/efi
+  boot.loader.efi.efiSysMountPoint = "/boot"; 
+
+  # Ensure GRUB is disabled
+  boot.loader.grub.enable = false;
+
   system.stateVersion = "24.05";
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "be2iscsi" "hpsa" ];
   boot.initrd.kernelModules = [ ];
