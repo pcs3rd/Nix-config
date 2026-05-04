@@ -59,29 +59,19 @@
       };
     };
     nixosConfigurations = {
-      kodama = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-              (import "${mobile-nixos}/lib/configuration.nix" {
-                device = "lenovo-kodama";
-              })
-            ./alacarte/tailscale.nix
-            ./base-configs/kodama.nix
-        ];
-      };
-      macaw = nixpkgs.lib.nixosSystem {
+      imac = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
             ./alacarte/cosmic.nix
-            ./base-configs/generic-mac.nix
-            ./disko-configs/laptop.nix
+            ./base-configs/imac.nix
+            ./disko-configs/desktop.nix
+            ./home-configs/raymond.nix
             {
               networking.hostName = "macaw";
               disko.devices.disk.system.device = "/dev/sda";
             }
         ];
       };
-
       hammock = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
@@ -94,56 +84,6 @@
             }
         ];
       };
-      stealth = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-            nixos-hardware.nixosModules.microsoft-surface-pro-intel
-            ./base-configs/laptop.nix
-            ./disko-configs/laptop.nix
-						./alacarte/ham-packages.nix
-            ./alacarte/gnome-desktop.nix
-						#./alacarte/cosmic.nix
-            #./alacarte/lomiri.nix
-            # packages
-            ./alacarte/tailscale.nix
-            ./alacarte/ham-packages.nix
-            {
-              networking.hostName = "stealth";
-              disko.devices.disk.system.device = "/dev/nvme0n1";
-            }
-        ];
-      };
-
-      flight = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-            nixos-hardware.nixosModules.microsoft-surface-pro-intel
-            ./base-configs/laptop.nix
-            ./disko-configs/laptop.nix
-            # packages
-            ./alacarte/tailscale.nix
-            {
-              networking.hostName = "flight";
-              disko.devices.disk.system.device = "/dev/sda";
-            }
-        ];
-      };
-
-      steam_machine = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-            ./alacarte/tailscale.nix
-            ./base-configs/desktop.nix
-            ./disko-configs/desktop.nix
-            ./alacarte/steam-radeon.nix
-            {
-              users.mutableUsers = true;                                          
-              networking.hostName = "steam_machine";
-              disko.devices.disk.system.device = "/dev/sda";
-            }
-        ];
-      };
-  
       sevenofnine = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
@@ -192,33 +132,6 @@
               boot.loader.grub.device = "/dev/sda";
               disko.devices.disk.system.device = "/dev/sda";
             }
-        ];
-      };
-
-
-      dev-server = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-            ./base-configs/arm-server.nix
-            ./disko-configs/dev-server.nix
-            ./alacarte/preferred-server-env.nix
-            ./alacarte/tailscale.nix
-            ./alacarte/docker.nix
-            ./alacarte/grub.nix
-            {
-              networking.hostName = "dev-server";
-              boot.loader.grub.device = "/dev/vda";
-              disko.devices.disk.system.device = "/dev/vda";
-            }
-        ];
-      };
-    hampi = nixpkgs.lib.nixosSystem { #nix build .#nixosConfigurations.hampi.config.system.build.sdImage
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-            nixos-hardware.nixosModules.raspberry-pi-3
-           "${inputs.nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-          ./base-configs/hampi.nix
-          ./alacarte/tailscale.nix
         ];
       };
     };
