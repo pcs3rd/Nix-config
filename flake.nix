@@ -65,7 +65,7 @@
             ./alacarte/cosmic.nix
             ./base-configs/imac.nix
             ./disko-configs/desktop.nix
-            ./home-config/raine.nix
+            ./home-configs/raine.nix
             {
               networking.hostName = "macaw";
               disko.devices.disk.system.device = "/dev/sda";
