@@ -75,5 +75,5 @@
         '';
     };
 
-users.motd = "Stickpile Environment Installer for PROD/DEV hosts.";
+users.motd = "See Github:pcs3rd/nix-config for further information. ";
 }

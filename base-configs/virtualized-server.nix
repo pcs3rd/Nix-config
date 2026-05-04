@@ -5,11 +5,12 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   services.xe-guest-utilities.enable = true;
-
 # Network
   networking.networkmanager.enable = true;
   time.timeZone = "America/New_York";
-
+  environment.systemPackages = with pkgs; [
+    xe-guest-utilites
+  ];
 # User stuff
   users.users = {
 
