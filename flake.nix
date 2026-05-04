@@ -54,7 +54,7 @@
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main home-manager configuration file <
-          ./home-configs/raymond.nix
+          ./home-configs/raine.nix
         ];
       };
     };
@@ -65,7 +65,6 @@
             ./alacarte/cosmic.nix
             ./base-configs/imac.nix
             ./disko-configs/desktop.nix
-            ./home-configs/raine.nix
             {
               networking.hostName = "macaw";
               disko.devices.disk.system.device = "/dev/sda";
