@@ -4,7 +4,7 @@
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  services.xe-guest-utilities.enable = true
+  services.xe-guest-utilities.enable = true;
 
 # Network
   networking.networkmanager.enable = true;
