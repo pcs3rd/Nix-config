@@ -9,7 +9,7 @@
   networking.networkmanager.enable = true;
   time.timeZone = "America/New_York";
   environment.systemPackages = with pkgs; [
-    xe-guest-utilites
+    xe-guest-utilities
   ];
 # User stuff
   users.users = {
