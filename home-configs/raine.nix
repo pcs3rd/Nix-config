@@ -1,10 +1,10 @@
 { config, pkgs, inputs, output, ... }:
 
 {
-users.users.rdean = {
+users.users.rdean3 = {
   isNormalUser = true;
   home  = "/home/rdean3";
-  description  = "Raymond Dean III";
+  description  = "Raine";
   extraGroups  = [ "wheel" "networkmanager" "dialout" "feedbackd" "networkmanager" "video" ];
   hashedPasswordFile = "/stateful/sys-data/rdean-passwordHash"; #  mkpasswd -m sha-512 
 };
