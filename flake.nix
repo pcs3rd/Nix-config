@@ -147,17 +147,16 @@
       sevenofnine = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-            ./base-configs/generic-server.nix
-            ./disko-configs/server.nix
+            ./base-configs/virtualized-server.nix
+            ./disko-configs/virtualized-server.nix
             ./alacarte/preferred-server-env.nix
             ./alacarte/tailscale.nix
             ./alacarte/docker.nix
-            ./alacarte/grub.nix
             ./alacarte/sevenofnine-disk-mounts.nix
             {
               networking.hostName = "sevenofnine";
-              boot.loader.grub.device = "/dev/nvme0n1";
-              disko.devices.disk.system.device = "/dev/nvme0n1";
+              boot.loader.grub.device = "/dev/xvda";
+              disko.devices.disk.system.device = "/dev/xvda";
             }
         ];
       };
