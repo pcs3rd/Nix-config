@@ -62,6 +62,7 @@
       imac = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
+            home-manager.nixosModules.home-manager
             ./alacarte/cosmic.nix
             ./base-configs/imac.nix
             ./disko-configs/desktop.nix
