@@ -148,14 +148,14 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
             ./base-configs/virtualized-server.nix
-            ./disko-configs/virtualized-server.nix
+            ./disko-configs/virtualized-sevenofnine.nix
             ./alacarte/preferred-server-env.nix
             ./alacarte/tailscale.nix
             ./alacarte/docker.nix
-            ./alacarte/sevenofnine-disk-mounts.nix
+            #./alacarte/sevenofnine-disk-mounts.nix
             {
               networking.hostName = "sevenofnine";
-              boot.loader.grub.device = "/dev/xvda";
+              #boot.loader.grub.device = "/dev/xvda";
               disko.devices.disk.system.device = "/dev/xvda";
             }
         ];
