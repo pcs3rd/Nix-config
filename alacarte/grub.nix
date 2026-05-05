@@ -5,6 +5,7 @@ boot.loader = {
   };
   grub = {
      enable = true;
+     timeoutStyle = "hidden";
      efiSupport = true;
      version = 3;
   };
