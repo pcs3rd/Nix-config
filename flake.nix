@@ -21,9 +21,7 @@
     #nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 		nixos-hardware.url = "github:8bitbuddhist/nixos-hardware?ref=surface-rust-target-spec-fix";
     # Bitfocus Companion modules
-    inputs.companion.url = "github:noblepayne/bitfocus-companion-flake";
-    #nixos-generators.url = "github:nix-community/nixos-generators";
-
+    inputs.companion.url = "github:pcs3rd/bitfocus-companion-flake";
   };
 
   outputs = {
