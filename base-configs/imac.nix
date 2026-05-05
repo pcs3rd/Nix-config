@@ -27,7 +27,16 @@
       experimental-features = nix-command flakes
     '';
   };
+    hardware = {
+    bluetooth = {
+        enable = true;
+        powerOnBoot = true;
+    };
+    # Ensure libinput is enabled for input handling
+    opengl.enable = true;
+    };
 
+services.xserver.libinput.enable = true;
   system.stateVersion = "24.05";
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "ohci_pci" "ehci_pci" "firewire_ohci" "usbhid" "uas" "sd_mod" "sdhci_pci" "id-magicmouse"];
   boot.initrd.kernelModules = [ ];
