@@ -1,6 +1,7 @@
 { config, pkgs, inputs, output, ... }:
 
 {
+programs.dconf.enable = true;
 users.users.rdean = {
   isNormalUser = true;
   home  = "/home/rdean";
