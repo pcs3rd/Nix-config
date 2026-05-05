@@ -7,6 +7,8 @@
         pkgs.gnomeExtensions.clipboard-indicator
         pkgs.gnomeExtensions.tray-icons-reloaded
         pkgs.gnome-tweaks
+        pkgs.firefox
+        pkgs.google-chorme
         
     ];
   services.xserver.enable = true;

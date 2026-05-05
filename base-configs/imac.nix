@@ -21,6 +21,8 @@
   networking.networkmanager.enable = true;
   time.timeZone = "America/New_York";
 
+    hardware.i2c.enable = true;
+    environment.systemPackages = with pkgs; [ ddcutil ];
 
   nix = {
     extraOptions = ''
@@ -48,7 +50,7 @@ services.xserver.libinput.enable = true;
   system.stateVersion = "24.05";
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "ohci_pci" "ehci_pci" "firewire_ohci" "usbhid" "uas" "sd_mod" "sdhci_pci" "hid-magicmouse"];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "kvm-intel" "i2c-dev" "ddcci_backlight" ];
   boot.extraModulePackages = [ ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

@@ -6,7 +6,7 @@ users.users.rdean = {
   isNormalUser = true;
   home  = "/home/rdean";
   description  = "Raine";
-  extraGroups  = [ "wheel" "networkmanager" "dialout" "feedbackd" "networkmanager" "video" ];
+  extraGroups  = [ "wheel" "networkmanager" "dialout" "feedbackd" "networkmanager" "video" "i2c" ];
   hashedPasswordFile = "/stateful/sys-data/rdean-passwordHash"; #  mkpasswd -m sha-512 
 };
   home-manager.users.rdean = {
