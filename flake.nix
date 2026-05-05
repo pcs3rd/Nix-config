@@ -10,7 +10,7 @@
     # Impermanence
     impermanence.url = "github:nix-community/impermanence";
     # Home-manager
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # Mobile-nixos
     mobile-nixos = {
