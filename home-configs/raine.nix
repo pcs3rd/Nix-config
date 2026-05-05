@@ -10,7 +10,6 @@ users.users.rdean = {
   hashedPasswordFile = "/stateful/sys-data/rdean-passwordHash"; #  mkpasswd -m sha-512 
 };
   home-manager.users.rdean = {
-    #programs.dconf.enable = true;
 
     dconf = {
       settings = {
@@ -24,7 +23,13 @@ users.users.rdean = {
     home.packages = with pkgs; [
       tmux
       htop 
+      vial
+      google-chrome
+      firefox
       python313Packages.meshtastic
+      vscode
+      moonlight
+      discord
     ];
     home.stateVersion = "25.11";
 

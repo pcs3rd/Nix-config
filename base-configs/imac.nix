@@ -8,6 +8,9 @@
   services.openssh = {
     enable = true;
   };
+  services.udev.extraRules = ''
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{serial}=="*vial:f64c2b3c*", MODE="0660", GROUP="", TAG+="uaccess", TAG+="udev-acl"
+  '';
 # Network
   hardware.pulseaudio.enable = false;
   services.pipewire = {
@@ -55,5 +58,29 @@ services.xserver.libinput.enable = true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  boot = {
+    plymouth = {
+      enable = true;
+      theme = "nixos-bgrt";
+      themePackages = with pkgs; [
+        nixos-bgrt-plymouth
+      ];
+    };
 
+    # Enable "Silent boot"
+    consoleLogLevel = 3;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "udev.log_priority=3"
+      "rd.systemd.show_status=auto"
+      "bgrt_disable=0" 
+    ];
+    # Hide the OS choice for bootloaders.
+    # It's still possible to open the bootloader list by pressing any key
+    # It will just not appear on screen unless a key is pressed
+    loader.timeout = 0;
+  };
 }

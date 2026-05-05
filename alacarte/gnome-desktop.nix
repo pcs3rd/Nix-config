@@ -6,10 +6,7 @@
         pkgs.gnomeExtensions.dash-to-dock
         pkgs.gnomeExtensions.clipboard-indicator
         pkgs.gnomeExtensions.tray-icons-reloaded
-        pkgs.gnome-tweaks
-        pkgs.firefox
-        pkgs.google-chrome
-        
+        pkgs.gnome-tweaks        
     ];
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
