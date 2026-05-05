@@ -63,8 +63,8 @@
             {
               programs.companion.enable = true;
               programs.companion.runAsService = true;
-              programs.companion.user = "rdean";
-              programs.companion.group = "rdean";
+              programs.companion.user = "1000";
+              programs.companion.group = "1000";
             }
             home-manager.nixosModules.home-manager
             ./alacarte/gnome-desktop.nix
