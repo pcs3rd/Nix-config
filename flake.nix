@@ -35,7 +35,6 @@
     mobile-nixos, 
     nixos-hardware,
     companion,
-    nixos-generators,
     ...
   } @ inputs: let
     inherit (self) outputs;
