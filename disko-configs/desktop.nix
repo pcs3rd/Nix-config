@@ -73,7 +73,6 @@
     enable = true; 
     hideMounts = true;
     directories = [
-        "/etc/static/dconf"
         "/var/log"
         "/root/.ssh"
         "/var/lib/nixos"
