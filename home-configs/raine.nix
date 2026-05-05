@@ -10,10 +10,9 @@ users.users.rdean = {
   hashedPasswordFile = "/stateful/sys-data/rdean-passwordHash"; #  mkpasswd -m sha-512 
 };
   home-manager.users.rdean = {
-    programs.dconf.enable = true;
+    #programs.dconf.enable = true;
 
     dconf = {
-      enable = true;
       settings = {
         "org/gnome/desktop/peripherals/mouse" = {
           natural-scroll = true;
