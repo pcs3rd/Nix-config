@@ -18,4 +18,10 @@ users.users.rdean = {
     home.stateVersion = "25.05";
 
   };
+dconf.settings = {
+  "org/gnome/desktop/peripherals/mouse" = {
+    natural-scroll = true;
+    speed = 0.0; # -1.0 to 1.0
+  };
+};
 }

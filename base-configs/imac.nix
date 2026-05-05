@@ -31,7 +31,19 @@
     # Ensure libinput is enabled for input handling
     opengl.enable = true;
     };
-
+    boot.extraModprobeConfig = ''
+    options hid_magicmouse scroll_acceleration=1 scroll_speed=55 emulate_scroll_wheel=1 emulate_3button=0
+    '';
+    services.xserver.inputClassSections = [
+    ''
+        Identifier "Apple Magic Mouse"
+        MatchIsPointer "on"
+        MatchProduct "Magic Mouse"
+        Driver "libinput"
+        Option "ScrollMethod" "twofinger"
+        Option "NaturalScrolling" "true"
+    ''
+    ];
 services.xserver.libinput.enable = true;
   system.stateVersion = "24.05";
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "ohci_pci" "ehci_pci" "firewire_ohci" "usbhid" "uas" "sd_mod" "sdhci_pci" "hid-magicmouse"];
