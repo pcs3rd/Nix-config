@@ -66,6 +66,7 @@
             ./alacarte/cosmic.nix
             ./base-configs/imac.nix
             ./disko-configs/desktop.nix
+            ./alacarte/grub.nix
             ./home-configs/raine.nix
             {
               networking.hostName = "imac";
