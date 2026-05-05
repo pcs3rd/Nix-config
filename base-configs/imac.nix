@@ -28,10 +28,6 @@
     '';
   };
     hardware = {
-    bluetooth = {
-        enable = true;
-        powerOnBoot = true;
-    };
     # Ensure libinput is enabled for input handling
     opengl.enable = true;
     };
