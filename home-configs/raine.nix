@@ -10,6 +10,14 @@ users.users.rdean = {
   hashedPasswordFile = "/stateful/sys-data/rdean-passwordHash"; #  mkpasswd -m sha-512 
 };
   home-manager.users.rdean = {
+    programs.dconf.enable = true;
+
+    dconf.settings = {
+      "org/gnome/desktop/peripherals/mouse" = {
+        natural-scroll = true;
+        speed = 0.0; # -1.0 to 1.0
+      };
+    };
     home.homeDirectory = "/home/rdean";
     home.packages = with pkgs; [
       tmux
@@ -21,10 +29,5 @@ users.users.rdean = {
   };
 
 
-home-manager.dconf.settings = {
-  "org/gnome/desktop/peripherals/mouse" = {
-    natural-scroll = true;
-    speed = 0.0; # -1.0 to 1.0
-  };
-};
+
 }
