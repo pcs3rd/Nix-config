@@ -1,7 +1,6 @@
 { config, pkgs, inputs, output, ... }:
 
 {
-programs.dconf.enable = true;
 users.users.rdean = {
   isNormalUser = true;
   home  = "/home/rdean";
@@ -12,10 +11,13 @@ users.users.rdean = {
   home-manager.users.rdean = {
     programs.dconf.enable = true;
 
-    dconf.settings = {
-      "org/gnome/desktop/peripherals/mouse" = {
-        natural-scroll = true;
-        speed = 0.0; # -1.0 to 1.0
+    dconf = {
+      enable = true;
+      settings = {
+        "org/gnome/desktop/peripherals/mouse" = {
+          natural-scroll = true;
+          speed = 0.0; # -1.0 to 1.0
+        };
       };
     };
     home.homeDirectory = "/home/rdean";
