@@ -68,7 +68,7 @@
             ./disko-configs/desktop.nix
             ./home-configs/raine.nix
             {
-              networking.hostName = "macaw";
+              networking.hostName = "imac";
               disko.devices.disk.system.device = "/dev/sda";
             }
         ];
