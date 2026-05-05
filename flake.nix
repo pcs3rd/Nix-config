@@ -63,7 +63,7 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
             home-manager.nixosModules.home-manager
-            ./alacarte/cosmic.nix
+            ./alacarte/gnome-desktop.nix
             ./base-configs/imac.nix
             ./disko-configs/desktop.nix
             ./alacarte/grub.nix
