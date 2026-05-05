@@ -7,7 +7,7 @@
         pkgs.gnomeExtensions.clipboard-indicator
         pkgs.gnomeExtensions.tray-icons-reloaded
         pkgs.gnome-tweaks
-        pkgs.gnome-remote-desktopgnome-remote-desktop  
+        pkgs.gnome-remote-desktop
     ];
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
