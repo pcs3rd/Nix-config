@@ -6,7 +6,8 @@
         pkgs.gnomeExtensions.dash-to-dock
         pkgs.gnomeExtensions.clipboard-indicator
         pkgs.gnomeExtensions.tray-icons-reloaded
-        pkgs.gnome-tweaks        
+        pkgs.gnome-tweaks
+        pkgs.gnome-remote-desktopgnome-remote-desktop  
     ];
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
