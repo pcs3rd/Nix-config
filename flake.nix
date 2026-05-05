@@ -68,6 +68,7 @@
             ./disko-configs/desktop.nix
             ./alacarte/grub.nix
             ./home-configs/raine.nix
+            ./alacarte/tailscale.nix
             {
               networking.hostName = "imac";
               disko.devices.disk.system.device = "/dev/sda";
