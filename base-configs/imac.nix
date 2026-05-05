@@ -17,7 +17,7 @@
     pulse.enable = true;
     jack.enable = true;
   };
-
+  nixpkgs.config.allowUnfree = true;
   networking.networkmanager.enable = true;
   time.timeZone = "America/New_York";
 
