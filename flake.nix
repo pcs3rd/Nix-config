@@ -64,7 +64,7 @@
               programs.companion.enable = true;
               programs.companion.runAsService = true;
               programs.companion.user = "1000";
-              programs.companion.group = "1000";
+              programs.companion.group = "users";
             }
             home-manager.nixosModules.home-manager
             ./alacarte/gnome-desktop.nix
