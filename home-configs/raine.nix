@@ -30,6 +30,8 @@ users.users.rdean = {
       vscode
       moonlight
       discord
+      git
+      gh
     ];
     home.stateVersion = "25.11";
 
