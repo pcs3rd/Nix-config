@@ -1,6 +1,7 @@
 { config, pkgs, inputs, output, ... }:
 
 {
+programs.dconf.enable = true;
 users.users.rdean = {
   isNormalUser = true;
   home  = "/home/rdean";
@@ -15,10 +16,10 @@ users.users.rdean = {
       htop 
       python313Packages.meshtastic
     ];
-    home.stateVersion = "25.05";
+    home.stateVersion = "25.11";
 
   };
-programs.dconf.enable = true;
+
 
 dconf.settings = {
   "org/gnome/desktop/peripherals/mouse" = {
