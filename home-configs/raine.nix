@@ -34,6 +34,6 @@ users.users.rdean = {
     home.stateVersion = "25.11";
 
   };
-  services.udev.packages = [ pkgs.via pkgs.vial ]
+  services.udev.packages = [ pkgs.via pkgs.vial ];
 
 }
