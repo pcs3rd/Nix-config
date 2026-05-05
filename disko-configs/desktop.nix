@@ -73,7 +73,8 @@
     enable = true; 
     hideMounts = true;
     directories = [
-        "/etc/dconf"
+        "/etc/dconf/profile/gdm"
+        "/etc/dconf/profile/gnome-initial-setup"
         "/var/log"
         "/root/.ssh"
         "/var/lib/nixos"
