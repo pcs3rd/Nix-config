@@ -21,7 +21,7 @@
     #nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 		nixos-hardware.url = "github:8bitbuddhist/nixos-hardware?ref=surface-rust-target-spec-fix";
     # Bitfocus Companion modules
-    companion.url = "github:pcs3rd/bitfocus-companion-flake";
+    inputs.companion.url = "github:noblepayne/bitfocus-companion-flake";
     #nixos-generators.url = "github:nix-community/nixos-generators";
 
   };
@@ -61,6 +61,13 @@
       imac = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
+            companion.nixosModules.default
+            {
+              programs.companion.enable = true;
+              programs.companion.runAsService = true;
+              programs.companion.user = "rdean";
+              programs.companion.group = "rdean";
+            }
             home-manager.nixosModules.home-manager
             ./alacarte/gnome-desktop.nix
             ./base-configs/imac.nix
