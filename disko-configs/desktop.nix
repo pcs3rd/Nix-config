@@ -73,7 +73,7 @@
     enable = true; 
     hideMounts = true;
     directories = [
-        "/var/log"
+    "/var/log"
         "/root/.ssh"
         "/var/lib/nixos"
         "/var/lib/tailscale/"
