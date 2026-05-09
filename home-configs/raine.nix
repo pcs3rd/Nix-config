@@ -28,9 +28,9 @@ users.users.rdean = {
       firefox
       python313Packages.meshtastic
       vscode
-      moonlight
+      moonlight-qt
       discord
-      git
+      git 
       gh
     ];
     home.stateVersion = "25.11";
