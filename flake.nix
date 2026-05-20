@@ -99,7 +99,7 @@
             ./alacarte/preferred-server-env.nix
             ./alacarte/tailscale.nix
             ./alacarte/docker.nix
-            #./alacarte/sevenofnine-disk-mounts.nix
+            ./alacarte/sevenofnine-disk-mounts.nix
             {
               networking.hostName = "sevenofnine";
               #boot.loader.grub.device = "/dev/xvda";
