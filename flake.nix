@@ -102,8 +102,8 @@
             #./alacarte/sevenofnine-disk-mounts.nix
             {
               networking.hostName = "sevenofnine";
-              #boot.loader.grub.device = "/dev/xvda";
-              disko.devices.disk.system.device = "/dev/xvda";
+              #boot.loader.grub.device = "/dev/vda";
+              disko.devices.disk.system.device = "/dev/vda";
             }
         ];
       };
