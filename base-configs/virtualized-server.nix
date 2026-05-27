@@ -33,7 +33,7 @@
   boot.loader.grub.enable = false;
 
   system.stateVersion = "24.05";
-  boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "sr_mod" "xen_blkfront"];
+  boot.initrd.availableKernelModules = [ "ehci_pci" "uhci_hcd" "ahci" "sr_mod" "xen_blkfront" "virtio_blk" "virtio_pci" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
