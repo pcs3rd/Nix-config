@@ -94,8 +94,8 @@
       sevenofnine = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-            ./base-configs/virtualized-server.nix
-            ./disko-configs/virtualized-sevenofnine.nix
+            ./base-configs/server.nix
+            ./disko-configs/server.nix
             ./alacarte/preferred-server-env.nix
             ./alacarte/tailscale.nix
             ./alacarte/docker.nix
