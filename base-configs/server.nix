@@ -11,6 +11,11 @@
   environment.systemPackages = with pkgs; [
     xe-guest-utilities
   ];
+  # Enable QEMU/KVM guest agent
+  services.qemuGuest.enable = true;
+  
+  # Enable SPICE guest agent
+  services.spice-vdagentd.enable = true; 
 # User stuff
   users.users = {
 
