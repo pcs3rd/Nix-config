@@ -27,6 +27,14 @@
     };
 
   };
+  # Enable NFS client support
+  boot.supportedFilesystems = [ "nfs" "nfs4" ];
+
+  # Ensure NFS utilities are installed
+  environment.systemPackages = with pkgs; [ nfs-utils ];
+
+  # Required for NFSv3 and certain locking mechanisms
+  services.rpcbind.enable = true;
 system.activationScripts.nfsMountHelpers = {
   text = ''
     mkdir -p /usr/sbin
