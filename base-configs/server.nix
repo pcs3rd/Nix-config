@@ -22,8 +22,8 @@
       }];
     };
     defaultGateway = {
-      address = "192.168.100.1";
-      interface = "enp5s0";
+      address = "172.16.0.1";
+      interface = "enp3s0";
     };
 
   };
