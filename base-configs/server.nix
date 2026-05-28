@@ -34,6 +34,8 @@ system.activationScripts.nfsMountHelpers = {
     ln -sf /run/current-system/sw/bin/mount.nfs4 /usr/sbin/mount.nfs4
   '';
 };
+systemd.services.docker.serviceConfig.Environment = 
+  "PATH=/usr/sbin:/run/current-system/sw/bin:/run/wrappers/bin:/nix/var/nix/profiles/default/bin";
 # User stuff
   users.users = {
 
