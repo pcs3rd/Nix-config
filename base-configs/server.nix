@@ -4,13 +4,10 @@
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  services.xe-guest-utilities.enable = true;
 # Network
   networking.networkmanager.enable = true;
   time.timeZone = "America/New_York";
-  environment.systemPackages = with pkgs; [
-    xe-guest-utilities
-  ];
+
   # Enable QEMU/KVM guest agent
   services.qemuGuest.enable = true;
   
