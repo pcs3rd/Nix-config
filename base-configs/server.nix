@@ -27,10 +27,11 @@
     };
 
   };
-  system.activationScripts.nfsMountHelpers = {
+system.activationScripts.nfsMountHelpers = {
   text = ''
-    ln -sf /run/current-system/sw/bin/mount.nfs /sbin/mount.nfs
-    ln -sf /run/current-system/sw/bin/mount.nfs4 /sbin/mount.nfs4
+    mkdir -p /usr/sbin
+    ln -sf /run/current-system/sw/bin/mount.nfs /usr/sbin/mount.nfs
+    ln -sf /run/current-system/sw/bin/mount.nfs4 /usr/sbin/mount.nfs4
   '';
 };
 # User stuff
