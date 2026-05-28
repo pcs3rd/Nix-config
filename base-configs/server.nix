@@ -23,7 +23,7 @@
     };
     defaultGateway = {
       address = "192.168.100.1";
-      interface = "ens3";
+      interface = "enp5s0";
     };
 
   };
