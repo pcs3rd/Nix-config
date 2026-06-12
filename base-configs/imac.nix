@@ -88,4 +88,10 @@ services.xserver.libinput.enable = true;
     # It will just not appear on screen unless a key is pressed
     loader.timeout = 0;
   };
+  services.usbmuxd.enable = true;
+  
+  environment.systemPackages = with pkgs; [
+    libimobiledevice
+    ifuse # optional, to mount using 'ifuse'
+];
 }
