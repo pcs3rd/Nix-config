@@ -30,7 +30,11 @@
   time.timeZone = "America/New_York";
 
     hardware.i2c.enable = true;
-    environment.systemPackages = with pkgs; [ ddcutil ];
+    environment.systemPackages = with pkgs; [ 
+      ddcutil
+      libimobiledevice
+      ifuse # optional, to mount using 'ifuse' 
+    ];
 
   nix = {
     extraOptions = ''
@@ -89,9 +93,4 @@ services.xserver.libinput.enable = true;
     loader.timeout = 0;
   };
   services.usbmuxd.enable = true;
-  
-  environment.systemPackages = with pkgs; [
-    libimobiledevice
-    ifuse # optional, to mount using 'ifuse'
-];
 }
