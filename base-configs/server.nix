@@ -23,7 +23,7 @@
     };
     defaultGateway = {
       address = "172.16.0.1";
-      interface = "enp3s0";
+      interface = "enp2s0";
     };
 
   };
