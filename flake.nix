@@ -4,6 +4,13 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+    # Unstable nixpkgs, used only where a module needs it (e.g. Jovian/SteamOS on steammachine)
+    unstable-nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # Jovian-NixOS (SteamOS-like Steam Deck UI/gamescope session, used by steammachine)
+    jovian = {
+      url = "github:Jovian-Experiments/Jovian-NixOS";
+      inputs.nixpkgs.follows = "unstable-nixpkgs";
+    };
     # Disko
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
@@ -22,17 +29,25 @@
 		nixos-hardware.url = "github:8bitbuddhist/nixos-hardware?ref=surface-rust-target-spec-fix";
     # Bitfocus Companion modules
     companion.url = "github:noblepayne/bitfocus-companion-flake";
+    # ISO builder, used for the steammachine auto-install image
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     self,
     nixpkgs,
+    unstable-nixpkgs,
+    jovian,
     home-manager,
     impermanence,
     disko,
-    mobile-nixos, 
+    mobile-nixos,
     nixos-hardware,
     companion,
+    nixos-generators,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -141,6 +156,37 @@
             }
         ];
       };
+      # SteamOS-like gaming box, built on unstable-nixpkgs because Jovian-NixOS's
+      # overlay (decky-loader, patched steam/gamescope) targets nixos-unstable.
+      # Every other host in this flake stays on stable nixpkgs.
+      steammachine = unstable-nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            jovian.nixosModules.default
+            ./base-configs/steammachine.nix
+            ./disko-configs/steammachine.nix
+            ./alacarte/steam-jovian.nix
+            ./alacarte/tailscale.nix
+            {
+              networking.hostName = "steammachine";
+              disko.devices.disk.system.device = "/dev/sda";
+            }
+        ];
+      };
+    };
+    # Build with: nix build .#steammachine-installer-iso
+    # Result is in result/iso/*.iso — flash it to a USB stick and boot the
+    # target machine from it. It wipes /dev/sda and installs the
+    # "steammachine" config completely unattended (see
+    # base-configs/steammachine-installer.nix for the install script and its
+    # abort window).
+    packages.x86_64-linux.steammachine-installer-iso = nixos-generators.nixosGenerate {
+      system = "x86_64-linux";
+      format = "install-iso";
+      specialArgs = {inherit inputs outputs self;};
+      modules = [
+        ./base-configs/steammachine-installer.nix
+      ];
     };
   };
 }
