@@ -21,7 +21,11 @@
       desktopSession = "cosmic";
     };
     hardware.has.amd.gpu = true; # set to false if this box isn't AMD
-    decky-loader.enable = true;
+    # Disabled: upstream decky-loader uses pnpm to build its frontend. Nix
+    # builds that hermetically (no live registry access, pre-hashed deps), so
+    # the pnpm supply-chain CVEs don't really apply here — but if you want zero
+    # pnpm anywhere in the closure, this is the one thing that pulls it in.
+    decky-loader.enable = false;
     steamos.useSteamOSConfig = true;
   };
 

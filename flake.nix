@@ -58,6 +58,31 @@
       "x86_64-linux"
     ];
     forAllSystems = nixpkgs.lib.genAttrs systems;
+
+    # Generic unattended auto-install ISO builder — works for ANY host in
+    # nixosConfigurations, not just one hardcoded machine. Reads the target
+    # host's own architecture and disk device straight out of its already-
+    # defined config, so there's nothing to duplicate per host.
+    # Usage: nix build .#packages.<system>.<hostname>-installer-iso
+    mkAutoInstallIso = hostname: nixos-generators.nixosGenerate {
+      system = self.nixosConfigurations.${hostname}.pkgs.system;
+      format = "install-iso";
+      specialArgs = {
+        inherit inputs outputs self hostname;
+        diskDevice = self.nixosConfigurations.${hostname}.config.disko.devices.disk.system.device;
+      };
+      modules = [ ./base-configs/auto-installer.nix ];
+    };
+
+    # Builds one installer ISO per host, grouped under packages.<system> to
+    # match each host's own architecture (so an aarch64 host gets an aarch64
+    # installer, etc).
+    installerIsos = lib.foldl' (acc: hostname:
+      let system = self.nixosConfigurations.${hostname}.pkgs.system;
+      in lib.recursiveUpdate acc {
+        ${system}."${hostname}-installer-iso" = mkAutoInstallIso hostname;
+      }
+    ) {} (builtins.attrNames self.nixosConfigurations);
   in {
     homeConfigurations = {
       # FIXME replace with your username@hostname
@@ -174,19 +199,13 @@
         ];
       };
     };
-    # Build with: nix build .#steammachine-installer-iso
+    # nix build .#packages.<system>.<hostname>-installer-iso, e.g.:
+    #   nix build .#packages.x86_64-linux.steammachine-installer-iso
     # Result is in result/iso/*.iso — flash it to a USB stick and boot the
-    # target machine from it. It wipes /dev/sda and installs the
-    # "steammachine" config completely unattended (see
-    # base-configs/steammachine-installer.nix for the install script and its
-    # abort window).
-    packages.x86_64-linux.steammachine-installer-iso = nixos-generators.nixosGenerate {
-      system = "x86_64-linux";
-      format = "install-iso";
-      specialArgs = {inherit inputs outputs self;};
-      modules = [
-        ./base-configs/steammachine-installer.nix
-      ];
-    };
+    # target machine from it. It wipes that host's configured disk and
+    # installs its flake configuration completely unattended (see
+    # base-configs/auto-installer.nix for the install script and its abort
+    # window).
+    packages = installerIsos;
   };
 }
