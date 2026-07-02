@@ -76,6 +76,10 @@
     # flagged insecure in nixpkgs, so it won't evaluate without explicitly
     # allowing that below.
     decky-loader.enable = true;
+    # decky-loader shells out to `systemctl` internally, but its systemd
+    # service's PATH doesn't include it by default — logs
+    # "FileNotFoundError: ... 'systemctl'" without this.
+    decky-loader.extraPackages = [ pkgs.systemd ];
     steamos.useSteamOSConfig = true;
   };
 
@@ -110,6 +114,18 @@
   # jovian.steam.autoStart is enabled, so no cosmic-greeter here.
   services.desktopManager.cosmic.enable = true;
   services.system76-scheduler.enable = true;
+
+  # gamescope-session ships steam-launcher.service scoped to
+  # graphical-session.target, and its script hardcodes `-gamepadui`
+  # unconditionally — so as soon as COSMIC (a normal desktop session) also
+  # activates graphical-session.target, Steam relaunches in Big Picture on
+  # top of Desktop Mode. Rescope it to gamescope-session.target only, so it
+  # exclusively belongs to actual Gaming Mode.
+  systemd.user.services.steam-launcher = {
+    wantedBy = [ "gamescope-session.target" ];
+    partOf = [ "gamescope-session.target" ];
+    after = [ "gamescope-session.target" "xdg-desktop-portal.service" ];
+  };
 
   zramSwap.enable = true;
   zramSwap.algorithm = "zstd";
