@@ -51,7 +51,7 @@
       # last-good (25.05/stable) sunshine build. Pull it from our regular
       # `nixpkgs` input instead of unstable-nixpkgs.
       sunshine = (import inputs.nixpkgs {
-        system = final.system;
+        system = final.stdenv.hostPlatform.system;
         config.allowUnfree = true;
       }).sunshine;
     })
@@ -180,7 +180,13 @@
       desktopName = "Return to Gaming Mode";
       comment = "Switch back to Steam's Gaming Mode (gamescope)";
       icon = "steam";
-      exec = "${steamos-manager}/bin/steamosctl set-default-login-mode game && ${steamos-manager}/bin/steamosctl switch-to-game-mode";
+      # Desktop Entry's Exec is a plain argv, not run through a shell — no
+      # &&, so wrap the two steamosctl calls in an actual script instead.
+      exec = "${writeShellScript "return-to-gaming-mode" ''
+        set -e
+        ${steamos-manager}/bin/steamosctl set-default-login-mode game
+        ${steamos-manager}/bin/steamosctl switch-to-game-mode
+      ''}";
       terminal = false;
       categories = [ "System" ];
     })

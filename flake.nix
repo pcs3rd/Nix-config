@@ -65,7 +65,7 @@
     # defined config, so there's nothing to duplicate per host.
     # Usage: nix build .#packages.<system>.<hostname>-installer-iso
     mkAutoInstallIso = hostname: nixos-generators.nixosGenerate {
-      system = self.nixosConfigurations.${hostname}.pkgs.system;
+      system = self.nixosConfigurations.${hostname}.pkgs.stdenv.hostPlatform.system;
       format = "install-iso";
       specialArgs = {
         inherit inputs outputs self hostname;
@@ -78,7 +78,7 @@
     # match each host's own architecture (so an aarch64 host gets an aarch64
     # installer, etc).
     installerIsos = lib.foldl' (acc: hostname:
-      let system = self.nixosConfigurations.${hostname}.pkgs.system;
+      let system = self.nixosConfigurations.${hostname}.pkgs.stdenv.hostPlatform.system;
       in lib.recursiveUpdate acc {
         ${system}."${hostname}-installer-iso" = mkAutoInstallIso hostname;
       }
