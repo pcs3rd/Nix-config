@@ -180,6 +180,14 @@
     autoStart = true;
     capSysAdmin = true;
     openFirewall = true;
+    # Crash root cause, confirmed from the coredump: Sunshine's default
+    # encoder probe tries Vulkan Video H264 first, which this GPU
+    # (Polaris/RX 570) doesn't support — the encoder correctly logs
+    # "Encoding of h264 is not supported by this device" and then segfaults
+    # trying to initialize it anyway instead of falling back cleanly.
+    # Vulkan Video encode is RDNA2+ only; force VA-API instead, which AMD has
+    # supported on Linux for years and which this card handles fine.
+    settings.encoder = "vaapi";
     applications = {
       apps = [
         { name = "Desktop"; }
