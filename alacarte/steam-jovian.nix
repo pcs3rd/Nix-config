@@ -120,6 +120,24 @@
     FastConnectable = true;
   };
 
+  # Best-effort "wake from suspend via controller" support. This is
+  # genuinely hardware/firmware dependent, not guaranteed — several
+  # documented cases of this simply not working on certain Bluetooth
+  # chipsets even with the wakeup flag set correctly. Pairs with
+  # mem_sleep_default=s2idle above: s2idle keeps more hardware (including
+  # radios) powered during suspend than deep S3, which wake-on-Bluetooth/USB
+  # generally needs to have any chance of working.
+  systemd.services.enable-usb-wakeup = {
+    description = "Enable USB wakeup on all root hubs (for waking from suspend via Bluetooth/USB controllers)";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig.Type = "oneshot";
+    script = ''
+      for hub in /sys/bus/usb/devices/usb*; do
+        echo enabled > "$hub/power/wakeup" 2>/dev/null || true
+      done
+    '';
+  };
+
   environment.sessionVariables = {
     COSMIC_DATA_CONTROL_ENABLED = "1";
     PROTON_USE_NTSYNC = "1";
@@ -151,6 +169,21 @@
     # the --expose-wayland patch on gamescope-session above, which it needs
     # to render as a proper compositor overlay layer.
     discover-overlay
+
+    # The mirror image of jovian.steam.desktopSession above: that gets you
+    # from Gaming Mode into COSMIC; this app (shown in COSMIC's launcher
+    # while in Desktop Mode) gets you back to Gaming Mode. steamosctl is
+    # steamos-manager's CLI, the same tool jovian itself uses internally for
+    # session switching.
+    (makeDesktopItem {
+      name = "return-to-gaming-mode";
+      desktopName = "Return to Gaming Mode";
+      comment = "Switch back to Steam's Gaming Mode (gamescope)";
+      icon = "steam";
+      exec = "${steamos-manager}/bin/steamosctl set-default-login-mode game && ${steamos-manager}/bin/steamosctl switch-to-game-mode";
+      terminal = false;
+      categories = [ "System" ];
+    })
   ];
 
   # Discover Overlay runs continuously alongside whatever you're playing,
