@@ -38,8 +38,22 @@
         postPatch = (old.postPatch or "") + ''
           substituteInPlace gamescope-session \
             --replace-fail "-w 1280 -h 800" "-w 1920 -h 1080"
+          substituteInPlace gamescope-session \
+            --replace-fail "-O '*',eDP-1" "-O '*',eDP-1 --expose-wayland"
         '';
       });
+
+      # Known, unfixed upstream regression: nixpkgs' current sunshine build
+      # segfaults on connect when capSysAdmin is used (the mode required for
+      # DRM/KMS capture on a non-wlroots Wayland compositor like gamescope) —
+      # https://github.com/NixOS/nixpkgs/issues/475181. No fix yet as of this
+      # writing; the reporter's own workaround, confirmed working, is the
+      # last-good (25.05/stable) sunshine build. Pull it from our regular
+      # `nixpkgs` input instead of unstable-nixpkgs.
+      sunshine = (import inputs.nixpkgs {
+        system = final.system;
+        config.allowUnfree = true;
+      }).sunshine;
     })
   ];
 
@@ -55,13 +69,24 @@
       desktopSession = "cosmic";
     };
     hardware.has.amd.gpu = true; # set to false if this box isn't AMD
-    # Disabled: upstream decky-loader uses pnpm to build its frontend. Nix
-    # builds that hermetically (no live registry access, pre-hashed deps), so
-    # the pnpm supply-chain CVEs don't really apply here — but if you want zero
-    # pnpm anywhere in the closure, this is the one thing that pulls it in.
-    decky-loader.enable = false;
+    # Re-enabled. (It was off earlier over pnpm-as-a-build-tool concerns —
+    # see the pnpm conversation elsewhere in this repo's history; Nix builds
+    # it hermetically with no live registry access, so that risk is mostly
+    # theoretical.) One or more of decky-loader's dependencies is currently
+    # flagged insecure in nixpkgs, so it won't evaluate without explicitly
+    # allowing that below.
+    decky-loader.enable = true;
     steamos.useSteamOSConfig = true;
   };
+
+  # Required for jovian.decky-loader.enable — nixpkgs currently flags one of
+  # its dependencies as insecure (known CVE, unpatched upstream). This is a
+  # blanket allow rather than pinning an exact "name-version" string because
+  # that string changes on every version bump; narrow it with
+  # nixpkgs.config.permittedInsecurePackages = [ "exact-name-version" ]
+  # instead if you'd rather only allow the specific package once you know
+  # which one it is (the eval error names it exactly).
+  nixpkgs.config.allowInsecurePredicate = _: true;
 
   # jovian.hardware.has.amd.gpu already handles AMD early KMS itself (adds
   # "amdgpu" to boot.initrd.kernelModules). nixpkgs' own hardware.amdgpu.initrd
@@ -118,15 +143,58 @@
     steam-run
     protonup-qt
     firefox
+    discord
+    # Discord's own in-app overlay doesn't work under Wayland/gamescope.
+    # discover-overlay is a separate, purpose-built replacement that reads
+    # voice-channel state over Discord's local websocket API instead of
+    # hooking the game's renderer, and it draws via gtk-layer-shell — hence
+    # the --expose-wayland patch on gamescope-session above, which it needs
+    # to render as a proper compositor overlay layer.
+    discover-overlay
   ];
 
+  # Discover Overlay runs continuously alongside whatever you're playing,
+  # rather than being launched as a discrete app — start it with the
+  # gamescope session and keep it alive.
+  systemd.user.services.discover-overlay = {
+    description = "Discover Overlay (Discord voice/notification overlay)";
+    wantedBy = [ "gamescope-session.target" ];
+    partOf = [ "gamescope-session.target" ];
+    after = [ "gamescope-session.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.discover-overlay}/bin/discover-overlay";
+      Restart = "on-failure";
+      RestartSec = "5s";
+    };
+  };
+
   # Sunshine: game-stream server for Moonlight clients — a Remote Play
-  # alternative/complement that also works for non-Steam content.
+  # alternative/complement that also works for non-Steam content. Setting
+  # `applications` exposes Firefox and Discord as launchable/streamable
+  # "apps" to Moonlight clients (Sunshine's equivalent of Steam's non-Steam
+  # game shortcuts) alongside the default full "Desktop" stream. Note this
+  # takes over app configuration entirely — the web UI's app editor is
+  # disabled once this is set.
   services.sunshine = {
     enable = true;
     autoStart = true;
     capSysAdmin = true;
     openFirewall = true;
+    applications = {
+      apps = [
+        { name = "Desktop"; }
+        {
+          name = "Firefox";
+          cmd = "firefox";
+          auto-detach = "true";
+        }
+        {
+          name = "Discord";
+          cmd = "discord";
+          auto-detach = "true";
+        }
+      ];
+    };
   };
 
   # nixpkgs' sunshine module wires its user unit to graphical-session.target
