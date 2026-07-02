@@ -104,16 +104,25 @@
   # default library path, /home/steamos/.local/share/Steam/steamapps, so games
   # install there with no manual "Add Library Folder" step. Because it's
   # several directories deep, systemd auto-creates each missing ancestor as
-  # root:root when it sets up the mount — which would block Steam (running as
-  # the steamos user) from ever populating ~/.local/share/Steam itself. Fix
-  # ownership on that whole chain (non-recursive; files Steam creates below
-  # these will already be owned by steamos since it's the process writing them).
-  systemd.tmpfiles.rules = [
-    "z /home/steamos/.local 0755 steamos users - -"
-    "z /home/steamos/.local/share 0755 steamos users - -"
-    "z /home/steamos/.local/share/Steam 0755 steamos users - -"
-    "z /home/steamos/.local/share/Steam/steamapps 0755 steamos users - -"
-  ];
+  # root:root when it sets up that mount.
+  #
+  # This used to be a systemd.tmpfiles.rules fixup, but tmpfiles only runs
+  # once early at boot with no guaranteed ordering against the steamapps
+  # mount unit — if the mount happened to land after tmpfiles ran, the
+  # ancestor chain stayed root:root and Steam's bootstrap extraction failed
+  # outright ("tar: ./ubuntu12_64: Cannot mkdir: Permission denied"). A
+  # oneshot service with RequiresMountsFor is the correct tool here: systemd
+  # resolves the path to the right mount unit itself and guarantees this
+  # runs strictly after it's mounted, every boot.
+  systemd.services.fix-steam-client-ownership = {
+    description = "Fix ownership of ~/.local/share/Steam ancestor dirs after the steamapps mount";
+    wantedBy = [ "multi-user.target" ];
+    unitConfig.RequiresMountsFor = [ "/home/steamos/.local/share/Steam/steamapps" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.coreutils}/bin/chown steamos:users /home/steamos/.local /home/steamos/.local/share /home/steamos/.local/share/Steam /home/steamos/.local/share/Steam/steamapps";
+    };
+  };
 
   system.stateVersion = "25.05";
 }

@@ -21,6 +21,25 @@
       mangohud = prev.mangohud.overrideAttrs (old: {
         patches = lib.unique old.patches;
       });
+
+      # Upstream's gamescope-session script (Valve's own, from
+      # PKGBUILDs-mirror) hardcodes the Steam Deck's panel resolution
+      # (1280x800) straight into its `exec gamescope ... -w 1280 -h 800 ...`
+      # invocation — no env var or NixOS option controls it. On this box
+      # that means gamescope renders internally at 1280x800 and upscales to
+      # fill the TV's real 1920x1080 output. Patch the shipped script to
+      # render natively instead.
+      #
+      # Live alternative that needs no rebuild: Steam's own Settings >
+      # Display > Resolution does the same thing and persists it to
+      # ~/.config/gamescope/modes.cfg — this override just makes that the
+      # default from first boot instead of something you set by hand once.
+      gamescope-session = prev.gamescope-session.overrideAttrs (old: {
+        postPatch = (old.postPatch or "") + ''
+          substituteInPlace gamescope-session \
+            --replace-fail "-w 1280 -h 800" "-w 1920 -h 1080"
+        '';
+      });
     })
   ];
 
@@ -108,6 +127,21 @@
     autoStart = true;
     capSysAdmin = true;
     openFirewall = true;
+  };
+
+  # nixpkgs' sunshine module wires its user unit to graphical-session.target
+  # (wantedBy/partOf/wants/after), but Jovian's gamescope-session never
+  # activates that target — it uses its own gamescope-session.target — so
+  # autoStart alone doesn't actually bring Sunshine up under Steam's Gaming
+  # Mode. Add the gamescope target alongside the default so Sunshine starts
+  # with the gamescope Wayland session specifically (it'll still also start
+  # under a traditional desktop session, e.g. jovian.steam.desktopSession's
+  # COSMIC, since graphical-session.target is untouched).
+  systemd.user.services.sunshine = {
+    wantedBy = [ "gamescope-session.target" ];
+    partOf = [ "gamescope-session.target" ];
+    wants = [ "gamescope-session.target" ];
+    after = [ "gamescope-session.target" ];
   };
 
   # mDNS advertisement so Moonlight clients can find this box on the LAN
