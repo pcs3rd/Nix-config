@@ -7,7 +7,22 @@
 {
   imports = [ inputs.jovian.nixosModules.default ];
 
-  nixpkgs.overlays = [ inputs.jovian.overlays.default ];
+  nixpkgs.overlays = [
+    inputs.jovian.overlays.default
+    (final: prev: {
+      # Packaging bug in the pinned nixpkgs revision: mangohud's `patches`
+      # list includes 0805396e579c5f1ea27e2e2a78030d8ef6ce1994.diff twice, so
+      # `patch` fails applying it the second time ("Reversed (or previously
+      # applied) patch detected!"), which is fatal in the non-interactive Nix
+      # sandbox. gamescope-session depends on mangohud, so this took the
+      # whole Steam session build down with it. Dedupe until upstream fixes
+      # it (worth checking `nix flake lock --update-input unstable-nixpkgs`
+      # occasionally to see if this override can be dropped).
+      mangohud = prev.mangohud.overrideAttrs (old: {
+        patches = lib.unique old.patches;
+      });
+    })
+  ];
 
   # No traditional desktop stack — gamescope is the "window manager".
   services.xserver.enable = false;
