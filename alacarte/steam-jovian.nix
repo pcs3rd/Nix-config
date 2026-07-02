@@ -227,40 +227,27 @@
   };
 
   # Sunshine: game-stream server for Moonlight clients — a Remote Play
-  # alternative/complement that also works for non-Steam content. Setting
-  # `applications` exposes Firefox and Discord as launchable/streamable
-  # "apps" to Moonlight clients (Sunshine's equivalent of Steam's non-Steam
-  # game shortcuts) alongside the default full "Desktop" stream. Note this
-  # takes over app configuration entirely — the web UI's app editor is
-  # disabled once this is set.
+  # alternative/complement that also works for non-Steam content.
+  #
+  # Deliberately NOT setting `settings` or `applications` here — either one
+  # locks the corresponding editor (settings / apps) out of the web UI
+  # entirely, and the web UI is meant to be the live source of truth for
+  # this. Two things that used to be handled declaratively now need to be
+  # set by hand once, through the web UI, after each fresh install:
+  #   - Settings > Advanced > Encoder > VA-API — without this, Sunshine
+  #     auto-probes encoders, tries Vulkan H264 first, and segfaults on
+  #     connect (confirmed via coredump) since this GPU (Polaris/RX 570)
+  #     doesn't support Vulkan Video encode (RDNA2+ only).
+  #   - Settings > General > "Allowed origins" (csrf_allowed_origins) —
+  #     add this box's Tailscale origin, e.g. https://100.108.107.21:47990,
+  #     if you want to reach the web UI over Tailscale.
+  # The Firefox/Discord/Desktop app shortcuts we had here can be re-added
+  # from the web UI's app editor too.
   services.sunshine = {
     enable = true;
     autoStart = true;
     capSysAdmin = true;
     openFirewall = true;
-    # Crash root cause, confirmed from the coredump: Sunshine's default
-    # encoder probe tries Vulkan Video H264 first, which this GPU
-    # (Polaris/RX 570) doesn't support — the encoder correctly logs
-    # "Encoding of h264 is not supported by this device" and then segfaults
-    # trying to initialize it anyway instead of falling back cleanly.
-    # Vulkan Video encode is RDNA2+ only; force VA-API instead, which AMD has
-    # supported on Linux for years and which this card handles fine.
-    settings.encoder = "vaapi";
-    applications = {
-      apps = [
-        { name = "Desktop"; }
-        {
-          name = "Firefox";
-          cmd = "firefox";
-          auto-detach = "true";
-        }
-        {
-          name = "Discord";
-          cmd = "discord";
-          auto-detach = "true";
-        }
-      ];
-    };
   };
 
   # nixpkgs' sunshine module wires its user unit to graphical-session.target
