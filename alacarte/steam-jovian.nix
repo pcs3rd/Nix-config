@@ -115,17 +115,20 @@
   services.desktopManager.cosmic.enable = true;
   services.system76-scheduler.enable = true;
 
-  # gamescope-session ships steam-launcher.service scoped to
-  # graphical-session.target, and its script hardcodes `-gamepadui`
-  # unconditionally — so as soon as COSMIC (a normal desktop session) also
-  # activates graphical-session.target, Steam relaunches in Big Picture on
-  # top of Desktop Mode. Rescope it to gamescope-session.target only, so it
-  # exclusively belongs to actual Gaming Mode.
-  systemd.user.services.steam-launcher = {
-    wantedBy = [ "gamescope-session.target" ];
-    partOf = [ "gamescope-session.target" ];
-    after = [ "gamescope-session.target" "xdg-desktop-portal.service" ];
-  };
+  # Reverted: an earlier attempt to fix "Steam relaunches in Big Picture when
+  # switching to Desktop Mode" by rescoping steam-launcher.service to
+  # gamescope-session.target broke it outright ("Failed to load environment
+  # files" — EnvironmentFile=%t/gamescope-environment didn't exist yet).
+  # Turns out graphical-session.target isn't a generic "any desktop" target
+  # here: gamescope-session.service is Type=notify and doesn't signal ready
+  # until *after* it writes that environment file, and it's Before=/PartOf=
+  # graphical-session.target — so that target genuinely can't activate
+  # early. gamescope-session.target then starts Steam via Upholds=
+  # steam-launcher.service, not a WantedBy= from steam-launcher's own side.
+  # My override raced ahead of that chain instead of respecting it. The
+  # original bug (if it's still reproducible) needs a correctly-understood
+  # fix, not this one — left alone for now rather than shipping something
+  # broken.
 
   zramSwap.enable = true;
   zramSwap.algorithm = "zstd";
