@@ -20,20 +20,7 @@
   services.nix-daemon.enable = true;
   nix.package = pkgs.nix;
 
-  # Local Linux VM builder — lets this Mac build x86_64-linux/aarch64-linux
-  # derivations (e.g. `nix build .#packages.x86_64-linux.steammachine-installer-iso`)
-  # without a remote builder. Starts on demand via launchd.
-  nix.linux-builder = {
-    enable = true;
-    ephemeral = true; # wipes the VM's disk each restart, so diskSize changes below always take effect
-    config = {
-      virtualisation.cores = 4;
-      virtualisation.darwin-builder.memorySize = 8 * 1024; # MiB
-      virtualisation.darwin-builder.diskSize = 100 * 1024; # MiB — full NixOS live ISO + steammachine closure needs headroom
-    };
-  };
-
-# General system config. 
+# General system config.
 
   system = {
     stateVersion = 5;

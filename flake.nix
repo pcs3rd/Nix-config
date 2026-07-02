@@ -34,12 +34,6 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # nix-darwin, so this Mac can build the (x86_64-linux) installer ISO via
-    # nix-darwin's built-in Linux builder VM
-    nix-darwin = {
-      url = "github:nix-darwin/nix-darwin/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
@@ -54,7 +48,6 @@
     nixos-hardware,
     companion,
     nixos-generators,
-    nix-darwin,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -74,23 +67,6 @@
         modules = [
           # > Our main home-manager configuration file <
           ./home-configs/raine.nix
-        ];
-      };
-    };
-    darwinConfigurations = {
-      # nix.linux-builder.enable in darwin/base-config.nix gives this Mac a
-      # local Linux VM builder, so `nix build .#packages.x86_64-linux.<name>`
-      # (e.g. steammachine-installer-iso) works directly from macOS.
-      "raymonds-macbook-air" = nix-darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        specialArgs = {
-          inherit inputs outputs;
-          hostname = "raymonds-macbook-air";
-          username = "rdean3";
-        };
-        modules = [
-          ./darwin/base-config.nix
-          ./darwin/rdean3.nix
         ];
       };
     };
