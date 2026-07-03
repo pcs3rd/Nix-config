@@ -15,7 +15,7 @@
   boot = {
     initrd.systemd.enable = true;
     initrd.verbose = false;
-
+    boot.kernelModules = [ "cec" ];
     loader.systemd-boot.enable = true;
     loader.systemd-boot.configurationLimit = 2;
     loader.efi.canTouchEfiVariables = true;
@@ -42,7 +42,17 @@
       ];
     };
   };
-
+  environment.systemPackages = [
+    (pkgs.symlinkJoin {
+      name = "cec-utils-wrapped";
+      paths = [ pkgs.cec-utils ];
+      buildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+        wrapProgram $out/bin/cecc-client --prefix LD_LIBRARY_PATH : "${pkgs.libcec}/lib"
+        wrapProgram $out/bin/cec-client --prefix LD_LIBRARY_PATH : "${pkgs.libcec}/lib"
+      '';
+    })
+  ];
   ############
   # Security #
   ############
@@ -100,7 +110,11 @@
     # mkpasswd -m sha-512 (default SteamNix credentials: user steamos / pass steamos)
     hashedPassword = "$6$qGgHrWutHq5TT2er$cvgvICABb6p1mUsueBslBjAP3FLWZz3Ey92H1OyG2sTa6qo7U77/ft79/ZxSIfhD6p0vxQO.ZsdegcMzoobB51";
   };
-
+  users.groups.cec = {};
+  services.udev.extraRules = ''
+    KERNEL=="cec[0-9]*", GROUP="video", MODE="0660"
+  '';
+  users.users.steamos.extraGroups = [ "video" ];
   # The games subvolume (disko-configs/steammachine.nix) is mounted at Steam's
   # default library path, /home/steamos/.local/share/Steam/steamapps, so games
   # install there with no manual "Add Library Folder" step. Because it's
