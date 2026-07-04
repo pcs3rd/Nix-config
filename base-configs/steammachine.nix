@@ -15,7 +15,7 @@
   boot = {
     initrd.systemd.enable = true;
     initrd.verbose = false;
-    boot.kernelModules = [ "cec" ];
+    kernelModules = [ "cec" ];
     loader.systemd-boot.enable = true;
     loader.systemd-boot.configurationLimit = 2;
     loader.efi.canTouchEfiVariables = true;
