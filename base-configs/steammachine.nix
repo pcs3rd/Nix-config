@@ -42,17 +42,7 @@
       ];
     };
   };
-  environment.systemPackages = [
-    (pkgs.symlinkJoin {
-      name = "cec-utils-wrapped";
-      paths = [ pkgs.cec-utils ];
-      buildInputs = [ pkgs.makeWrapper ];
-      postBuild = ''
-        wrapProgram $out/bin/cecc-client --prefix LD_LIBRARY_PATH : "${pkgs.libcec}/lib"
-        wrapProgram $out/bin/cec-client --prefix LD_LIBRARY_PATH : "${pkgs.libcec}/lib"
-      '';
-    })
-  ];
+
   ############
   # Security #
   ############
@@ -97,6 +87,15 @@
     git
     libcec
     tmux
+    (pkgs.symlinkJoin {
+      name = "cec-utils-wrapped";
+      paths = [ pkgs.cec-utils ];
+      buildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+        wrapProgram $out/bin/cecc-client --prefix LD_LIBRARY_PATH : "${pkgs.libcec}/lib"
+        wrapProgram $out/bin/cec-client --prefix LD_LIBRARY_PATH : "${pkgs.libcec}/lib"
+      '';
+    })
   ];
 
   ###############
