@@ -113,7 +113,6 @@
   services.udev.extraRules = ''
     KERNEL=="cec[0-9]*", GROUP="video", MODE="0660"
   '';
-  users.users.steamos.extraGroups = [ "video" ];
   # The games subvolume (disko-configs/steammachine.nix) is mounted at Steam's
   # default library path, /home/steamos/.local/share/Steam/steamapps, so games
   # install there with no manual "Add Library Folder" step. Because it's
