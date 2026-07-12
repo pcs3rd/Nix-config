@@ -25,6 +25,7 @@ users.users.rdean = {
       htop 
       vial
       google-chrome
+      kicad
       firefox
       python313Packages.meshtastic
       vscode
