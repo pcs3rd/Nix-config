@@ -33,6 +33,7 @@ users.users.rdean = {
       discord
       git 
       gh
+      fritzing
     ];
     home.stateVersion = "25.11";
 
