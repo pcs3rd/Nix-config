@@ -1,6 +1,5 @@
 { outputs, inputs, lib, config, pkgs, modulesPath, ... }:{
   imports = [ 
-    inputs.companion.nixosModules.default
     (modulesPath + "/installer/scan/not-detected.nix")
     ];
 #https://github.com/noblepayne/bitfocus-companion-flake
@@ -52,11 +51,6 @@
     mokutil
   ];
   programs.steam.enable = true;
-  programs.companion.enable = true;
-  programs.companion.runAsService = true;
-  programs.companion.user = "1000";
-  programs.companion.group = "100";
-
   security.polkit.enable = true;
   security.rtkit.enable = true;
   security.sudo.wheelNeedsPassword = true;
