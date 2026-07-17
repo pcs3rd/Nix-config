@@ -27,8 +27,7 @@
     # NixOS-hardware
     #nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 		nixos-hardware.url = "github:8bitbuddhist/nixos-hardware?ref=surface-rust-target-spec-fix";
-    # Bitfocus Companion modules
-    # companion.url = "github:noblepayne/bitfocus-companion-flake";
+
     # ISO builder, used for the steammachine auto-install image
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
@@ -46,7 +45,6 @@
     disko,
     mobile-nixos,
     nixos-hardware,
-    companion,
     nixos-generators,
     ...
   } @ inputs: let
@@ -99,13 +97,6 @@
       imac = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-            companion.nixosModules.default
-            {
-              programs.companion.enable = true;
-              programs.companion.runAsService = true;
-              programs.companion.user = "1000";
-              programs.companion.group = "users";
-            }
             home-manager.nixosModules.home-manager
             ./alacarte/gnome-desktop.nix
             ./base-configs/imac.nix
