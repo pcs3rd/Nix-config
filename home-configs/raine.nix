@@ -34,10 +34,26 @@ users.users.rdean = {
       git 
       gh
       fritzing
+      xlights
+      qlcplus
+      obs-studio
     ];
     home.stateVersion = "25.11";
 
   };
   services.udev.packages = [ pkgs.via pkgs.vial ];
+  environment.systemPackages = [
+    (pkgs.wrapOBS {
+      plugins = with pkgs.obs-studio-plugins; [
+        wlrobs
+        obs-backgroundremoval
+        obs-pipewire-audio-capture
+        obs-vaapi #optional AMD hardware acceleration
+        obs-gstreamer
+        obs-vkcapture
+      ];
+    })
+  ];
+  programs.obs-studio.enableVirtualCamera = true;
 
 }
