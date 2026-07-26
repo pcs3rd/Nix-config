@@ -31,7 +31,8 @@
   boot.supportedFilesystems = [ "nfs" "nfs4" ];
 
   # Ensure NFS utilities are installed
-  environment.systemPackages = with pkgs; [ nfs-utils ];
+  environment.systemPackages = with pkgs; [ nfs-utils ghostty ];
+  environment.enableAllTerminfo = true;
 
   # Required for NFSv3 and certain locking mechanisms
   services.rpcbind.enable = true;
