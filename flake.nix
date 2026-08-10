@@ -186,8 +186,8 @@
             ./alacarte/tailscale.nix
             {
               networking.hostName = "steammachine";
-              disko.devices.disk.system.device = "/dev/sda";
-            }
+			  disko.devices.disk.system.device = "/dev/disk/by-id/ata-ST4000DM004-2CV104_ZFN4RETG";
+			}
         ];
       };
     };
