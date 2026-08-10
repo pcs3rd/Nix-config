@@ -182,6 +182,7 @@
             ./base-configs/steammachine.nix
             ./disko-configs/steammachine.nix
             ./alacarte/steam-jovian.nix
+            ./alacarte/steam-prime.nix
             ./alacarte/tailscale.nix
             {
               networking.hostName = "steammachine";
