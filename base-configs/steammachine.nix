@@ -102,6 +102,7 @@
   # Users       #
   ###############
   users.users.steamos = {
+    homeMode = "755";  
     isNormalUser = true;
     home = "/home/steamos";
     description = "SteamOS user";
