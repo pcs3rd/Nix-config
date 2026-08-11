@@ -82,7 +82,6 @@
   # CPU       #
   #############
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
   environment.systemPackages = with pkgs; [
     git
     libcec
