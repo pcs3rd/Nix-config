@@ -56,8 +56,7 @@
     # if this card qualifies — see https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
     open = false;
 
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
     prime = {
       # Offload (not sync): AMD is the only card with a monitor attached, so
       # the NVIDIA GPU stays powered down until something explicitly renders
