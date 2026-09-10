@@ -54,6 +54,10 @@ users.users.rdean = {
       ];
     })
   ];
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
   programs.obs-studio.enableVirtualCamera = true;
 
 }
