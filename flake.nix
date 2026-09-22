@@ -144,7 +144,7 @@
       borg-cube = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-            dynamic-hostname.nixosModules.default
+            dynamik.nixosModules.default
             ./base-configs/borg-server.nix
             ./disko-configs/borg.nix
             ./alacarte/preferred-server-env.nix
