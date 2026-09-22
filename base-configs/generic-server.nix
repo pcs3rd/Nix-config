@@ -11,28 +11,16 @@
 
 # User stuff
   users.users = {
-
-    manager = {
+    drone = {
       isNormalUser = true;
-      home = "/home/manager";
-      description  = "manager user for ssh access";
+      home = "/home/drone;
+      description  = "Borg Drone";
       uid = 1000; 
       extraGroups = [ "wheel" "docker" "networkmanager" "storage" ]; 
-      hashedPasswordFile = "/stateful/sys-data/manager-passwordHash"; #  mkpasswd -m sha-512 
-    };
-    rclone = {
-			shell = lib.mkForce pkgs.bash;
-      isSystemUser = true;
-      #home = "/home/manager";
-      description  = "rclone user for ssh access";
-      uid = 911; 
-      extraGroups = [ "storage" ]; 
-      hashedPasswordFile = "/stateful/sys-data/manager-passwordHash"; #  mkpasswd -m sha-512 
+      hashedPassword = "$6$XtwzZCyEqwDktY5s$5wPBboaEoGRWcmyMqTZiYAhIhdTFchislGlCtchSSfw3fvsdUloEy8tTbqOdW.LkmPf5Kbq0dRtC5QzqcIGyv/"; #  mkpasswd -m sha-512 
     };
   };
-  users.users.rclone.group = "rclone";
-  users.groups.rclone = {};
-  system.stateVersion = "24.05";
+  system.stateVersion = "26.05";
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "be2iscsi" "hpsa" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];

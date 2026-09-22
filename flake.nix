@@ -27,6 +27,8 @@
     # NixOS-hardware
     #nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 		nixos-hardware.url = "github:8bitbuddhist/nixos-hardware?ref=surface-rust-target-spec-fix";
+    # Dynamik hostnames
+    dynamic.url = "github:pcs3rd/dynamik";
 
     # ISO builder, used for the steammachine auto-install image
     nixos-generators = {
@@ -46,6 +48,7 @@
     mobile-nixos,
     nixos-hardware,
     nixos-generators,
+    dynamik,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -138,21 +141,24 @@
             }
         ];
       };
-      locutusofborg = nixpkgs.lib.nixosSystem {
+      borg-cube = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
+            dynamic-hostname.nixosModules.default
             ./base-configs/generic-server.nix
             ./disko-configs/server.nix
-            ./alacarte/rclone-config.nix
             ./alacarte/preferred-server-env.nix
             ./alacarte/tailscale.nix
             ./alacarte/docker.nix
             ./alacarte/grub.nix
-            ./alacarte/nvidia.nix
             {
-              networking.hostName = "locutusofborg";
               boot.loader.grub.device = "/dev/sda";
               disko.devices.disk.system.device = "/dev/sda";
+              services.dynamicHostname = {
+                enable = true;
+                interface = "eth0";        # optional, defaults to "eth0"
+                template = "borg-drone-%s"; # optional, this is the default
+              };
             }
         ];
       };
