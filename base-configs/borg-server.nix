@@ -17,7 +17,7 @@
       description  = "Borg Drone";
       uid = 1000; 
       extraGroups = [ "wheel" "docker" "networkmanager" "storage" ]; 
-      hashedPassword = "$6$XtwzZCyEqwDktY5s$5wPBboaEoGRWcmyMqTZiYAhIhdTFchislGlCtchSSfw3fvsdUloEy8tTbqOdW.LkmPf5Kbq0dRtC5QzqcIGyv/"; #  mkpasswd -m sha-512 
+      hashedPasswordFile = "/stateful/sys-data/manager-passwordHash"; #  mkpasswd -m sha-512 
     };
   };
   system.stateVersion = "26.05";
