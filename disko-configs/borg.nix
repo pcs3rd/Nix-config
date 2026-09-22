@@ -65,9 +65,9 @@
       ];
     };
   };
-  fileSystems."/system_data".neededForBoot = true;
+  fileSystems."/stateful".neededForBoot = true;
   fileSystems."/nix".neededForBoot = true;
-  fileSystems."/docker".neededForBoot = true;
+  fileSystems."/var/lib/docker".neededForBoot = true;
 
   environment.persistence."/stateful" = {
     enable = true; 
