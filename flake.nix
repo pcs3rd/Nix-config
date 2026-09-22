@@ -145,8 +145,8 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
             dynamic-hostname.nixosModules.default
-            ./base-configs/generic-server.nix
-            ./disko-configs/server.nix
+            ./base-configs/borg-server.nix
+            ./disko-configs/borg.nix
             ./alacarte/preferred-server-env.nix
             ./alacarte/tailscale.nix
             ./alacarte/docker.nix
