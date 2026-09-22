@@ -13,7 +13,7 @@
   users.users = {
     drone = {
       isNormalUser = true;
-      home = "/home/drone;
+      home = "/home/drone";
       description  = "Borg Drone";
       uid = 1000; 
       extraGroups = [ "wheel" "docker" "networkmanager" "storage" ]; 
