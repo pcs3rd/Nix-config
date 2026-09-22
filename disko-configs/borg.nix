@@ -32,25 +32,25 @@
                 content = {
                   type = "btrfs";
                   extraArgs = [ "-f" ];
-                subvolumes = {
-                  "/user_data" = {
-                      mountOptions = [ "compress=zstd" "noexec" ];
-                      mountpoint = "/home";
-                  };
-                  "/system_data" = {
-                      mountOptions = [ "compress=zstd" "noexec" ];
-                      mountpoint = "/stateful";
-                  };
-                  "/nix" = {
-                    mountOptions = [ "compress=zstd" "noatime" ];
-                    mountpoint = "/nix";
-                  };
-                  "/docker" = {
-                      mountOptions = [ "compress=zstd" "noatime" ];
-                      mountpoint = "/var/lib/docker";
-                  };
+                    subvolumes = {
+                    "/user_data" = {
+                        mountOptions = [ "compress=zstd" "noexec" ];
+                        mountpoint = "/home";
+                    };
+                    "/system_data" = {
+                        mountOptions = [ "compress=zstd" "noexec" ];
+                        mountpoint = "/stateful";
+                    };
+                    "/nix" = {
+                        mountOptions = [ "compress=zstd" "noatime" ];
+                        mountpoint = "/nix";
+                    };
+                    "/docker" = {
+                        mountOptions = [ "compress=zstd" "noatime" ];
+                        mountpoint = "/var/lib/docker";
+                    };
+                    };
                 };
-              };
             };
           };
         };
