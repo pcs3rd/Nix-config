@@ -155,7 +155,6 @@
               disko.devices.disk.system.device = "/dev/sda";
               services.dynamicHostname = {
                 enable = true;
-                interface = "eth0";        # optional, defaults to "eth0"
                 template = "borg-drone-%s"; # optional, this is the default
               };
             }
