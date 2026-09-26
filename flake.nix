@@ -150,6 +150,7 @@
             ./alacarte/preferred-server-env.nix
             ./alacarte/tailscale.nix
             ./alacarte/docker.nix
+            ./alacarte/k3s.nix
             {
               boot.loader.grub.device = "/dev/sda";
               disko.devices.disk.system.device = "/dev/sda";

@@ -49,6 +49,16 @@
                         mountOptions = [ "compress=zstd" "noatime" ];
                         mountpoint = "/var/lib/docker";
                     };
+                    # k3s: containerd images, etcd, agent binaries (needs exec, unlike /stateful)
+                    "/rancher" = {
+                        mountOptions = [ "compress=zstd" "noatime" "nofail" ];
+                        mountpoint = "/var/lib/rancher";
+                    };
+                    # kubelet: pod volumes (emptyDir, secrets, configmaps)
+                    "/kubelet" = {
+                        mountOptions = [ "compress=zstd" "noatime" "nofail" ];
+                        mountpoint = "/var/lib/kubelet";
+                    };
                     };
                 };
             };
