@@ -37,6 +37,7 @@ users.users.rdean = {
       xlights
       qlcplus
       obs-studio
+      calibre
     ];
     home.stateVersion = "25.11";
 
