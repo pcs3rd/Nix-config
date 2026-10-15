@@ -3,7 +3,33 @@
     [ (modulesPath + "/hardware/network/broadcom-43xx.nix")
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
-
+  services.avahi = {
+    enable = true;
+    publish = { enable = true; userServices = true; };
+  };
+  
+  environment.systemPackages = [ pkgs.shairport-sync-airplay2 pkgs.nqptp ];
+  
+  # AirPlay 2 timing daemon (needs root for ports 319/320)
+  systemd.services.nqptp = {
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];
+    serviceConfig.ExecStart = "${pkgs.nqptp}/bin/nqptp";
+  };
+  
+  # receiver runs in your session so it reaches PipeWire
+  systemd.user.services.shairport-sync = {
+    wantedBy = [ "default.target" ];
+    after = [ "pipewire.service" ];
+    serviceConfig.ExecStart =
+      "${pkgs.shairport-sync-airplay2}/bin/shairport-sync -a iMac -o pa";
+  };
+  
+  networking.firewall = {
+    allowedTCPPorts = [ 3689 5000 7000 ];
+    allowedUDPPorts = [ 319 320 5353 ];
+    allowedUDPPortRanges = [ { from = 6000; to = 6009; } { from = 32768; to = 60999; } ];
+  };
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   services.openssh = {
     enable = true;
