@@ -8,7 +8,8 @@
   services.openssh = {
     enable = true;
   };
-
+  hardware.enableAllFirmware = true;
+  boot.kernelParams = [ "usbhid.quirks=0x05ac:0x8294:0x0004" ];  # HID_QUIRK_IGNORE
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
