@@ -16,6 +16,8 @@
     ];
   };
   environment.sessionVariables = { LIBVA_DRIVER_NAME = "i965"; }; # Optionally, set the environment variable
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
 # Network
   hardware.pulseaudio.enable = false;
   services.pipewire = {
