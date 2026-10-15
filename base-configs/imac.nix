@@ -9,7 +9,6 @@
     enable = true;
   };
   hardware.enableAllFirmware = true;
-  boot.kernelParams = [ "usbhid.quirks=0x05ac:0x8294:0x0004" ];  # HID_QUIRK_IGNORE
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
@@ -83,6 +82,7 @@ services.xserver.libinput.enable = true;
     consoleLogLevel = 3;
     initrd.verbose = false;
     kernelParams = [
+      "usbhid.quirks=0x05ac:0x8294:0x0004"
       "quiet"
       "splash"
       "boot.shell_on_fail"
