@@ -27,6 +27,12 @@
     pulse.enable = true;
     jack.enable = true;
   };
+  services.pipewire.wireplumber.extraConfig."51-bt-latency" = {
+    "monitor.bluez.rules" = [{
+      matches = [{ "node.name" = "~bluez_input.*"; }];
+      actions.update-props."node.latency" = "2048/48000";
+    }];
+  };
   nixpkgs.config.allowUnfree = true;
   networking.networkmanager.enable = true;
   time.timeZone = "America/New_York";
