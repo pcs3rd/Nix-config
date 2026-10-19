@@ -151,7 +151,20 @@
             ./alacarte/tailscale.nix
             ./alacarte/docker.nix
             ./alacarte/k3s.nix
+            ./alacarte/glusterfs.nix
             {
+              # Replicated GlusterFS across the drones (see alacarte/glusterfs.nix).
+              # List every drone; the FIRST one bootstraps the cluster. Or leave this
+              # empty and put one address per line in /stateful/sys-data/gluster/peers.
+              services.glusterCluster = {
+                peers = [
+                  # "borg-drone-d5a1"
+                  # "borg-drone-xxxx"
+                  # "borg-drone-yyyy"
+                ];
+                # daemon = "container";   # glusterd via doco-cd (compose/glusterd/) instead of NixOS
+                # brickQuota = "200G";    # cap the brick so it can't fill /stateful
+              };
               boot.loader.grub.device = "/dev/sda";
               disko.devices.disk.system.device = "/dev/sda";
               services.dynamicHostname = {

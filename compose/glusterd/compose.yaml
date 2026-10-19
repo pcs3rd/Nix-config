@@ -1,0 +1,18 @@
+# Copy this directory into stickpile_compose-config for doco-cd, and set
+#   services.glusterCluster.daemon = "container";
+# in flake.nix. NixOS still creates the brick subvolume, persists state,
+# bootstraps the cluster (via `docker exec glusterd gluster ...`) and mounts it.
+#
+# Paths MUST stay identical inside and outside the container: the bootstrap
+# creates bricks as <peer>:/stateful/gluster/<volume>.
+services:
+  glusterd:
+    image: ghcr.io/pcs3rd/glusterd:11   # build from ./Dockerfile; pin the tag
+    container_name: glusterd            # = services.glusterCluster.containerName
+    network_mode: host                  # peers connect back on host IPs/ports
+    privileged: true                    # trusted.* xattrs on the brick
+    restart: unless-stopped
+    volumes:
+      - /stateful/sys-data/gluster/glusterd:/var/lib/glusterd
+      - /stateful/gluster:/stateful/gluster
+      - /var/log/glusterfs:/var/log/glusterfs
